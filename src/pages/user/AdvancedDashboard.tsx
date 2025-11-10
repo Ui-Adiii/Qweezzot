@@ -50,35 +50,7 @@ const AdvancedDashboard: React.FC = () => {
     } catch (err: any) {
       console.error('Dashboard fetch error:', err);
       setError(err.message || 'Failed to fetch dashboard data');
-      // Set fallback data for demo
-      setStats({
-        user: {
-          name: "Test User",
-          email: "test@byoliva.com", 
-          username: "TESTUSER001",
-          mobileNo: "+91 9876543210",
-          referralCode: "REF001",
-          registrationDate: "15/11/2024",
-          rank: "Bronze",
-          status: "Active"
-        },
-        wallets: {
-          purchaseWallet: 5000,
-          commissionWallet: 2500,
-          referralWallet: 1500
-        },
-        team: {
-          directs: 5,
-          totalTeam: 25,
-          leftBV: 15000,
-          rightBV: 18000
-        },
-        monthly: {
-          income: 3500,
-          target: 10000,
-          achieved: 35
-        }
-      });
+      // No fallback data - show actual error to user
     } finally {
       setLoading(false);
     }

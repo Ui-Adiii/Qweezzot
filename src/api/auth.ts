@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5048';
+const API_BASE_URL = 'https://api.mybyoliva.com/';
 
 export interface LoginData {
   username: string;
@@ -82,6 +82,5 @@ export const authAPI = {
   },
 };
 
-// Export individual functions for easier importing
 export const { login, register, getDashboard: getDashboardStats, getProfile } = authAPI;
 export default authAPI;
