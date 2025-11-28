@@ -16,7 +16,8 @@ import {
   Award,
   Settings,
   LogOut,
-  ChevronDown
+  ChevronDown,
+  Sparkles
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -159,100 +160,127 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({ onLogout }) =>
   };
 
   return (
-    <div className="w-64 bg-white border-r border-gray-200 min-h-screen flex flex-col shadow-sm">
-      {/* Header */}
-      <div className="p-4 border-b border-gray-200">
-        <h2 className="text-lg font-bold text-primary">NAVIGATIONS</h2>
-      </div>
+    <aside className="fixed top-0 left-0 z-40 w-72 h-screen transition-transform -translate-x-full lg:translate-x-0">
+      {/* Glass Background */}
+      <div className="h-full bg-gradient-to-b from-emerald-900/95 via-emerald-800/95 to-emerald-900/95 backdrop-blur-xl border-r border-emerald-700/30 shadow-2xl">
+        <div className="h-full px-4 py-6 overflow-y-auto">
+          {/* Logo/Brand Section with Glass Effect */}
+          <div className="mb-8 px-3 pt-4">
+            <div className="flex items-center justify-center mb-3 px-4 py-2 rounded-2xl bg-white/20 backdrop-blur-lg border border-amber-400/30 shadow-lg ring-1 ring-amber-400/20">
+              {/* <div className="p-1 bg-white/20 rounded-xl shadow-lg ring-2 ring-amber-300/40 backdrop-blur-sm"> */}
+                <img 
+                  src="/logo.png" 
+                  alt="Byoliva Logo" 
+                  className="h-40 w-40 object-contain brightness-200 contrast-180"
+                />
+              {/* </div> */}
+            </div>
+          </div>
 
-      {/* Navigation */}
-      <nav className="flex-1 px-2 py-4 space-y-1 overflow-y-auto">
-        {navigation.map((item) => {
-          const isActive = location.pathname === item.href;
-          const hasSubmenu = item.submenu && item.children;
-          const isSubmenuOpen = openSubmenu === item.name;
+          {/* Navigation */}
+          <nav className="space-y-1.5">
+            {navigation.map((item) => {
+              const isActive = location.pathname === item.href || 
+                (item.children && item.children.some(child => location.pathname === child.href));
+              const hasSubmenu = item.submenu && item.children;
+              const isSubmenuOpen = openSubmenu === item.name;
 
-          return (
-            <div key={item.name}>
-              {hasSubmenu ? (
-                <button
-                  onClick={() => toggleSubmenu(item.name)}
-                  className={cn(
-                    'w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200',
-                    'hover:bg-primary/10 hover:text-primary',
-                    isActive 
-                      ? 'bg-primary text-white shadow-md' 
-                      : 'text-gray-700'
-                  )}
-                >
-                  <div className="flex items-center">
-                    <item.icon className="mr-3 h-4 w-4" />
-                    {item.name}
-                  </div>
-                  <ChevronDown 
-                    className={cn(
-                      "h-4 w-4 transition-transform duration-200",
-                      isSubmenuOpen ? "transform rotate-180" : ""
-                    )}
-                  />
-                </button>
-              ) : (
-                <Link
-                  to={item.href}
-                  className={cn(
-                    'flex items-center px-3 py-2.5 text-sm font-medium rounded-lg transition-all duration-200',
-                    'hover:bg-primary/10 hover:text-primary',
-                    isActive 
-                      ? 'bg-primary text-white shadow-md' 
-                      : 'text-gray-700',
-                    item.highlight && 'border-l-4 border-accent bg-accent/5'
-                  )}
-                >
-                  <item.icon className="mr-3 h-4 w-4" />
-                  {item.name}
-                  {item.highlight && (
-                    <span className="ml-auto text-xs bg-accent text-primary-dark px-2 py-1 rounded-full">
-                      +
-                    </span>
-                  )}
-                </Link>
-              )}
-              
-              {/* Submenu */}
-              {hasSubmenu && isSubmenuOpen && (
-                <div className="ml-4 mt-1 space-y-1">
-                  {item.children?.map((child) => (
-                    <Link
-                      key={child.name}
-                      to={child.href}
+              return (
+                <div key={item.name}>
+                  {hasSubmenu ? (
+                    <button
+                      onClick={() => toggleSubmenu(item.name)}
                       className={cn(
-                        'block px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200',
-                        'hover:bg-primary/5 hover:text-primary text-gray-600',
-                        location.pathname === child.href 
-                          ? 'bg-primary/20 text-primary font-medium' 
-                          : ''
+                        'w-full flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 group',
+                        isActive
+                          ? 'bg-white/20 backdrop-blur-md text-white shadow-lg border border-white/20'
+                          : 'text-emerald-100/80 hover:bg-white/10 hover:text-white backdrop-blur-sm border border-transparent'
                       )}
                     >
-                      {child.name}
+                      <div className="flex items-center space-x-3">
+                        <item.icon className={cn(
+                          "h-5 w-5 transition-transform group-hover:scale-110",
+                          isActive ? "text-white" : "text-emerald-200/70"
+                        )} />
+                        <span>{item.name}</span>
+                      </div>
+                      <ChevronDown 
+                        className={cn(
+                          "h-4 w-4 transition-transform duration-300",
+                          isSubmenuOpen ? "transform rotate-180" : "",
+                          isActive ? "text-white" : "text-emerald-200/70"
+                        )} 
+                      />
+                    </button>
+                  ) : (
+                    <Link
+                      to={item.href}
+                      className={cn(
+                        'flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 group relative',
+                        isActive
+                          ? 'bg-white/20 backdrop-blur-md text-white shadow-lg border border-amber-400/30 ring-1 ring-amber-400/20'
+                          : 'text-emerald-100/80 hover:bg-white/10 hover:text-white backdrop-blur-sm border border-transparent',
+                        item.highlight && 'ring-2 ring-amber-400/60 bg-amber-500/15 border-amber-400/30'
+                      )}
+                    >
+                      <item.icon className={cn(
+                        "h-5 w-5 mr-3 transition-transform group-hover:scale-110",
+                        isActive ? "text-white" : "text-emerald-200/70"
+                      )} />
+                      <span className="flex-1">{item.name}</span>
+                      {item.highlight && (
+                        <span className="px-2 py-0.5 text-xs font-bold bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 text-white rounded-full shadow-lg ring-1 ring-amber-300/50">
+                          NEW
+                        </span>
+                      )}
+                      {isActive && (
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-white rounded-l-full shadow-lg"></div>
+                      )}
                     </Link>
-                  ))}
+                  )}
+                  
+                  {/* Submenu with Glass Effect */}
+                  {hasSubmenu && isSubmenuOpen && (
+                    <div className="ml-6 mt-2 space-y-1 border-l-2 border-emerald-500/30 pl-4">
+                      {item.children?.map((child) => {
+                        const isChildActive = location.pathname === child.href;
+                        return (
+                          <Link
+                            key={child.name}
+                            to={child.href}
+                            className={cn(
+                              'block px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-300 backdrop-blur-sm',
+                              isChildActive
+                                ? 'bg-white/15 text-white border border-white/20 font-semibold shadow-md'
+                                : 'text-emerald-100/70 hover:bg-white/5 hover:text-white border border-transparent'
+                            )}
+                          >
+                            <span className="flex items-center">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-3 shadow-sm"></span>
+                              {child.name}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          );
-        })}
-      </nav>
+              );
+            })}
+          </nav>
 
-      {/* Logout Button */}
-      <div className="p-4 border-t border-gray-200">
-        <button
-          onClick={onLogout}
-          className="w-full flex items-center px-3 py-2.5 text-sm font-medium rounded-lg text-red-600 hover:bg-red-50 hover:text-red-700 transition-all duration-200 border border-red-200"
-        >
-          <LogOut className="mr-3 h-4 w-4" />
-          Logout
-        </button>
+          {/* Logout Button with Glass Effect */}
+          <div className="absolute bottom-0 left-0 right-0 p-4 bg-emerald-900/50 backdrop-blur-xl border-t border-amber-400/20">
+            <button
+              onClick={onLogout}
+              className="w-full flex items-center justify-center px-4 py-3 text-sm font-semibold text-white bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-xl transition-all duration-300 shadow-lg border border-amber-400/30 hover:border-amber-400/50 ring-1 ring-amber-400/20 hover:ring-amber-400/40 transform hover:scale-[1.02]"
+            >
+              <LogOut className="mr-2 h-5 w-5" />
+              Logout
+            </button>
+          </div>
+        </div>
       </div>
-    </div>
+    </aside>
   );
 };

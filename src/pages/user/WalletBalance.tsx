@@ -5,6 +5,7 @@ import { Wallet, TrendingUp, ArrowUpRight, ArrowDownRight, RefreshCw } from 'luc
 import { authAPI } from '@/api/auth';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const WalletBalance: React.FC = () => {
   const [walletData, setWalletData] = useState({
@@ -44,127 +45,188 @@ const WalletBalance: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-white min-h-screen">
-      <div className="flex items-center justify-between">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-emerald-50/30 via-white to-emerald-50/20 min-h-screen">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-center justify-between"
+      >
         <div className="flex items-center space-x-3">
-          <Wallet className="h-8 w-8 text-primary" />
-          <h1 className="text-3xl font-bold text-primary">Wallet Balance</h1>
+          <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+            <Wallet className="h-8 w-8 text-emerald-600" />
+          </div>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">
+            Wallet Balance
+          </h1>
         </div>
-        <Button variant="outline" onClick={fetchWalletData} disabled={loading}>
+        <Button 
+          variant="outline" 
+          onClick={fetchWalletData} 
+          disabled={loading}
+          className="bg-white/70 backdrop-blur-sm border-emerald-200/50 ring-1 ring-amber-400/10 hover:bg-emerald-50/80 text-emerald-800 hover:text-emerald-900"
+        >
           <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
           Refresh
         </Button>
-      </div>
+      </motion.div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="border-green-200 bg-green-50/50">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-green-800">Purchase Wallet</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {loading ? (
-              <div className="animate-pulse">
-                <div className="h-8 bg-gray-200 rounded w-32 mb-4"></div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          whileHover={{ scale: 1.02, y: -5 }}
+        >
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-3">
+                <motion.div
+                  className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <Wallet className="h-5 w-5 text-emerald-600" />
+                </motion.div>
+                <CardTitle className="text-lg text-emerald-900">Purchase Wallet</CardTitle>
               </div>
-            ) : (
-              <>
-                <p className="text-3xl font-bold text-green-600">
-                  {formatCurrency(walletData.purchaseWallet)}
-                </p>
-                <div className="flex items-center space-x-2 mt-2">
+            </CardHeader>
+            <CardContent>
+              {loading ? (
+                <div className="animate-pulse">
+                  <div className="h-8 bg-emerald-200/50 rounded w-32 mb-4"></div>
+                </div>
+              ) : (
+                <>
+                  <p className="text-3xl font-bold text-emerald-700 mb-4">
+                    {formatCurrency(walletData.purchaseWallet)}
+                  </p>
                   <Button 
                     size="sm" 
-                    className="bg-green-600 hover:bg-green-700"
+                    className="w-full bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
                     onClick={() => navigate('/user/wallet')}
                   >
                     <ArrowUpRight className="h-4 w-4 mr-1" />
                     Add Money
                   </Button>
-                </div>
-              </>
-            )}
-          </CardContent>
-        </Card>
+                </>
+              )}
+            </CardContent>
+          </Card>
+        </motion.div>
         
-        <Card className="border-blue-200 bg-blue-50/50">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-blue-800">Commission Wallet</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {loading ? (
-              <div className="animate-pulse">
-                <div className="h-8 bg-gray-200 rounded w-32 mb-4"></div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          whileHover={{ scale: 1.02, y: -5 }}
+        >
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-3">
+                <motion.div
+                  className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <TrendingUp className="h-5 w-5 text-emerald-600" />
+                </motion.div>
+                <CardTitle className="text-lg text-emerald-900">Commission Wallet</CardTitle>
               </div>
-            ) : (
-              <>
-                <p className="text-3xl font-bold text-blue-600">
-                  {formatCurrency(walletData.commissionWallet)}
-                </p>
-                <div className="flex items-center space-x-2 mt-2">
+            </CardHeader>
+            <CardContent>
+              {loading ? (
+                <div className="animate-pulse">
+                  <div className="h-8 bg-emerald-200/50 rounded w-32 mb-4"></div>
+                </div>
+              ) : (
+                <>
+                  <p className="text-3xl font-bold text-emerald-700 mb-4">
+                    {formatCurrency(walletData.commissionWallet)}
+                  </p>
                   <Button 
                     size="sm" 
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="w-full bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
                     onClick={() => navigate('/user/withdraw')}
                   >
                     <ArrowDownRight className="h-4 w-4 mr-1" />
                     Withdraw
                   </Button>
-                </div>
-              </>
-            )}
-          </CardContent>
-        </Card>
+                </>
+              )}
+            </CardContent>
+          </Card>
+        </motion.div>
         
-        <Card className="border-purple-200 bg-purple-50/50">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg text-purple-800">Referral Wallet</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {loading ? (
-              <div className="animate-pulse">
-                <div className="h-8 bg-gray-200 rounded w-32 mb-4"></div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          whileHover={{ scale: 1.02, y: -5 }}
+        >
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+            <CardHeader className="pb-3">
+              <div className="flex items-center gap-3">
+                <motion.div
+                  className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30"
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <TrendingUp className="h-5 w-5 text-emerald-600" />
+                </motion.div>
+                <CardTitle className="text-lg text-emerald-900">Referral Wallet</CardTitle>
               </div>
-            ) : (
-              <>
-                <p className="text-3xl font-bold text-purple-600">
-                  {formatCurrency(walletData.referralWallet)}
-                </p>
-                <div className="flex items-center space-x-2 mt-2">
+            </CardHeader>
+            <CardContent>
+              {loading ? (
+                <div className="animate-pulse">
+                  <div className="h-8 bg-emerald-200/50 rounded w-32 mb-4"></div>
+                </div>
+              ) : (
+                <>
+                  <p className="text-3xl font-bold text-emerald-700 mb-4">
+                    {formatCurrency(walletData.referralWallet)}
+                  </p>
                   <Button 
                     size="sm" 
-                    className="bg-purple-600 hover:bg-purple-700"
+                    className="w-full bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
                     onClick={() => navigate('/user/wallet')}
                   >
                     <TrendingUp className="h-4 w-4 mr-1" />
                     Transfer
                   </Button>
-                </div>
-              </>
+                </>
+              )}
+            </CardContent>
+          </Card>
+        </motion.div>
+      </div>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4 }}
+      >
+        <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <CardHeader>
+            <CardTitle className="text-xl text-emerald-900">Total Balance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {loading ? (
+              <div className="animate-pulse">
+                <div className="h-12 bg-emerald-200/50 rounded w-48"></div>
+              </div>
+            ) : (
+              <p className="text-4xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">
+                {formatCurrency(
+                  walletData.purchaseWallet + 
+                  walletData.commissionWallet + 
+                  walletData.referralWallet
+                )}
+              </p>
             )}
           </CardContent>
         </Card>
-      </div>
-      
-      <Card>
-        <CardHeader>
-          <CardTitle>Total Balance</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {loading ? (
-            <div className="animate-pulse">
-              <div className="h-12 bg-gray-200 rounded w-48"></div>
-            </div>
-          ) : (
-            <p className="text-4xl font-bold text-primary">
-              {formatCurrency(
-                walletData.purchaseWallet + 
-                walletData.commissionWallet + 
-                walletData.referralWallet
-              )}
-            </p>
-          )}
-        </CardContent>
-      </Card>
+      </motion.div>
     </div>
   );
 };

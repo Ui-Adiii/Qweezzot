@@ -8,10 +8,11 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Plus, Package, Edit, Trash2, Image as ImageIcon, DollarSign, ShoppingCart, Eye, Store } from 'lucide-react';
+import { Plus, Package, Edit, Trash2, Image as ImageIcon, DollarSign, ShoppingCart, Eye, Store, ArrowRight, Star, Sparkles, TrendingUp } from 'lucide-react';
 import { toast } from 'sonner';
 import productsAPI, { Product } from '@/api/products';
 import { useCart } from '@/contexts/CartContext';
+import { motion } from 'framer-motion';
 
 const UserProducts = () => {
   const [userProducts, setUserProducts] = useState<Product[]>([]);
@@ -23,6 +24,9 @@ const UserProducts = () => {
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [activeTab, setActiveTab] = useState('my-products');
+  const [visibleCount, setVisibleCount] = useState(6); // Show 6 products initially
+  const [myProductsVisibleCount, setMyProductsVisibleCount] = useState(6); // Show 6 products initially for My Products
+  const productsPerPage = 6;
   const { addItem } = useCart();
   
   const [productForm, setProductForm] = useState({
@@ -486,100 +490,181 @@ const UserProducts = () => {
           {/* My Products Grid */}
           {loading ? (
             <div className="flex items-center justify-center min-h-[400px]">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600"></div>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {userProducts.length === 0 ? (
-                <div className="col-span-full text-center py-12 text-gray-500">
-                  <Package className="mx-auto h-16 w-16 text-gray-300 mb-4" />
-                  <p className="text-lg font-medium">No products yet</p>
-                  <p className="text-sm mb-4">Start by adding your first product</p>
-                  <Button onClick={openCreateDialog} className="bg-green-600 hover:bg-green-700">
-                    <Plus className="mr-2 h-4 w-4" />
-                    Add Your First Product
-                  </Button>
-                </div>
-              ) : (
-                userProducts.map((product) => (
-                  <Card key={product._id} className="overflow-hidden">
-                    <div className="aspect-video bg-gray-100 relative">
-                      {product.images && product.images.length > 0 ? (
-                        <img
-                          src={product.images[0]}
-                          alt={product.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full">
-                          <ImageIcon className="h-12 w-12 text-gray-400" />
-                        </div>
-                      )}
-                      <div className="absolute top-2 right-2">
-                        <Badge variant={product.inStock ? "default" : "destructive"}>
-                          {product.inStock ? "In Stock" : "Out of Stock"}
-                        </Badge>
-                      </div>
-                    </div>
-                    
-                    <CardHeader className="pb-2">
-                      <div className="flex justify-between items-start">
-                        <CardTitle className="text-lg leading-tight">{product.name}</CardTitle>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl font-bold text-green-600">₹{product.price.toLocaleString()}</span>
-                        {product.discountPrice && (
-                          <span className="text-sm text-gray-500 line-through">₹{product.discountPrice.toLocaleString()}</span>
-                        )}
-                      </div>
-                    </CardHeader>
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {userProducts.length === 0 ? (
+                  <div className="col-span-full text-center py-12 text-emerald-700/70">
+                    <Package className="mx-auto h-16 w-16 text-emerald-300 mb-4" />
+                    <p className="text-lg font-medium">No products yet</p>
+                    <p className="text-sm mb-4">Start by adding your first product</p>
+                    <Button onClick={openCreateDialog} className="bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30">
+                      <Plus className="mr-2 h-4 w-4" />
+                      Add Your First Product
+                    </Button>
+                  </div>
+                ) : (
+                  userProducts.slice(0, myProductsVisibleCount).map((product, index) => {
+                    const discountPercent = product.discountPrice && product.discountPrice < product.price
+                      ? Math.round(((product.price - product.discountPrice) / product.price) * 100)
+                      : 0;
+                    const finalPrice = product.discountPrice && product.discountPrice > 0 ? product.discountPrice : product.price;
 
-                    <CardContent className="pt-0">
-                      <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.description}</p>
-                      
-                      <div className="space-y-2 text-xs text-gray-500 mb-4">
-                        <div className="flex justify-between">
-                          <span>Category:</span>
-                          <Badge variant="outline" className="text-xs">{product.category}</Badge>
-                        </div>
-                        {product.stock !== undefined && (
-                          <div className="flex justify-between">
-                            <span>Stock:</span>
-                            <span className="font-medium">{product.stock} units</span>
-                          </div>
-                        )}
-                        {product.pv && (
-                          <div className="flex justify-between">
-                            <span>PV:</span>
-                            <span className="font-medium">{product.pv}</span>
-                          </div>
-                        )}
-                      </div>
+                    return (
+                      <motion.div
+                        key={product._id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        whileHover={{ scale: 1.02, y: -5 }}
+                      >
+                        <Card className="group relative border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ring-1 ring-amber-400/10 h-full flex flex-col">
+                          {/* Discount Badge */}
+                          {discountPercent > 0 && (
+                            <div className="absolute top-4 right-4 z-20">
+                              <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-amber-300/30">
+                                <TrendingUp className="h-3 w-3 mr-1" />
+                                {discountPercent}% OFF
+                              </Badge>
+                            </div>
+                          )}
 
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => openEditDialog(product)}
-                          className="flex-1"
-                        >
-                          <Edit className="h-3 w-3 mr-1" />
-                          Edit
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => handleDeleteProduct(product._id)}
-                          className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))
+                          {/* Stock Badge */}
+                          <div className="absolute top-4 left-4 z-20">
+                            <Badge className={product.inStock 
+                              ? "bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-emerald-300/30"
+                              : "bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm"
+                            }>
+                              {product.inStock ? "In Stock" : "Out of Stock"}
+                            </Badge>
+                          </div>
+
+                          {/* Product Image */}
+                          <div className="relative h-56 bg-gradient-to-br from-emerald-50/70 to-amber-50/50 overflow-hidden flex-shrink-0">
+                            {product.images && product.images.length > 0 ? (
+                              <motion.img
+                                src={product.images[0]}
+                                alt={product.name}
+                                className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                whileHover={{ scale: 1.1 }}
+                              />
+                            ) : (
+                              <div className="flex items-center justify-center h-full">
+                                <ImageIcon className="h-12 w-12 text-emerald-300" />
+                              </div>
+                            )}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          </div>
+                          
+                          <CardHeader className="pb-2">
+                            <div className="flex justify-between items-start">
+                              <CardTitle className="text-lg leading-tight text-emerald-900 line-clamp-2 min-h-[3.5rem]">{product.name}</CardTitle>
+                            </div>
+                            <div className="flex items-center gap-2 flex-wrap mt-2">
+                              <span className="text-2xl font-bold text-emerald-700">
+                                ₹{finalPrice.toLocaleString()}
+                              </span>
+                              {product.discountPrice && product.discountPrice < product.price && (
+                                <span className="text-sm text-emerald-600/70 line-through">₹{product.price.toLocaleString()}</span>
+                              )}
+                              {product.pv && (
+                                <Badge className="bg-gradient-to-r from-amber-500/90 to-yellow-500/90 text-white ring-1 ring-amber-300/30 backdrop-blur-sm">
+                                  <Sparkles className="h-3 w-3 mr-1" />
+                                  {product.pv} PV
+                                </Badge>
+                              )}
+                            </div>
+                          </CardHeader>
+
+                          <CardContent className="pt-0 flex-1 flex flex-col">
+                            <p className="text-sm text-emerald-700/70 mb-3 line-clamp-2 min-h-[2.5rem]">{product.description}</p>
+                            
+                            <div className="space-y-2 text-xs text-emerald-700/70 mb-4">
+                              <div className="flex justify-between">
+                                <span>Category:</span>
+                                <Badge variant="outline" className="text-xs border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10">{product.category}</Badge>
+                              </div>
+                              {product.stock !== undefined && (
+                                <div className="flex justify-between">
+                                  <span>Stock:</span>
+                                  <span className="font-medium">{product.stock} units</span>
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="flex gap-2 mt-auto">
+                              <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="flex-1"
+                              >
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => openEditDialog(product)}
+                                  className="w-full border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-emerald-50/50"
+                                >
+                                  <Edit className="h-3 w-3 mr-1" />
+                                  Edit
+                                </Button>
+                              </motion.div>
+                              <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                              >
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  onClick={() => handleDeleteProduct(product._id)}
+                                  className="text-red-600 hover:text-red-700 hover:bg-red-50 border-red-200/50"
+                                >
+                                  <Trash2 className="h-3 w-3" />
+                                </Button>
+                              </motion.div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    );
+                  })
+                )}
+              </div>
+
+              {/* Load More Button for My Products */}
+              {userProducts.length > myProductsVisibleCount && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="flex justify-center mt-8"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      onClick={() => setMyProductsVisibleCount(prev => prev + productsPerPage)}
+                      size="lg"
+                      className="bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30 px-8 py-6"
+                    >
+                      Load More Products
+                      <ArrowRight className="h-5 w-5 ml-2" />
+                    </Button>
+                  </motion.div>
+                </motion.div>
               )}
-            </div>
+
+              {/* Products Count Info for My Products */}
+              {userProducts.length > 0 && (
+                <div className="text-center mt-4 text-emerald-700/70">
+                  <p className="text-sm">
+                    Showing {Math.min(myProductsVisibleCount, userProducts.length)} of {userProducts.length} products
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </TabsContent>
 
@@ -587,98 +672,187 @@ const UserProducts = () => {
         <TabsContent value="all-products" className="space-y-6">
           {allProductsLoading ? (
             <div className="flex items-center justify-center min-h-[400px]">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600"></div>
             </div>
           ) : (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {allProducts.length === 0 ? (
-                <div className="col-span-full text-center py-12 text-gray-500">
-                  <Store className="mx-auto h-16 w-16 text-gray-300 mb-4" />
-                  <p className="text-lg font-medium">No products available</p>
-                  <p className="text-sm">Check back later for new products</p>
-                </div>
-              ) : (
-                allProducts.map((product) => (
-                  <Card key={product._id} className="overflow-hidden">
-                    <div className="aspect-video bg-gray-100 relative">
-                      {product.images && product.images.length > 0 ? (
-                        <img
-                          src={product.images[0]}
-                          alt={product.name}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full">
-                          <ImageIcon className="h-12 w-12 text-gray-400" />
-                        </div>
-                      )}
-                      <div className="absolute top-2 right-2">
-                        <Badge variant={product.inStock ? "default" : "destructive"}>
-                          {product.inStock ? "In Stock" : "Out of Stock"}
-                        </Badge>
-                      </div>
-                    </div>
-                    
-                    <CardHeader className="pb-2">
-                      <div className="flex justify-between items-start">
-                        <CardTitle className="text-lg leading-tight">{product.name}</CardTitle>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <span className="text-2xl font-bold text-green-600">
-                          ₹{(product.discountPrice || product.price).toLocaleString()}
-                        </span>
-                        {product.discountPrice && (
-                          <span className="text-sm text-gray-500 line-through">₹{product.price.toLocaleString()}</span>
-                        )}
-                        {product.pv && (
-                          <Badge variant="outline" className="text-xs">
-                            {product.pv} PV
-                          </Badge>
-                        )}
-                      </div>
-                    </CardHeader>
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {allProducts.length === 0 ? (
+                  <div className="col-span-full text-center py-12 text-emerald-700/70">
+                    <Store className="mx-auto h-16 w-16 text-emerald-300 mb-4" />
+                    <p className="text-lg font-medium">No products available</p>
+                    <p className="text-sm">Check back later for new products</p>
+                  </div>
+                ) : (
+                  allProducts.slice(0, visibleCount).map((product, index) => {
+                    const discountPercent = product.discountPrice && product.discountPrice < product.price
+                      ? Math.round(((product.price - product.discountPrice) / product.price) * 100)
+                      : 0;
+                    const finalPrice = product.discountPrice && product.discountPrice > 0 ? product.discountPrice : product.price;
 
-                    <CardContent className="pt-0">
-                      <p className="text-sm text-gray-600 mb-3 line-clamp-2">{product.description}</p>
-                      
-                      <div className="space-y-2 text-xs text-gray-500 mb-4">
-                        <div className="flex justify-between">
-                          <span>Category:</span>
-                          <Badge variant="outline" className="text-xs">{product.category}</Badge>
-                        </div>
-                        {product.stock !== undefined && (
-                          <div className="flex justify-between">
-                            <span>Stock:</span>
-                            <span className="font-medium">{product.stock} units</span>
+                    return (
+                      <motion.div
+                        key={product._id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.05 }}
+                        whileHover={{ scale: 1.02, y: -5 }}
+                      >
+                        <Card className="group relative border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ring-1 ring-amber-400/10 h-full flex flex-col">
+                          {/* Discount Badge */}
+                          {discountPercent > 0 && (
+                            <div className="absolute top-4 right-4 z-20">
+                              <Badge className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-amber-300/30">
+                                <TrendingUp className="h-3 w-3 mr-1" />
+                                {discountPercent}% OFF
+                              </Badge>
+                            </div>
+                          )}
+
+                          {/* Popular Badge for first 3 products */}
+                          {index < 3 && (
+                            <div className="absolute top-4 left-4 z-20">
+                              <Badge className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-emerald-300/30">
+                                <Star className="h-3 w-3 mr-1 fill-current" />
+                                Popular
+                              </Badge>
+                            </div>
+                          )}
+
+                          {/* Stock Badge */}
+                          {!product.inStock && (
+                            <div className="absolute top-4 left-4 z-20">
+                              <Badge className="bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm">
+                                Out of Stock
+                              </Badge>
+                            </div>
+                          )}
+
+                          <div className="relative h-56 bg-gradient-to-br from-emerald-50/70 to-amber-50/50 overflow-hidden flex-shrink-0">
+                            {product.images && product.images.length > 0 ? (
+                              <motion.img
+                                src={product.images[0]}
+                                alt={product.name}
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                whileHover={{ scale: 1.1 }}
+                              />
+                            ) : (
+                              <div className="flex items-center justify-center h-full">
+                                <ImageIcon className="h-12 w-12 text-emerald-300" />
+                              </div>
+                            )}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           </div>
-                        )}
-                      </div>
+                          
+                          <CardHeader className="pb-2">
+                            <div className="flex justify-between items-start">
+                              <CardTitle className="text-lg leading-tight text-emerald-900 line-clamp-2 min-h-[3.5rem]">{product.name}</CardTitle>
+                            </div>
+                            <div className="flex items-center gap-2 flex-wrap mt-2">
+                              <span className="text-2xl font-bold text-emerald-700">
+                                ₹{finalPrice.toLocaleString()}
+                              </span>
+                              {product.discountPrice && product.discountPrice < product.price && (
+                                <span className="text-sm text-emerald-600/70 line-through">₹{product.price.toLocaleString()}</span>
+                              )}
+                              {product.pv && (
+                                <Badge className="bg-gradient-to-r from-amber-500/90 to-yellow-500/90 text-white ring-1 ring-amber-300/30 backdrop-blur-sm">
+                                  <Sparkles className="h-3 w-3 mr-1" />
+                                  {product.pv} PV
+                                </Badge>
+                              )}
+                            </div>
+                          </CardHeader>
 
-                      <div className="flex gap-2">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="flex-1"
-                          onClick={() => window.open(`/products/${product._id}`, '_blank')}
-                        >
-                          <Eye className="h-3 w-3 mr-1" />
-                          View
-                        </Button>
-                        <Button
-                          size="sm"
-                          className="flex-1 bg-green-600 hover:bg-green-700"
-                          onClick={() => handleAddToCart(product)}
-                          disabled={!product.inStock}
-                        >
-                          <ShoppingCart className="h-3 w-3 mr-1" />
-                          Add to Cart
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))
+                          <CardContent className="pt-0 flex-1 flex flex-col">
+                            <p className="text-sm text-emerald-700/70 mb-3 line-clamp-2 min-h-[2.5rem]">{product.description}</p>
+                            
+                            <div className="space-y-2 text-xs text-emerald-700/70 mb-4">
+                              <div className="flex justify-between">
+                                <span>Category:</span>
+                                <Badge variant="outline" className="text-xs border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10">{product.category}</Badge>
+                              </div>
+                              {product.stock !== undefined && (
+                                <div className="flex justify-between">
+                                  <span>Stock:</span>
+                                  <span className="font-medium">{product.stock} units</span>
+                                </div>
+                              )}
+                            </div>
+
+                            <div className="flex gap-2 mt-auto">
+                              <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="flex-1"
+                              >
+                                <Button
+                                  size="sm"
+                                  variant="outline"
+                                  className="w-full border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-emerald-50/50"
+                                  onClick={() => window.open(`/products/${product._id}`, '_blank')}
+                                >
+                                  <Eye className="h-3 w-3 mr-1" />
+                                  View
+                                </Button>
+                              </motion.div>
+                              <motion.div
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="flex-1"
+                              >
+                                <Button
+                                  size="sm"
+                                  className="w-full bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+                                  onClick={() => handleAddToCart(product)}
+                                  disabled={!product.inStock}
+                                >
+                                  <ShoppingCart className="h-3 w-3 mr-1" />
+                                  Add to Cart
+                                </Button>
+                              </motion.div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </motion.div>
+                    );
+                  })
+                )}
+              </div>
+
+              {/* Load More Button */}
+              {allProducts.length > visibleCount && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="flex justify-center mt-8"
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      onClick={() => setVisibleCount(prev => prev + productsPerPage)}
+                      size="lg"
+                      className="bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30 px-8 py-6"
+                    >
+                      Load More Products
+                      <ArrowRight className="h-5 w-5 ml-2" />
+                    </Button>
+                  </motion.div>
+                </motion.div>
               )}
-            </div>
+
+              {/* Products Count Info */}
+              {allProducts.length > 0 && (
+                <div className="text-center mt-4 text-emerald-700/70">
+                  <p className="text-sm">
+                    Showing {Math.min(visibleCount, allProducts.length)} of {allProducts.length} products
+                  </p>
+                </div>
+              )}
+            </>
           )}
         </TabsContent>
       </Tabs>

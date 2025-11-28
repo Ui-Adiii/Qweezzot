@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Globe, Truck, Package, Clock, ShoppingCart } from 'lucide-react';
 import { toast } from 'sonner';
 import productsAPI from '@/api/products';
+import { motion } from 'framer-motion';
 
 interface Order {
   _id: string;
@@ -96,46 +97,115 @@ const OnlineOrders: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-white min-h-screen">
-      <div className="flex items-center space-x-3">
-        <Globe className="h-8 w-8 text-primary" />
-        <h1 className="text-3xl font-bold text-primary">My Online Orders</h1>
-      </div>
+    <div className="p-6 space-y-6 bg-gradient-to-br from-emerald-50/30 via-white to-emerald-50/20 min-h-screen">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-center space-x-3"
+      >
+        <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+          <Globe className="h-8 w-8 text-emerald-600" />
+        </div>
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">
+          My Online Orders
+        </h1>
+      </motion.div>
       
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <Card className="border-green-200 bg-green-50/50">
-          <CardContent className="p-4 text-center">
-            <p className="text-2xl font-bold text-green-600">₹{stats.totalAmount.toLocaleString()}</p>
-            <p className="text-sm text-green-700">Total Orders Value</p>
-          </CardContent>
-        </Card>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          whileHover={{ scale: 1.02, y: -5 }}
+        >
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+            <CardContent className="p-4 text-center">
+              <motion.div
+                className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Package className="h-6 w-6 text-emerald-600" />
+              </motion.div>
+              <p className="text-2xl font-bold text-emerald-700">₹{stats.totalAmount.toLocaleString()}</p>
+              <p className="text-sm text-emerald-800 font-medium">Total Orders Value</p>
+            </CardContent>
+          </Card>
+        </motion.div>
         
-        <Card className="border-blue-200 bg-blue-50/50">
-          <CardContent className="p-4 text-center">
-            <p className="text-2xl font-bold text-blue-600">{stats.totalOrders}</p>
-            <p className="text-sm text-blue-700">Total Orders</p>
-          </CardContent>
-        </Card>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          whileHover={{ scale: 1.02, y: -5 }}
+        >
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+            <CardContent className="p-4 text-center">
+              <motion.div
+                className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <ShoppingCart className="h-6 w-6 text-emerald-600" />
+              </motion.div>
+              <p className="text-2xl font-bold text-emerald-700">{stats.totalOrders}</p>
+              <p className="text-sm text-emerald-800 font-medium">Total Orders</p>
+            </CardContent>
+          </Card>
+        </motion.div>
         
-        <Card className="border-purple-200 bg-purple-50/50">
-          <CardContent className="p-4 text-center">
-            <p className="text-2xl font-bold text-purple-600">{stats.deliveredOrders}</p>
-            <p className="text-sm text-purple-700">Delivered</p>
-          </CardContent>
-        </Card>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          whileHover={{ scale: 1.02, y: -5 }}
+        >
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+            <CardContent className="p-4 text-center">
+              <motion.div
+                className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Package className="h-6 w-6 text-emerald-600" />
+              </motion.div>
+              <p className="text-2xl font-bold text-emerald-700">{stats.deliveredOrders}</p>
+              <p className="text-sm text-emerald-800 font-medium">Delivered</p>
+            </CardContent>
+          </Card>
+        </motion.div>
         
-        <Card className="border-orange-200 bg-orange-50/50">
-          <CardContent className="p-4 text-center">
-            <p className="text-2xl font-bold text-orange-600">{stats.processingOrders}</p>
-            <p className="text-sm text-orange-700">Processing</p>
-          </CardContent>
-        </Card>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          whileHover={{ scale: 1.02, y: -5 }}
+        >
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+            <CardContent className="p-4 text-center">
+              <motion.div
+                className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Clock className="h-6 w-6 text-emerald-600" />
+              </motion.div>
+              <p className="text-2xl font-bold text-emerald-700">{stats.processingOrders}</p>
+              <p className="text-sm text-emerald-800 font-medium">Processing</p>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
       
-      <Card className="border-primary/20">
-        <CardHeader>
-          <CardTitle className="text-xl text-primary">Order History</CardTitle>
-        </CardHeader>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+      >
+        <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <CardHeader>
+            <CardTitle className="text-xl text-emerald-900">Order History</CardTitle>
+          </CardHeader>
         <CardContent>
           {loading ? (
             <div className="space-y-4">
@@ -165,74 +235,92 @@ const OnlineOrders: React.FC = () => {
             </div>
           ) : (
             <div className="space-y-4">
-              {orders.map((order) => (
-                <Card key={order._id} className="border-gray-200">
-                  <CardContent className="p-4">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-start space-x-4">
-                        <div className="p-2 bg-primary/10 rounded-lg">
-                          {getStatusIcon(order.status)}
-                        </div>
-                        <div className="flex-1">
-                          <div className="flex items-center space-x-2 mb-2">
-                            <h3 className="font-semibold">Order #{order.orderNumber}</h3>
-                            <Badge 
-                              className={`text-white ${getStatusColor(order.status)}`}
-                            >
-                              {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
-                            </Badge>
+              {orders.map((order, index) => (
+                <motion.div
+                  key={order._id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6 + index * 0.1 }}
+                >
+                  <Card className="border-emerald-200/50 bg-white/60 backdrop-blur-md shadow-md ring-1 ring-amber-400/10 hover:shadow-lg transition-all duration-300">
+                    <CardContent className="p-4">
+                      <div className="flex items-start justify-between">
+                        <div className="flex items-start space-x-4">
+                          <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30">
+                            {getStatusIcon(order.status)}
                           </div>
-                          
-                          <div className="space-y-1">
-                            <p className="text-sm text-muted-foreground">
-                              Items: {order.items.map(item => `${item.productName} (${item.quantity})`).join(', ')}
-                            </p>
-                            <div className="flex items-center space-x-4 text-sm text-gray-600">
-                              <div className="flex items-center space-x-1">
-                                <Clock className="h-4 w-4" />
-                                <span>{new Date(order.createdAt).toLocaleDateString()}</span>
-                              </div>
-                              {order.trackingNumber && (
-                                <div className="flex items-center space-x-1">
-                                  <Truck className="h-4 w-4" />
-                                  <span>Tracking: {order.trackingNumber}</span>
-                                </div>
-                              )}
+                          <div className="flex-1">
+                            <div className="flex items-center space-x-2 mb-2">
+                              <h3 className="font-bold text-emerald-900">Order #{order.orderNumber}</h3>
                               <Badge 
-                                variant={order.paymentStatus === 'paid' ? 'default' : 'secondary'}
-                                className={order.paymentStatus === 'paid' ? 'bg-green-600' : 'bg-orange-500'}
+                                className={`text-white ${getStatusColor(order.status)} ring-1 ring-white/30 backdrop-blur-sm`}
                               >
-                                Payment: {order.paymentStatus}
+                                {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                               </Badge>
+                            </div>
+                            
+                            <div className="space-y-1">
+                              <p className="text-sm text-emerald-800">
+                                Items: {order.items.map(item => `${item.productName} (${item.quantity})`).join(', ')}
+                              </p>
+                              <div className="flex items-center space-x-4 text-sm text-emerald-700">
+                                <div className="flex items-center space-x-1">
+                                  <Clock className="h-4 w-4" />
+                                  <span>{new Date(order.createdAt).toLocaleDateString()}</span>
+                                </div>
+                                {order.trackingNumber && (
+                                  <div className="flex items-center space-x-1">
+                                    <Truck className="h-4 w-4" />
+                                    <span>Tracking: {order.trackingNumber}</span>
+                                  </div>
+                                )}
+                                <Badge 
+                                  className={order.paymentStatus === 'paid' 
+                                    ? 'bg-gradient-to-r from-emerald-600 to-amber-500 text-white ring-1 ring-amber-300/30 backdrop-blur-sm'
+                                    : 'bg-gradient-to-r from-amber-500 to-yellow-500 text-white ring-1 ring-amber-300/30 backdrop-blur-sm'
+                                  }
+                                >
+                                  Payment: {order.paymentStatus}
+                                </Badge>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      
-                      <div className="flex items-center space-x-4">
-                        <div className="text-right">
-                          <p className="font-bold text-lg">₹{order.totalAmount.toLocaleString()}</p>
-                        </div>
-                        <div className="flex flex-col space-y-2">
-                          <Button size="sm" variant="outline">
-                            View Details
-                          </Button>
-                          {order.trackingNumber && (
-                            <Button size="sm" variant="outline">
-                              <Truck className="h-4 w-4 mr-1" />
-                              Track
+                        
+                        <div className="flex items-center space-x-4">
+                          <div className="text-right">
+                            <p className="font-bold text-lg text-emerald-700">₹{order.totalAmount.toLocaleString()}</p>
+                          </div>
+                          <div className="flex flex-col space-y-2">
+                            <Button 
+                              size="sm" 
+                              variant="outline"
+                              className="border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-emerald-50/50 text-emerald-800"
+                            >
+                              View Details
                             </Button>
-                          )}
+                            {order.trackingNumber && (
+                              <Button 
+                                size="sm" 
+                                variant="outline"
+                                className="border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-emerald-50/50 text-emerald-800"
+                              >
+                                <Truck className="h-4 w-4 mr-1" />
+                                Track
+                              </Button>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </motion.div>
               ))}
             </div>
           )}
         </CardContent>
       </Card>
+      </motion.div>
     </div>
   );
 };

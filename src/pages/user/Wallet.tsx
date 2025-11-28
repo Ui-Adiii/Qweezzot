@@ -208,22 +208,22 @@ const UserWallet = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gray-50 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-emerald-50/30 via-white to-emerald-50/20 min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div className="space-y-1">
-          <h1 className="text-3xl font-bold text-gray-900">E-Wallet</h1>
-          <p className="text-gray-600">Manage your wallet balance and transactions</p>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">E-Wallet</h1>
+          <p className="text-emerald-700/70">Manage your wallet balance and transactions</p>
         </div>
         
         <Dialog open={isTopupDialogOpen} onOpenChange={setIsTopupDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-green-600 hover:bg-green-700">
+            <Button className="bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30">
               <Plus className="mr-2 h-4 w-4" />
               Add Funds
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl">
+          <DialogContent className="max-w-2xl bg-white/90 backdrop-blur-xl border-emerald-200/50 ring-1 ring-amber-400/10">
             <DialogHeader>
               <DialogTitle>Add Funds to Wallet</DialogTitle>
               <DialogDescription>
@@ -253,8 +253,8 @@ const UserWallet = () => {
 
               {/* Payment Details */}
               {paymentSettings && (
-                <div className="p-4 bg-blue-50 rounded-lg border border-blue-200">
-                  <h3 className="font-semibold text-blue-900 mb-3">
+                <div className="p-4 bg-white/70 backdrop-blur-xl rounded-lg border border-emerald-200/50 ring-1 ring-amber-400/10 shadow-lg">
+                  <h3 className="font-semibold text-emerald-800 mb-3">
                     {topupForm.paymentMethod === 'bank' ? 'Bank Details' : 'UPI Details'}
                   </h3>
                   
@@ -379,7 +379,7 @@ const UserWallet = () => {
                 <Button
                   type="submit"
                   disabled={isSubmittingTopup}
-                  className="bg-green-600 hover:bg-green-700"
+                  className="bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
                 >
                   {isSubmittingTopup ? 'Submitting...' : 'Submit Request'}
                 </Button>
@@ -389,49 +389,57 @@ const UserWallet = () => {
         </Dialog>
       </div>
 
-      {/* Wallet Balance Cards */}
+      {/* Wallet Balance Cards with Glass Effect */}
       <div className="grid md:grid-cols-4 gap-6">
-        <Card className="border-green-200 bg-gradient-to-br from-green-50 to-green-100">
+        <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-emerald-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-green-800">Total Balance</CardTitle>
-            <Wallet className="h-4 w-4 text-green-600" />
+            <CardTitle className="text-sm font-medium text-emerald-800">Total Balance</CardTitle>
+            <div className="p-2 bg-gradient-to-br from-emerald-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <Wallet className="h-4 w-4 text-emerald-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-900">₹{totalBalance.toLocaleString()}</div>
-            <p className="text-xs text-green-600">Combined wallet balance</p>
+            <div className="text-2xl font-bold text-emerald-900">₹{totalBalance.toLocaleString()}</div>
+            <p className="text-xs text-emerald-600/70">Combined wallet balance</p>
           </CardContent>
         </Card>
 
-        <Card className="border-blue-200 bg-gradient-to-br from-blue-50 to-blue-100">
+        <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-emerald-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-blue-800">Purchase Wallet</CardTitle>
-            <CreditCard className="h-4 w-4 text-blue-600" />
+            <CardTitle className="text-sm font-medium text-emerald-800">Purchase Wallet</CardTitle>
+            <div className="p-2 bg-gradient-to-br from-emerald-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <CreditCard className="h-4 w-4 text-emerald-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-900">₹{walletData?.purchaseWallet?.toLocaleString() || 0}</div>
-            <p className="text-xs text-blue-600">Available for purchases</p>
+            <div className="text-2xl font-bold text-emerald-900">₹{walletData?.purchaseWallet?.toLocaleString() || 0}</div>
+            <p className="text-xs text-emerald-600/70">Available for purchases</p>
           </CardContent>
         </Card>
 
-        <Card className="border-purple-200 bg-gradient-to-br from-purple-50 to-purple-100">
+        <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-emerald-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-purple-800">Commission Wallet</CardTitle>
-            <DollarSign className="h-4 w-4 text-purple-600" />
+            <CardTitle className="text-sm font-medium text-emerald-800">Commission Wallet</CardTitle>
+            <div className="p-2 bg-gradient-to-br from-emerald-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <DollarSign className="h-4 w-4 text-emerald-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-purple-900">₹{walletData?.commissionWallet?.toLocaleString() || 0}</div>
-            <p className="text-xs text-purple-600">Earned commissions</p>
+            <div className="text-2xl font-bold text-emerald-900">₹{walletData?.commissionWallet?.toLocaleString() || 0}</div>
+            <p className="text-xs text-emerald-600/70">Earned commissions</p>
           </CardContent>
         </Card>
 
-        <Card className="border-orange-200 bg-gradient-to-br from-orange-50 to-orange-100">
+        <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-emerald-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-orange-800">Referral Wallet</CardTitle>
-            <TrendingUp className="h-4 w-4 text-orange-600" />
+            <CardTitle className="text-sm font-medium text-emerald-800">Referral Wallet</CardTitle>
+            <div className="p-2 bg-gradient-to-br from-emerald-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <TrendingUp className="h-4 w-4 text-emerald-600" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-900">₹{walletData?.referralWallet?.toLocaleString() || 0}</div>
-            <p className="text-xs text-orange-600">Referral earnings</p>
+            <div className="text-2xl font-bold text-emerald-900">₹{walletData?.referralWallet?.toLocaleString() || 0}</div>
+            <p className="text-xs text-emerald-600/70">Referral earnings</p>
           </CardContent>
         </Card>
       </div>
@@ -444,13 +452,13 @@ const UserWallet = () => {
         </TabsList>
 
         <TabsContent value="transactions" className="space-y-4">
-          <Card>
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <RefreshCw className="h-5 w-5" />
+              <CardTitle className="flex items-center gap-2 text-emerald-800">
+                <RefreshCw className="h-5 w-5 text-emerald-600" />
                 Recent Transactions
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-emerald-700/70">
                 Your latest wallet transactions and activities
               </CardDescription>
             </CardHeader>
@@ -468,7 +476,7 @@ const UserWallet = () => {
               ) : (
                 <div className="space-y-4">
                   {transactions.map((transaction) => (
-                    <div key={transaction.id} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div key={transaction.id} className="flex items-center justify-between p-4 border border-emerald-200/50 bg-white/60 backdrop-blur-sm rounded-lg hover:shadow-md transition-all duration-200 ring-1 ring-amber-400/5">
                       <div className="flex items-center gap-3">
                         {transaction.type === 'credit' ? (
                           <ArrowUpRight className="h-5 w-5 text-green-600" />
@@ -498,13 +506,13 @@ const UserWallet = () => {
         </TabsContent>
 
         <TabsContent value="topup-requests" className="space-y-4">
-          <Card>
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Upload className="h-5 w-5" />
+              <CardTitle className="flex items-center gap-2 text-emerald-800">
+                <Upload className="h-5 w-5 text-emerald-600" />
                 Top-up Requests
               </CardTitle>
-              <CardDescription>
+              <CardDescription className="text-emerald-700/70">
                 Track your wallet top-up requests and their status
               </CardDescription>
             </CardHeader>
@@ -522,7 +530,7 @@ const UserWallet = () => {
               ) : (
                 <div className="space-y-4">
                   {topupRequests.map((request) => (
-                    <div key={request._id} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div key={request._id} className="flex items-center justify-between p-4 border border-emerald-200/50 bg-white/60 backdrop-blur-sm rounded-lg hover:shadow-md transition-all duration-200 ring-1 ring-amber-400/5">
                       <div className="flex items-center gap-3">
                         {getStatusIcon(request.status)}
                         <div>

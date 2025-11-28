@@ -86,21 +86,21 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-6">
+    <div className="p-6 max-w-4xl mx-auto space-y-6 bg-gradient-to-br from-emerald-50/30 via-white to-emerald-50/20 min-h-screen">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">My Profile</h1>
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">My Profile</h1>
         {!editing ? (
-          <Button onClick={() => setEditing(true)} className="flex items-center gap-2">
+          <Button onClick={() => setEditing(true)} className="flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30">
             <Edit className="h-4 w-4" />
             Edit Profile
           </Button>
         ) : (
           <div className="flex gap-2">
-            <Button onClick={handleSave} className="flex items-center gap-2">
+            <Button onClick={handleSave} className="flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30">
               <Save className="h-4 w-4" />
               Save
             </Button>
-            <Button variant="outline" onClick={handleCancel} className="flex items-center gap-2">
+            <Button variant="outline" onClick={handleCancel} className="flex items-center gap-2 border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10">
               <X className="h-4 w-4" />
               Cancel
             </Button>
@@ -110,13 +110,13 @@ const UserProfile = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Profile Information */}
-        <Card className="lg:col-span-2">
+        <Card className="lg:col-span-2 border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <User className="h-5 w-5" />
+            <CardTitle className="flex items-center gap-2 text-emerald-800">
+              <User className="h-5 w-5 text-emerald-600" />
               Profile Information
             </CardTitle>
-            <CardDescription>
+            <CardDescription className="text-emerald-700/70">
               Manage your personal information and account details
             </CardDescription>
           </CardHeader>
@@ -164,25 +164,25 @@ const UserProfile = () => {
 
         {/* Account Details */}
         <div className="space-y-6">
-          <Card>
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle>Account Status</CardTitle>
+              <CardTitle className="text-emerald-800">Account Status</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Status:</span>
-                  <span className={`px-2 py-1 rounded text-sm font-medium ${
+                  <span className="text-emerald-700/70">Status:</span>
+                  <span className={`px-2 py-1 rounded text-sm font-medium backdrop-blur-sm ${
                     profile.isActive 
-                      ? 'bg-green-100 text-green-800' 
-                      : 'bg-red-100 text-red-800'
+                      ? 'bg-emerald-100/70 text-emerald-800 ring-1 ring-emerald-300/30' 
+                      : 'bg-red-100/70 text-red-800 ring-1 ring-red-300/30'
                   }`}>
                     {profile.isActive ? 'Active' : 'Inactive'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Referral Code:</span>
-                  <span className="font-mono font-bold text-green-600">
+                  <span className="text-emerald-700/70">Referral Code:</span>
+                  <span className="font-mono font-bold text-emerald-700 bg-white/60 backdrop-blur-sm px-2 py-1 rounded ring-1 ring-amber-400/20">
                     {profile.referralCode}
                   </span>
                 </div>
@@ -190,23 +190,23 @@ const UserProfile = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle>Wallet Summary</CardTitle>
+              <CardTitle className="text-emerald-800">Wallet Summary</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Purchase Wallet:</span>
-                  <span className="font-bold">₹{profile.wallets.purchaseWallet}</span>
+                <div className="flex justify-between py-2 border-b border-emerald-200/50">
+                  <span className="text-emerald-700/70">Purchase Wallet:</span>
+                  <span className="font-bold text-emerald-800">₹{profile.wallets.purchaseWallet}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Commission Wallet:</span>
-                  <span className="font-bold">₹{profile.wallets.commissionWallet}</span>
+                <div className="flex justify-between py-2 border-b border-emerald-200/50">
+                  <span className="text-emerald-700/70">Commission Wallet:</span>
+                  <span className="font-bold text-emerald-800">₹{profile.wallets.commissionWallet}</span>
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Referral Wallet:</span>
-                  <span className="font-bold">₹{profile.wallets.referralWallet}</span>
+                <div className="flex justify-between py-2">
+                  <span className="text-emerald-700/70">Referral Wallet:</span>
+                  <span className="font-bold text-emerald-800">₹{profile.wallets.referralWallet}</span>
                 </div>
               </div>
             </CardContent>

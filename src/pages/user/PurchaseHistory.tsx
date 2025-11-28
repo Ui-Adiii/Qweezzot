@@ -5,6 +5,7 @@ import { Badge } from '@/components/ui/badge';
 import { Package, Calendar, Download, Filter, RefreshCw } from 'lucide-react';
 import productsAPI from '@/api/products';
 import { toast } from 'sonner';
+import { motion } from 'framer-motion';
 
 interface Purchase {
   _id: string;
@@ -68,132 +69,164 @@ const PurchaseHistory: React.FC = () => {
     switch (status.toLowerCase()) {
       case 'delivered':
       case 'completed':
-        return 'bg-green-600';
+        return 'bg-emerald-100/70 text-emerald-800 ring-1 ring-emerald-300/30';
       case 'shipped':
-        return 'bg-blue-600';
+        return 'bg-blue-100/70 text-blue-800 ring-1 ring-blue-300/30';
       case 'processing':
       case 'confirmed':
-        return 'bg-yellow-500';
+        return 'bg-amber-100/70 text-amber-800 ring-1 ring-amber-300/30';
       case 'pending':
-        return 'bg-orange-500';
+        return 'bg-amber-100/70 text-amber-800 ring-1 ring-amber-300/30';
       case 'cancelled':
-        return 'bg-red-600';
+        return 'bg-red-100/70 text-red-800 ring-1 ring-red-300/30';
       default:
-        return 'bg-gray-500';
+        return 'bg-gray-100/70 text-gray-600 ring-1 ring-gray-300/30';
     }
   };
 
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 2
+    }).format(amount);
+  };
+
   return (
-    <div className="p-6 space-y-6 bg-white min-h-screen">
-      <div className="flex items-center justify-between">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-emerald-50/30 via-white to-emerald-50/20 min-h-screen">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-center justify-between"
+      >
         <div className="flex items-center space-x-3">
-          <Package className="h-8 w-8 text-primary" />
-          <h1 className="text-3xl font-bold text-primary">Purchase History</h1>
+          <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+            <Package className="h-8 w-8 text-emerald-600" />
+          </div>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">Purchase History</h1>
         </div>
         <div className="flex space-x-2">
-          <Button 
-            variant="outline" 
-            onClick={() => setFilter('all')}
-            className={filter === 'all' ? 'bg-primary text-white' : ''}
+          {(['all', 'completed', 'processing', 'cancelled'] as const).map((f) => (
+            <motion.div
+              key={f}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                variant="outline"
+                onClick={() => setFilter(f)}
+                className={`border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-emerald-50/50 ${
+                  filter === f
+                    ? 'bg-gradient-to-r from-emerald-600 to-amber-500 text-white border-0'
+                    : ''
+                }`}
+              >
+                {f === 'all' ? 'All' : f.charAt(0).toUpperCase() + f.slice(1)}
+              </Button>
+            </motion.div>
+          ))}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            All
-          </Button>
-          <Button 
-            variant="outline" 
-            onClick={() => setFilter('completed')}
-            className={filter === 'completed' ? 'bg-green-600 text-white' : ''}
-          >
-            Completed
-          </Button>
-          <Button 
-            variant="outline" 
-            onClick={() => setFilter('processing')}
-            className={filter === 'processing' ? 'bg-orange-500 text-white' : ''}
-          >
-            Processing
-          </Button>
-          <Button 
-            variant="outline" 
-            onClick={() => setFilter('cancelled')}
-            className={filter === 'cancelled' ? 'bg-red-600 text-white' : ''}
-          >
-            Cancelled
-          </Button>
-          <Button variant="outline" onClick={fetchPurchases} disabled={loading}>
-            <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
-            Refresh
-          </Button>
+            <Button
+              variant="outline"
+              onClick={fetchPurchases}
+              disabled={loading}
+              className="border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-emerald-50/50"
+            >
+              <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+              Refresh
+            </Button>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
       
-      <Card>
-        <CardHeader>
-          <CardTitle>All Purchase Records ({filteredPurchases.length})</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {loading ? (
-            <div className="space-y-4">
-              {[...Array(5)].map((_, i) => (
-                <Card key={i} className="border-gray-200 animate-pulse">
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-center">
-                      <div className="space-y-2">
-                        <div className="h-4 bg-gray-200 rounded w-48"></div>
-                        <div className="h-3 bg-gray-200 rounded w-32"></div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="h-6 bg-gray-200 rounded w-24"></div>
-                        <div className="h-5 bg-gray-200 rounded w-20"></div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          ) : filteredPurchases.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
-              <Package className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-              <p className="text-lg font-medium">No purchase records found</p>
-              <p className="text-sm">Your purchase history will appear here</p>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {filteredPurchases.map((purchase) => (
-                <Card key={purchase._id} className="border-gray-200">
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-center">
-                      <div className="flex-1">
-                        <h3 className="font-semibold">Order #{purchase.orderNumber}</h3>
-                        <p className="text-sm text-gray-600 mt-1">
-                          {purchase.items.map(item => `${item.productName} (Qty: ${item.quantity})`).join(', ')}
-                        </p>
-                        <div className="flex items-center space-x-4 mt-2">
-                          <div className="flex items-center space-x-1 text-sm text-gray-500">
-                            <Calendar className="h-4 w-4" />
-                            <span>{new Date(purchase.createdAt).toLocaleDateString('en-IN')}</span>
-                          </div>
-                          <Badge 
-                            variant={purchase.paymentStatus === 'paid' ? 'default' : 'secondary'}
-                            className={purchase.paymentStatus === 'paid' ? 'bg-green-600' : 'bg-orange-500'}
-                          >
-                            Payment: {purchase.paymentStatus}
-                          </Badge>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <CardHeader>
+            <CardTitle className="text-emerald-800">All Purchase Records ({filteredPurchases.length})</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {loading ? (
+              <div className="space-y-4">
+                {[...Array(5)].map((_, i) => (
+                  <Card key={i} className="border-emerald-200/50 bg-white/60 backdrop-blur-sm animate-pulse">
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-center">
+                        <div className="space-y-2">
+                          <div className="h-4 bg-emerald-200/50 rounded w-48"></div>
+                          <div className="h-3 bg-emerald-200/50 rounded w-32"></div>
+                        </div>
+                        <div className="space-y-2">
+                          <div className="h-6 bg-emerald-200/50 rounded w-24"></div>
+                          <div className="h-5 bg-emerald-200/50 rounded w-20"></div>
                         </div>
                       </div>
-                      <div className="text-right space-y-2">
-                        <p className="font-bold text-lg">₹{purchase.totalAmount.toLocaleString()}</p>
-                        <Badge className={`text-white ${getStatusColor(purchase.status)}`}>
-                          {purchase.status.charAt(0).toUpperCase() + purchase.status.slice(1)}
-                        </Badge>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          )}
-        </CardContent>
-      </Card>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            ) : filteredPurchases.length === 0 ? (
+              <div className="text-center py-12 text-emerald-700/70">
+                <Package className="h-16 w-16 text-emerald-300 mx-auto mb-4" />
+                <p className="text-lg font-medium">No purchase records found</p>
+                <p className="text-sm">Your purchase history will appear here</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {filteredPurchases.map((purchase, index) => (
+                  <motion.div
+                    key={purchase._id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 + index * 0.05 }}
+                    whileHover={{ scale: 1.01, x: 5 }}
+                  >
+                    <Card className="border-emerald-200/50 bg-white/60 backdrop-blur-sm hover:shadow-md transition-all duration-200 ring-1 ring-amber-400/5">
+                      <CardContent className="p-4">
+                        <div className="flex justify-between items-center">
+                          <div className="flex-1">
+                            <h3 className="font-semibold text-emerald-800">Order #{purchase.orderNumber}</h3>
+                            <p className="text-sm text-emerald-700/70 mt-1">
+                              {purchase.items.map(item => `${item.productName} (Qty: ${item.quantity})`).join(', ')}
+                            </p>
+                            <div className="flex items-center space-x-4 mt-2">
+                              <div className="flex items-center space-x-1 text-sm text-emerald-600/70">
+                                <Calendar className="h-4 w-4" />
+                                <span>{new Date(purchase.createdAt).toLocaleDateString('en-IN')}</span>
+                              </div>
+                              <Badge 
+                                className={`backdrop-blur-sm ${
+                                  purchase.paymentStatus === 'paid'
+                                    ? 'bg-emerald-100/70 text-emerald-800 ring-1 ring-emerald-300/30'
+                                    : 'bg-amber-100/70 text-amber-800 ring-1 ring-amber-300/30'
+                                }`}
+                              >
+                                Payment: {purchase.paymentStatus}
+                              </Badge>
+                            </div>
+                          </div>
+                          <div className="text-right space-y-2">
+                            <p className="font-bold text-lg text-emerald-700">{formatCurrency(purchase.totalAmount)}</p>
+                            <Badge className={`backdrop-blur-sm ${getStatusColor(purchase.status)}`}>
+                              {purchase.status.charAt(0).toUpperCase() + purchase.status.slice(1)}
+                            </Badge>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </motion.div>
     </div>
   );
 };

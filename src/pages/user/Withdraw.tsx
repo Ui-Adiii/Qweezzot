@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { ArrowDownRight, CreditCard, Banknote, RefreshCw } from 'lucide-react';
 import { authAPI } from '@/api/auth';
 import { toast } from 'sonner';
+import { motion } from 'framer-motion';
 
 const Withdraw: React.FC = () => {
   const [walletData, setWalletData] = useState({
@@ -65,132 +66,197 @@ const Withdraw: React.FC = () => {
       return;
     }
     
-    // TODO: Implement withdrawal API call
     toast.success('Withdrawal request submitted successfully!');
     setAmount('');
     setAccountDetails('');
   };
 
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      minimumFractionDigits: 2
+    }).format(amount);
+  };
+
   return (
-    <div className="p-6 space-y-6 bg-white min-h-screen">
-      <div className="flex items-center justify-between">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-emerald-50/30 via-white to-emerald-50/20 min-h-screen">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-center justify-between"
+      >
         <div className="flex items-center space-x-3">
-          <ArrowDownRight className="h-8 w-8 text-primary" />
-          <h1 className="text-3xl font-bold text-primary">Withdraw Funds</h1>
+          <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+            <ArrowDownRight className="h-8 w-8 text-emerald-600" />
+          </div>
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">Withdraw Funds</h1>
         </div>
-        <Button variant="outline" onClick={fetchWalletData} disabled={loading}>
-          <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
-          Refresh
-        </Button>
-      </div>
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Button
+            variant="outline"
+            onClick={fetchWalletData}
+            disabled={loading}
+            className="border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-emerald-50/50"
+          >
+            <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
+            Refresh
+          </Button>
+        </motion.div>
+      </motion.div>
       
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="border-primary/20 bg-primary/5">
-          <CardHeader>
-            <CardTitle className="text-xl text-primary">Withdrawal Request</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="wallet">Select Wallet</Label>
-              <Select value={selectedWallet} onValueChange={(value: 'commissionWallet' | 'referralWallet') => setSelectedWallet(value)}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="commissionWallet">
-                    Commission Wallet (₹{walletData.commissionWallet.toLocaleString()})
-                  </SelectItem>
-                  <SelectItem value="referralWallet">
-                    Referral Wallet (₹{walletData.referralWallet.toLocaleString()})
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-              <p className="text-xs text-gray-500">
-                Available: ₹{getAvailableBalance().toLocaleString()}
-              </p>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="amount">Withdrawal Amount</Label>
-              <Input 
-                id="amount" 
-                type="number" 
-                placeholder="Enter amount" 
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                max={getAvailableBalance()}
-              />
-              <p className="text-xs text-gray-500">
-                Maximum: ₹{getAvailableBalance().toLocaleString()}
-              </p>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="method">Withdrawal Method</Label>
-              <Select value={withdrawMethod} onValueChange={setWithdrawMethod}>
-                <SelectTrigger>
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="bank">Bank Transfer</SelectItem>
-                  <SelectItem value="upi">UPI</SelectItem>
-                  <SelectItem value="wallet">Digital Wallet</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="account">Account Details</Label>
-              <Input 
-                id="account" 
-                placeholder="Account number or UPI ID" 
-                value={accountDetails}
-                onChange={(e) => setAccountDetails(e.target.value)}
-              />
-            </div>
-            
-            <Button 
-              className="w-full bg-primary hover:bg-primary-dark"
-              onClick={handleWithdraw}
-              disabled={loading || !amount || !accountDetails}
-            >
-              <ArrowDownRight className="h-4 w-4 mr-2" />
-              Request Withdrawal
-            </Button>
-          </CardContent>
-        </Card>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+            <CardHeader>
+              <CardTitle className="text-xl text-emerald-800">Withdrawal Request</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="wallet" className="text-emerald-800">Select Wallet</Label>
+                <Select value={selectedWallet} onValueChange={(value: 'commissionWallet' | 'referralWallet') => setSelectedWallet(value)}>
+                  <SelectTrigger className="border-emerald-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white/95 backdrop-blur-xl border-emerald-200/50">
+                    <SelectItem value="commissionWallet">
+                      Commission Wallet ({formatCurrency(walletData.commissionWallet)})
+                    </SelectItem>
+                    <SelectItem value="referralWallet">
+                      Referral Wallet ({formatCurrency(walletData.referralWallet)})
+                    </SelectItem>
+                  </SelectContent>
+                </Select>
+                <p className="text-xs text-emerald-700/70">
+                  Available: {formatCurrency(getAvailableBalance())}
+                </p>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="amount" className="text-emerald-800">Withdrawal Amount</Label>
+                <Input 
+                  id="amount" 
+                  type="number" 
+                  placeholder="Enter amount" 
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  max={getAvailableBalance()}
+                  className="border-emerald-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                />
+                <p className="text-xs text-emerald-700/70">
+                  Maximum: {formatCurrency(getAvailableBalance())}
+                </p>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="method" className="text-emerald-800">Withdrawal Method</Label>
+                <Select value={withdrawMethod} onValueChange={setWithdrawMethod}>
+                  <SelectTrigger className="border-emerald-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10">
+                    <SelectValue />
+                  </SelectTrigger>
+                  <SelectContent className="bg-white/95 backdrop-blur-xl border-emerald-200/50">
+                    <SelectItem value="bank">Bank Transfer</SelectItem>
+                    <SelectItem value="upi">UPI</SelectItem>
+                    <SelectItem value="wallet">Digital Wallet</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="account" className="text-emerald-800">Account Details</Label>
+                <Input 
+                  id="account" 
+                  placeholder="Account number or UPI ID" 
+                  value={accountDetails}
+                  onChange={(e) => setAccountDetails(e.target.value)}
+                  className="border-emerald-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                />
+              </div>
+              
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button 
+                  className="w-full bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+                  onClick={handleWithdraw}
+                  disabled={loading || !amount || !accountDetails}
+                >
+                  <ArrowDownRight className="h-4 w-4 mr-2" />
+                  Request Withdrawal
+                </Button>
+              </motion.div>
+            </CardContent>
+          </Card>
+        </motion.div>
         
         <div className="space-y-6">
-          <Card className="border-green-200 bg-green-50/50">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-green-700">Available Balance</p>
-                  {loading ? (
-                    <div className="h-8 w-32 bg-gray-200 rounded animate-pulse mt-2"></div>
-                  ) : (
-                    <p className="text-2xl font-bold text-green-600">
-                      ₹{getAvailableBalance().toLocaleString()}
-                    </p>
-                  )}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.3 }}
+            whileHover={{ scale: 1.02, y: -5 }}
+          >
+            <Card className="border-emerald-200/50 bg-gradient-to-br from-emerald-600/90 to-emerald-700/90 backdrop-blur-xl shadow-xl ring-2 ring-amber-400/20 overflow-hidden relative">
+              <motion.div
+                className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-400/20 to-yellow-500/20 rounded-full blur-3xl"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  opacity: [0.2, 0.3, 0.2]
+                }}
+                transition={{ 
+                  duration: 4, 
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              ></motion.div>
+              <CardContent className="p-6 relative">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-white/90 text-sm font-medium mb-1">Available Balance</p>
+                    {loading ? (
+                      <div className="h-8 w-32 bg-white/20 rounded animate-pulse mt-2"></div>
+                    ) : (
+                      <motion.p
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="text-2xl font-bold text-white"
+                      >
+                        {formatCurrency(getAvailableBalance())}
+                      </motion.p>
+                    )}
+                  </div>
+                  <Banknote className="h-8 w-8 text-white/90" />
                 </div>
-                <Banknote className="h-8 w-8 text-green-600" />
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          </motion.div>
           
-          <Card>
-            <CardHeader>
-              <CardTitle>Withdrawal History</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="text-center py-8 text-gray-500">
-                <CreditCard className="h-12 w-12 text-gray-300 mx-auto mb-4" />
-                <p className="text-sm">No withdrawal history yet</p>
-                <p className="text-xs mt-1">Your withdrawal requests will appear here</p>
-              </div>
-            </CardContent>
-          </Card>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+              <CardHeader>
+                <CardTitle className="text-emerald-800">Withdrawal History</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8 text-emerald-700/70">
+                  <CreditCard className="h-12 w-12 text-emerald-300 mx-auto mb-4" />
+                  <p className="text-sm">No withdrawal history yet</p>
+                  <p className="text-xs mt-1">Your withdrawal requests will appear here</p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
       </div>
     </div>

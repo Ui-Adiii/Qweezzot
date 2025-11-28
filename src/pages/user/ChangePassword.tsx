@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Lock, Eye, EyeOff, Shield } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const ChangePassword: React.FC = () => {
   const [showCurrentPassword, setShowCurrentPassword] = React.useState(false);
@@ -11,112 +12,138 @@ const ChangePassword: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] = React.useState(false);
 
   return (
-    <div className="p-6 space-y-6 bg-white min-h-screen">
-      <div className="flex items-center space-x-3">
-        <Lock className="h-8 w-8 text-primary" />
-        <h1 className="text-3xl font-bold text-primary">Change Password</h1>
-      </div>
+    <div className="p-6 space-y-6 bg-gradient-to-br from-emerald-50/30 via-white to-emerald-50/20 min-h-screen">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="flex items-center space-x-3"
+      >
+        <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+          <Lock className="h-8 w-8 text-emerald-600" />
+        </div>
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">Change Password</h1>
+      </motion.div>
       
       <div className="max-w-md mx-auto">
-        <Card className="border-primary/20 bg-primary/5">
-          <CardHeader>
-            <CardTitle className="text-xl text-primary flex items-center">
-              <Shield className="h-5 w-5 mr-2" />
-              Update Your Password
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="currentPassword">Current Password</Label>
-              <div className="relative">
-                <Input 
-                  id="currentPassword" 
-                  type={showCurrentPassword ? "text" : "password"}
-                  placeholder="Enter current password" 
-                />
-                <button
-                  type="button"
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                  onClick={() => setShowCurrentPassword(!showCurrentPassword)}
-                >
-                  {showCurrentPassword ? 
-                    <EyeOff className="h-4 w-4 text-gray-400" /> : 
-                    <Eye className="h-4 w-4 text-gray-400" />
-                  }
-                </button>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+        >
+          <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+            <CardHeader>
+              <CardTitle className="text-xl text-emerald-800 flex items-center">
+                <Shield className="h-5 w-5 mr-2 text-emerald-600" />
+                Update Your Password
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="currentPassword" className="text-emerald-800">Current Password</Label>
+                <div className="relative">
+                  <Input 
+                    id="currentPassword" 
+                    type={showCurrentPassword ? "text" : "password"}
+                    placeholder="Enter current password"
+                    className="border-emerald-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    onClick={() => setShowCurrentPassword(!showCurrentPassword)}
+                  >
+                    {showCurrentPassword ? 
+                      <EyeOff className="h-4 w-4 text-emerald-600" /> : 
+                      <Eye className="h-4 w-4 text-emerald-600" />
+                    }
+                  </button>
+                </div>
               </div>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="newPassword">New Password</Label>
-              <div className="relative">
-                <Input 
-                  id="newPassword" 
-                  type={showNewPassword ? "text" : "password"}
-                  placeholder="Enter new password" 
-                />
-                <button
-                  type="button"
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                  onClick={() => setShowNewPassword(!showNewPassword)}
-                >
-                  {showNewPassword ? 
-                    <EyeOff className="h-4 w-4 text-gray-400" /> : 
-                    <Eye className="h-4 w-4 text-gray-400" />
-                  }
-                </button>
+              
+              <div className="space-y-2">
+                <Label htmlFor="newPassword" className="text-emerald-800">New Password</Label>
+                <div className="relative">
+                  <Input 
+                    id="newPassword" 
+                    type={showNewPassword ? "text" : "password"}
+                    placeholder="Enter new password"
+                    className="border-emerald-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    onClick={() => setShowNewPassword(!showNewPassword)}
+                  >
+                    {showNewPassword ? 
+                      <EyeOff className="h-4 w-4 text-emerald-600" /> : 
+                      <Eye className="h-4 w-4 text-emerald-600" />
+                    }
+                  </button>
+                </div>
               </div>
-            </div>
-            
-            <div className="space-y-2">
-              <Label htmlFor="confirmPassword">Confirm New Password</Label>
-              <div className="relative">
-                <Input 
-                  id="confirmPassword" 
-                  type={showConfirmPassword ? "text" : "password"}
-                  placeholder="Confirm new password" 
-                />
-                <button
-                  type="button"
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                >
-                  {showConfirmPassword ? 
-                    <EyeOff className="h-4 w-4 text-gray-400" /> : 
-                    <Eye className="h-4 w-4 text-gray-400" />
-                  }
-                </button>
+              
+              <div className="space-y-2">
+                <Label htmlFor="confirmPassword" className="text-emerald-800">Confirm New Password</Label>
+                <div className="relative">
+                  <Input 
+                    id="confirmPassword" 
+                    type={showConfirmPassword ? "text" : "password"}
+                    placeholder="Confirm new password"
+                    className="border-emerald-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                  />
+                  <button
+                    type="button"
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? 
+                      <EyeOff className="h-4 w-4 text-emerald-600" /> : 
+                      <Eye className="h-4 w-4 text-emerald-600" />
+                    }
+                  </button>
+                </div>
               </div>
-            </div>
-            
-            <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-              <h4 className="font-semibold text-yellow-800 text-sm mb-2">Password Requirements:</h4>
-              <ul className="text-yellow-700 text-xs space-y-1">
-                <li>• At least 8 characters long</li>
-                <li>• Include uppercase and lowercase letters</li>
-                <li>• Include at least one number</li>
-                <li>• Include at least one special character</li>
-              </ul>
-            </div>
-            
-            <Button className="w-full bg-primary hover:bg-primary-dark">
-              <Lock className="h-4 w-4 mr-2" />
-              Update Password
-            </Button>
-          </CardContent>
-        </Card>
+              
+              <div className="p-3 bg-gradient-to-br from-amber-50/70 to-yellow-50/50 backdrop-blur-sm border border-amber-200/50 rounded-lg ring-1 ring-amber-400/10">
+                <h4 className="font-semibold text-amber-800 text-sm mb-2">Password Requirements:</h4>
+                <ul className="text-amber-700 text-xs space-y-1">
+                  <li>• At least 8 characters long</li>
+                  <li>• Include uppercase and lowercase letters</li>
+                  <li>• Include at least one number</li>
+                  <li>• Include at least one special character</li>
+                </ul>
+              </div>
+              
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <Button className="w-full bg-gradient-to-r from-emerald-600 to-amber-500 hover:from-emerald-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30">
+                  <Lock className="h-4 w-4 mr-2" />
+                  Update Password
+                </Button>
+              </motion.div>
+            </CardContent>
+          </Card>
+        </motion.div>
         
-        <Card className="border-red-200 bg-red-50/50 mt-6">
-          <CardContent className="p-4">
-            <h3 className="font-semibold text-red-800 mb-2 text-sm">Security Tips:</h3>
-            <ul className="text-red-700 text-xs space-y-1">
-              <li>• Change your password regularly</li>
-              <li>• Don't share your password with anyone</li>
-              <li>• Use a unique password for this account</li>
-              <li>• Enable two-factor authentication if available</li>
-            </ul>
-          </CardContent>
-        </Card>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          <Card className="border-red-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-red-400/10 mt-6">
+            <CardContent className="p-4">
+              <h3 className="font-semibold text-red-800 mb-2 text-sm">Security Tips:</h3>
+              <ul className="text-red-700 text-xs space-y-1">
+                <li>• Change your password regularly</li>
+                <li>• Don't share your password with anyone</li>
+                <li>• Use a unique password for this account</li>
+                <li>• Enable two-factor authentication if available</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
     </div>
   );
