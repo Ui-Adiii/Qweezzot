@@ -489,22 +489,20 @@ const UserRegister = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="space-y-2">
-          <Label>District</Label>
-          <Select 
-            value={formData.district} 
-            onValueChange={(value) => handleChange('district', value)}
-            disabled={!formData.state}
-          >
-            <SelectTrigger>
-              <SelectValue placeholder={formData.state ? "Select District" : "Select State First"} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="district1">District 1</SelectItem>
-              <SelectItem value="district2">District 2</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+        {/* District Input */}
+  <div className="space-y-2">
+    <Label htmlFor="district">District *</Label>
+    <Input
+      id="district"
+      name="district"
+      type="text"
+      value={formData.district}
+      onChange={(e) => handleChange("district", e.target.value)}
+      disabled={!formData.state || loading}
+      required
+      placeholder={formData.state ? "Enter District" : "Select State First"}
+    />
+  </div>
         
         <div className="space-y-2">
           <Label htmlFor="city">City *</Label>

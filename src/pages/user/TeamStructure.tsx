@@ -84,7 +84,8 @@ const TeamStructure: React.FC = () => {
         {members.map((member, index) => {
           const hasChildren = member.children && member.children.length > 0;
           const isExpanded = expandedNodes.has(member.id);
-          const isLeft = member.position === 'left';
+          // const isLeft = member.position === 'left';
+          const isLeft = member.position?.toLowerCase() === 'left';
 
           return (
             <motion.div
@@ -141,7 +142,9 @@ const TeamStructure: React.FC = () => {
                         ? 'bg-emerald-100/70 text-emerald-800 ring-1 ring-emerald-300/30' 
                         : 'bg-amber-100/70 text-amber-800 ring-1 ring-amber-300/30'
                     }`}>
-                      {member.position.toUpperCase()}
+                      {/* {member.position.toUpperCase()} */}
+                      {(member.position || "N/A").toUpperCase()}
+
                     </Badge>
                   </div>
                 </CardContent>
@@ -164,8 +167,11 @@ const TeamStructure: React.FC = () => {
 
     const countMembers = (members: TeamMember[]) => {
       members.forEach(member => {
-        if (member.position === 'left') left++;
-        else if (member.position === 'right') right++;
+        // if (member.position === 'left') left++;
+        // else if (member.position === 'right') right++;
+        if (member.position?.toLowerCase() === 'left') left++;
+else if (member.position?.toLowerCase() === 'right') right++;
+
         
         if (member.children) {
           countMembers(member.children);

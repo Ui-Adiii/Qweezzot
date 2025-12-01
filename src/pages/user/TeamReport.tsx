@@ -19,6 +19,7 @@ const TeamReport: React.FC = () => {
       const response = await authAPI.getTeamReport();
       if (response.success && response.data) {
         setReportData(response.data);
+        console.log('Team Report Data:', response.data);
       }
     } catch (error: any) {
       console.error('Failed to load team report:', error);
