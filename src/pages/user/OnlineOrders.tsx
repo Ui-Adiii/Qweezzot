@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Globe, Truck, Package, Clock, ShoppingCart } from 'lucide-react';
 import { toast } from 'sonner';
 import productsAPI from '@/api/products';
@@ -33,6 +34,8 @@ interface OrderStats {
 const OnlineOrders: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const [stats, setStats] = useState<OrderStats>({
     totalAmount: 0,
     totalOrders: 0,
@@ -309,6 +312,10 @@ const OnlineOrders: React.FC = () => {
                               size="sm" 
                               variant="outline"
                               className="border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-emerald-50/50 text-emerald-800"
+                              onClick={() => {
+                                setSelectedOrder(order);
+                                setIsDetailsOpen(true);
+                              }}
                             >
                               View Details
                             </Button>
@@ -334,6 +341,109 @@ const OnlineOrders: React.FC = () => {
         </CardContent>
       </Card>
       </motion.div>
+
+      {/* Order Details Dialog */}
+      <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
+        <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-bold text-emerald-900">
+              Order Details
+            </DialogTitle>
+            <DialogDescription>
+              Complete information about your order
+            </DialogDescription>
+          </DialogHeader>
+          
+          {selectedOrder && (
+            <div className="space-y-6 mt-4">
+              {/* Order Header */}
+              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-emerald-50 to-amber-50 rounded-lg border border-emerald-200">
+                <div>
+                  <p className="text-sm text-emerald-700 font-medium">Order Number</p>
+                  <p className="text-lg font-bold text-emerald-900">{selectedOrder.orderNumber}</p>
+                </div>
+                <Badge 
+                  className={`text-white ${getStatusColor(selectedOrder.status)} ring-1 ring-white/30 backdrop-blur-sm`}
+                >
+                  {selectedOrder.status.charAt(0).toUpperCase() + selectedOrder.status.slice(1)}
+                </Badge>
+              </div>
+
+              {/* Order Items */}
+              <div className="space-y-3">
+                <h3 className="font-semibold text-emerald-900 text-lg">Order Items</h3>
+                <div className="space-y-2">
+                  {selectedOrder.items.map((item, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-white border border-emerald-100 rounded-lg">
+                      <div className="flex-1">
+                        <p className="font-medium text-emerald-900">{item.productName}</p>
+                        <p className="text-sm text-emerald-700">Quantity: {item.quantity}</p>
+                      </div>
+                      <p className="font-semibold text-emerald-900">₹{(item.price * item.quantity).toLocaleString()}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Order Information */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="p-4 bg-white border border-emerald-100 rounded-lg">
+                  <p className="text-sm text-emerald-700 font-medium mb-1">Order Date</p>
+                  <p className="text-emerald-900 font-semibold">
+                    {new Date(selectedOrder.createdAt).toLocaleDateString('en-IN', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </p>
+                </div>
+                <div className="p-4 bg-white border border-emerald-100 rounded-lg">
+                  <p className="text-sm text-emerald-700 font-medium mb-1">Last Updated</p>
+                  <p className="text-emerald-900 font-semibold">
+                    {new Date(selectedOrder.updatedAt).toLocaleDateString('en-IN', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric'
+                    })}
+                  </p>
+                </div>
+              </div>
+
+              {/* Payment Status */}
+              <div className="p-4 bg-white border border-emerald-100 rounded-lg">
+                <p className="text-sm text-emerald-700 font-medium mb-2">Payment Status</p>
+                <Badge 
+                  className={selectedOrder.paymentStatus === 'paid' 
+                    ? 'bg-gradient-to-r from-emerald-600 to-amber-500 text-white ring-1 ring-amber-300/30 backdrop-blur-sm'
+                    : 'bg-gradient-to-r from-amber-500 to-yellow-500 text-white ring-1 ring-amber-300/30 backdrop-blur-sm'
+                  }
+                >
+                  {selectedOrder.paymentStatus.charAt(0).toUpperCase() + selectedOrder.paymentStatus.slice(1)}
+                </Badge>
+              </div>
+
+              {/* Tracking Information */}
+              {selectedOrder.trackingNumber && (
+                <div className="p-4 bg-white border border-emerald-100 rounded-lg">
+                  <p className="text-sm text-emerald-700 font-medium mb-2">Tracking Information</p>
+                  <div className="flex items-center space-x-2">
+                    <Truck className="h-4 w-4 text-emerald-600" />
+                    <p className="text-emerald-900 font-semibold">{selectedOrder.trackingNumber}</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Total Amount */}
+              <div className="p-4 bg-gradient-to-r from-emerald-600 to-amber-500 rounded-lg">
+                <div className="flex items-center justify-between">
+                  <p className="text-white font-semibold text-lg">Total Amount</p>
+                  <p className="text-white font-bold text-2xl">₹{selectedOrder.totalAmount.toLocaleString()}</p>
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

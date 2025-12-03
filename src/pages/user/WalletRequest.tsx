@@ -5,10 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Wallet, Upload, FileText, Clock, CheckCircle, XCircle, Image as ImageIcon } from 'lucide-react';
+import { Wallet, Upload, FileText, Clock, CheckCircle, XCircle, Image as ImageIcon, Copy } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import walletAPI, { WalletTopupRequest } from '@/api/wallet';
+import { paymentSettingsAPI, PaymentSettings } from '@/api/payment-settings';
 
 interface WalletRequest {
   _id: string;
@@ -21,6 +22,16 @@ interface WalletRequest {
   transactionId?: string;
   rejectionReason?: string;
   adminNotes?: string;
+  bankDetails?: {
+    accountNumber?: string;
+    bankName?: string;
+    ifscCode?: string;
+    accountHolderName?: string;
+  };
+  upiDetails?: {
+    upiId?: string;
+    name?: string;
+  };
   createdAt: string;
   updatedAt: string;
 }
@@ -31,6 +42,7 @@ const WalletRequest: React.FC = () => {
   const [requests, setRequests] = useState<WalletRequest[]>([]);
   const [screenshotPreview, setScreenshotPreview] = useState<string | null>(null);
   const [screenshotFile, setScreenshotFile] = useState<File | null>(null);
+  const [paymentSettings, setPaymentSettings] = useState<PaymentSettings | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState({
@@ -43,7 +55,60 @@ const WalletRequest: React.FC = () => {
 
   useEffect(() => {
     fetchRequests();
+    fetchPaymentSettings();
   }, []);
+
+  const fetchPaymentSettings = async () => {
+    try {
+      const response = await paymentSettingsAPI.getPaymentSettings();
+      console.log('Payment settings response:', response);
+      
+      if (response.success && response.data) {
+        // Handle both array format and flat format
+        const data = response.data as any;
+        console.log('Payment settings data:', data);
+        
+        if (data.bankAccounts || data.upiAccounts) {
+          // New format with arrays
+          const firstBankAccount = data.bankAccounts && data.bankAccounts.length > 0 ? data.bankAccounts[0] : null;
+          const firstUpiAccount = data.upiAccounts && data.upiAccounts.length > 0 ? data.upiAccounts[0] : null;
+          
+          console.log('First bank account:', firstBankAccount);
+          console.log('First UPI account:', firstUpiAccount);
+          
+          const settings = {
+            bankAccounts: data.bankAccounts || [],
+            upiAccounts: data.upiAccounts || [],
+            // Map first active account to flat fields for display
+            bankName: firstBankAccount?.bankName,
+            accountNumber: firstBankAccount?.accountNumber,
+            ifscCode: firstBankAccount?.ifscCode,
+            accountHolderName: firstBankAccount?.accountHolderName,
+            upiId: firstUpiAccount?.upiId,
+            upiQrCode: firstUpiAccount?.qrCode,
+            isActive: data.isActive,
+          };
+          
+          console.log('Setting payment settings:', settings);
+          setPaymentSettings(settings);
+        } else {
+          // Legacy flat format
+          console.log('Using legacy flat format');
+          setPaymentSettings(data);
+        }
+      } else {
+        console.warn('Payment settings response not successful or no data');
+      }
+    } catch (error: any) {
+      console.error('Failed to load payment settings:', error);
+      toast.error('Failed to load payment details. Please refresh the page.');
+    }
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    toast.success('Copied to clipboard!');
+  };
 
   const fetchRequests = async () => {
     try {
@@ -54,15 +119,19 @@ const WalletRequest: React.FC = () => {
           ? response.data 
           : [response.data];
         // Map WalletTopupRequest to WalletRequest by adding missing fields
-        const mappedRequests: WalletRequest[] = data.map((item: WalletTopupRequest) => ({
+        const mappedRequests: WalletRequest[] = data.map((item: any) => ({
           _id: item._id || '',
           amount: item.amount,
-          walletType: 'purchaseWallet', // Default value since API doesn't return this
+          walletType: item.walletType || 'purchaseWallet',
           screenshot: item.screenshot,
           status: item.status,
-          paymentMethod: 'bank', // Default value since API doesn't return this
+          paymentMethod: item.paymentMethod || 'bank',
           transactionId: item.transactionId,
           rejectionReason: item.rejectionReason,
+          adminNotes: item.adminNotes,
+          bankDetails: item.bankDetails,
+          upiDetails: item.upiDetails,
+          requestDetails: item.requestDetails,
           createdAt: item.createdAt || '',
           updatedAt: item.updatedAt || '',
         }));
@@ -235,6 +304,119 @@ const WalletRequest: React.FC = () => {
         </h1>
       </motion.div>
 
+      {/* Admin Payment Details */}
+      {paymentSettings && (
+        <Card className="border-emerald-200/50 bg-gradient-to-br from-blue-50/80 to-purple-50/80 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <CardHeader>
+            <CardTitle className="text-xl text-emerald-800 flex items-center gap-2">
+              <FileText className="h-5 w-5" />
+              Payment Details (Read Only)
+            </CardTitle>
+            <p className="text-sm text-gray-600">Use these details to make payment for wallet top-up</p>
+          </CardHeader>
+          <CardContent>
+            {(paymentSettings.bankName || paymentSettings.accountNumber || (paymentSettings.bankAccounts && paymentSettings.bankAccounts.length > 0) || paymentSettings.upiId || (paymentSettings.upiAccounts && paymentSettings.upiAccounts.length > 0)) ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Bank Details */}
+                {(paymentSettings.bankName || paymentSettings.accountNumber || (paymentSettings.bankAccounts && paymentSettings.bankAccounts.length > 0)) && (
+                <div className="p-4 bg-white/70 backdrop-blur-xl rounded-lg border border-blue-200/50 ring-1 ring-blue-400/10 shadow-md">
+                  <h3 className="font-semibold text-emerald-800 mb-3 flex items-center gap-2">
+                    <FileText className="h-4 w-4" />
+                    Bank Transfer Details
+                  </h3>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Bank Name:</span>
+                      <span className="font-medium text-gray-900">{paymentSettings.bankName}</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">Account Number:</span>
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium font-mono text-gray-900">{paymentSettings.accountNumber}</span>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => copyToClipboard(paymentSettings.accountNumber || '')}
+                          className="h-6 w-6 p-0"
+                        >
+                          <Copy className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    </div>
+                    {paymentSettings.ifscCode && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">IFSC Code:</span>
+                        <div className="flex items-center gap-2">
+                          <span className="font-medium font-mono text-gray-900">{paymentSettings.ifscCode}</span>
+                          <Button
+                            type="button"
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => copyToClipboard(paymentSettings.ifscCode || '')}
+                            className="h-6 w-6 p-0"
+                          >
+                            <Copy className="h-3 w-3" />
+                          </Button>
+                        </div>
+                      </div>
+                    )}
+                    {paymentSettings.accountHolderName && (
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-gray-600">Account Holder:</span>
+                        <span className="font-medium text-gray-900">{paymentSettings.accountHolderName}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* UPI Details */}
+              {(paymentSettings.upiId || (paymentSettings.upiAccounts && paymentSettings.upiAccounts.length > 0)) && (
+                <div className="p-4 bg-white/70 backdrop-blur-xl rounded-lg border border-purple-200/50 ring-1 ring-purple-400/10 shadow-md">
+                  <h3 className="font-semibold text-emerald-800 mb-3 flex items-center gap-2">
+                    <FileText className="h-4 w-4" />
+                    UPI Payment Details
+                  </h3>
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <span className="text-sm text-gray-600">UPI ID:</span>
+                      <div className="flex items-center gap-2">
+                        <span className="font-medium font-mono text-gray-900">{paymentSettings.upiId}</span>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => copyToClipboard(paymentSettings.upiId || '')}
+                          className="h-6 w-6 p-0"
+                        >
+                          <Copy className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    </div>
+                    {paymentSettings.upiQrCode && (
+                      <div className="mt-3 text-center">
+                        <p className="text-xs text-gray-600 mb-2">Scan QR Code to Pay</p>
+                        <img 
+                          src={paymentSettings.upiQrCode} 
+                          alt="UPI QR Code" 
+                          className="mx-auto max-w-[180px] h-auto border-2 border-purple-200 rounded-lg shadow-sm"
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-gray-500">
+                <p className="text-sm">No payment details available. Please contact admin.</p>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      )}
+
       {/* Request Form */}
       <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
         <CardHeader>
@@ -406,6 +588,7 @@ const WalletRequest: React.FC = () => {
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Wallet Type</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Payment Method</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Payment Details</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Screenshot</th>
                   </tr>
@@ -424,6 +607,53 @@ const WalletRequest: React.FC = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 capitalize">
                         {request.paymentMethod}
+                      </td>
+                      <td className="px-6 py-4 text-sm">
+                        {request.paymentMethod === 'bank' && request.bankDetails ? (
+                          <div className="space-y-1 bg-blue-50 p-2 rounded border border-blue-200">
+                            {request.bankDetails.bankName && (
+                              <div className="text-gray-700">
+                                <span className="font-semibold text-emerald-700">Bank:</span> 
+                                <span className="ml-1">{request.bankDetails.bankName}</span>
+                              </div>
+                            )}
+                            {request.bankDetails.accountNumber && (
+                              <div className="text-gray-700">
+                                <span className="font-semibold text-emerald-700">A/C No:</span> 
+                                <span className="ml-1 font-mono">{request.bankDetails.accountNumber}</span>
+                              </div>
+                            )}
+                            {request.bankDetails.ifscCode && (
+                              <div className="text-gray-700">
+                                <span className="font-semibold text-emerald-700">IFSC:</span> 
+                                <span className="ml-1 font-mono">{request.bankDetails.ifscCode}</span>
+                              </div>
+                            )}
+                            {request.bankDetails.accountHolderName && (
+                              <div className="text-gray-700">
+                                <span className="font-semibold text-emerald-700">Account Holder:</span> 
+                                <span className="ml-1">{request.bankDetails.accountHolderName}</span>
+                              </div>
+                            )}
+                          </div>
+                        ) : request.paymentMethod === 'upi' && request.upiDetails ? (
+                          <div className="space-y-1 bg-purple-50 p-2 rounded border border-purple-200">
+                            {request.upiDetails.upiId && (
+                              <div className="text-gray-700">
+                                <span className="font-semibold text-emerald-700">UPI ID:</span> 
+                                <span className="ml-1 font-mono">{request.upiDetails.upiId}</span>
+                              </div>
+                            )}
+                            {request.upiDetails.name && (
+                              <div className="text-gray-700">
+                                <span className="font-semibold text-emerald-700">Name:</span> 
+                                <span className="ml-1">{request.upiDetails.name}</span>
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <span className="text-gray-400 italic">Not provided by admin</span>
+                        )}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {getStatusBadge(request.status)}

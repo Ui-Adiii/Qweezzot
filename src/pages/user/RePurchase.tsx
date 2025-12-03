@@ -10,7 +10,7 @@ import productsAPI from '@/api/products';
 import { useCart } from '@/contexts/CartContext';
 
 interface OrderItem {
-  productId: string;
+  productId: string | { _id: string; [key: string]: any };
   productName: string;
   quantity: number;
   price: number;
@@ -59,19 +59,32 @@ const RePurchase: React.FC = () => {
       if (response.success && response.data) {
         const orders: Order[] = response.data || [];
         
-        // Extract unique products from all orders (excluding first purchase)
+        console.log('Fetched orders:', orders.length);
+        console.log('Sample order:', orders[0]);
+        
+        // Extract unique products from all orders (including first purchase orders)
+        // This allows users to repurchase products they've bought before
         const productMap = new Map<string, PurchasedProduct>();
         
         orders
-          .filter(order => !order.isFirstPurchase) // Only repurchase orders
           .forEach(order => {
             order.items.forEach(item => {
-              const existing = productMap.get(item.productId);
+              // Handle both string and object productId
+              const productId = typeof item.productId === 'string' 
+                ? item.productId 
+                : (item.productId as any)?._id || (item.productId as any)?.id || '';
+              
+              if (!productId) {
+                console.warn('Skipping item with invalid productId:', item);
+                return;
+              }
+              
+              const existing = productMap.get(productId);
               
               if (!existing || new Date(order.createdAt) > new Date(existing.lastPurchasedDate)) {
-                productMap.set(item.productId, {
-                  productId: item.productId,
-                  productName: item.productName,
+                productMap.set(productId, {
+                  productId: productId,
+                  productName: item.productName || (typeof item.productId === 'object' ? (item.productId as any)?.name : ''),
                   lastPurchasedDate: order.createdAt,
                   lastOrderNumber: order.orderNumber,
                   totalPurchased: (existing?.totalPurchased || 0) + item.quantity,
@@ -86,6 +99,8 @@ const RePurchase: React.FC = () => {
         
         // Convert map to array and fetch product details
         const productsArray = Array.from(productMap.values());
+        
+        console.log('Unique products found:', productsArray.length);
         
         // Fetch full product details for each
         const productsWithDetails = await Promise.all(
@@ -105,6 +120,7 @@ const RePurchase: React.FC = () => {
           })
         );
         
+        console.log('Products with details:', productsWithDetails.length);
         setPurchasedProducts(productsWithDetails);
       } else {
         setPurchasedProducts([]);
@@ -210,7 +226,7 @@ const RePurchase: React.FC = () => {
           <CardHeader>
             <CardTitle className="text-xl text-emerald-900">Previously Purchased Products</CardTitle>
             <p className="text-sm text-gray-600 mt-2">
-              Repurchase products you've bought before to maintain your active status and continue earning.
+              Repurchase products you've bought before (from any order) to maintain your active status and continue earning.
             </p>
           </CardHeader>
           <CardContent>
