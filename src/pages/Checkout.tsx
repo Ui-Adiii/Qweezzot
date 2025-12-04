@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { ArrowLeft, ShoppingCart, CreditCard, MapPin, User, Wallet, RefreshCw, Plus, Minus, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -60,6 +60,9 @@ const Checkout: React.FC = () => {
     country: 'India'
   });
 
+  // Use ref to track if products from state have been added
+  const productsAddedRef = useRef(false);
+
   useEffect(() => {
     // Check if this is first purchase from location state
     const state = location.state as any;
@@ -83,14 +86,14 @@ const Checkout: React.FC = () => {
 
     checkFirstPurchaseStatus();
 
-    // If products are passed from FirstPurchase page, add them to cart
-    if (state?.products && Array.isArray(state.products)) {
+    // If products are passed from FirstPurchase page, add them to cart (only once)
+    if (state?.products && Array.isArray(state.products) && !productsAddedRef.current) {
       state.products.forEach((product: any) => {
         // Add to cart if not already present
-        const exists = items.find(item => item.productId === product._id);
+        const exists = items.find(item => String(item.productId) === String(product._id));
         if (!exists) {
           addItem({
-            productId: product._id,
+            productId: String(product._id),
             name: product.name,
             price: product.price,
             discountPrice: product.discountPrice,
@@ -107,13 +110,11 @@ const Checkout: React.FC = () => {
           });
         }
       });
+      productsAddedRef.current = true; // Mark as added
     }
 
-    // Redirect if cart is empty and no products in state
-    if (items.length === 0 && !state?.products) {
-      navigate('/products');
-      return;
-    }
+    // Don't redirect here - let the separate useEffect handle it with proper delay
+    // This prevents blank page when items are removed
 
     // Check authentication
     const token = localStorage.getItem('token');
@@ -121,10 +122,27 @@ const Checkout: React.FC = () => {
       navigate('/user/login');
       return;
     }
+  }, [navigate, location]); // Removed items and addItem from dependencies to prevent re-running on cart changes
 
-    // Fetch wallet data
+  // Fetch wallet data once on mount
+  useEffect(() => {
     fetchWalletData();
-  }, [items, navigate, location, addItem]);
+  }, []); // Run only once on mount
+
+  // Separate useEffect to handle cart empty redirect (with delay to prevent blank page)
+  useEffect(() => {
+    if (items.length === 0) {
+      const state = location.state as any;
+      if (!state?.products) {
+        // Add a small delay to show empty cart message before redirecting
+        const redirectTimer = setTimeout(() => {
+          navigate('/products');
+        }, 1500);
+        
+        return () => clearTimeout(redirectTimer);
+      }
+    }
+  }, [items.length, navigate, location]);
 
   const fetchWalletData = async () => {
     try {
@@ -243,8 +261,27 @@ const Checkout: React.FC = () => {
     }
   };
 
+  // Show empty cart message instead of blank page
   if (items.length === 0) {
-    return null; // Will redirect via useEffect
+    const state = location.state as any;
+    if (!state?.products) {
+      return (
+        <div className="min-h-screen bg-gray-50 py-8 flex items-center justify-center">
+          <div className="container mx-auto px-4 text-center">
+            <div className="max-w-md mx-auto">
+              <ShoppingCart className="h-16 w-16 mx-auto text-muted-foreground mb-4" />
+              <h2 className="text-2xl font-bold mb-2">Your cart is empty</h2>
+              <p className="text-muted-foreground mb-6">
+                Redirecting you to products page...
+              </p>
+              <Button onClick={() => navigate('/products')}>
+                Go to Products
+              </Button>
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 
   return (
@@ -322,13 +359,16 @@ const Checkout: React.FC = () => {
                               variant="ghost"
                               size="sm"
                               className="h-7 w-7 p-0"
-                              onClick={() => {
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
                                 if (item.quantity > 1) {
-                                  updateQuantity(item.productId, item.quantity - 1);
+                                  updateQuantity(String(item.productId), item.quantity - 1);
                                 } else {
-                                  removeItem(item.productId);
+                                  removeItem(String(item.productId));
                                 }
                               }}
+                              type="button"
                             >
                               <Minus className="h-3 w-3" />
                             </Button>
@@ -339,7 +379,12 @@ const Checkout: React.FC = () => {
                               variant="ghost"
                               size="sm"
                               className="h-7 w-7 p-0"
-                              onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                updateQuantity(String(item.productId), item.quantity + 1);
+                              }}
+                              type="button"
                             >
                               <Plus className="h-3 w-3" />
                             </Button>
@@ -348,7 +393,18 @@ const Checkout: React.FC = () => {
                             variant="ghost"
                             size="sm"
                             className="h-7 text-destructive hover:text-destructive hover:bg-destructive/10"
-                            onClick={() => removeItem(item.productId)}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              console.log('[Checkout] Remove button clicked for:', {
+                                productId: item.productId,
+                                productIdType: typeof item.productId,
+                                name: item.name
+                              });
+                              removeItem(String(item.productId));
+                            }}
+                            type="button"
+                            aria-label={`Remove ${item.name} from cart`}
                           >
                             <Trash2 className="h-4 w-4 mr-1" />
                             Remove

@@ -64,6 +64,31 @@ export const walletAPI = {
     
     return response.json();
   },
+
+  // Transfer amount between user's own wallets
+  transferWallet: async (data: {
+    fromWalletType: 'purchaseWallet' | 'earnedWallet' | 'referralWallet' | 'repurchaseWallet' | 'cashbackWallet';
+    toWalletType: 'purchaseWallet' | 'earnedWallet' | 'referralWallet' | 'repurchaseWallet' | 'cashbackWallet';
+    amount: number;
+    reason?: string;
+  }): Promise<{ success: boolean; message?: string; data?: any }> => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`${API_BASE_URL}/wallet/transfer`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+    
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.message || 'Failed to transfer wallet amount');
+    }
+    
+    return response.json();
+  },
 };
 
 export interface WalletRequestData {

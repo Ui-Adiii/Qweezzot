@@ -23,7 +23,8 @@ import {
   Handshake,
   Gift,
   Trophy,
-  Star
+  Star,
+  ArrowRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -110,6 +111,7 @@ const navigation = [
     children: [
       { name: 'Wallet Balance', href: '/user/wallet-balance' },
       { name: 'Wallet Request', href: '/user/wallet-request' },
+      { name: 'Wallet Transfer', href: '/user/wallet-transfer', icon: ArrowRight },
       { name: 'Transactions', href: '/user/transactions' },
       { name: 'Withdraw', href: '/user/withdraw' },
     ]

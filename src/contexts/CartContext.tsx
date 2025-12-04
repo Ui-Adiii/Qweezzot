@@ -42,30 +42,47 @@ const initialState: CartState = {
 function cartReducer(state: CartState, action: CartAction): CartState {
   switch (action.type) {
     case 'ADD_ITEM': {
-      const existingItem = state.items.find(item => item.productId === action.payload.productId);
+      // Convert productId to string for reliable comparison
+      const payloadProductId = String(action.payload.productId);
+      const existingItem = state.items.find(item => String(item.productId) === payloadProductId);
       
       let newItems;
       if (existingItem) {
         newItems = state.items.map(item =>
-          item.productId === action.payload.productId
+          String(item.productId) === payloadProductId
             ? { ...item, quantity: item.quantity + action.payload.quantity }
             : item
         );
       } else {
-        newItems = [...state.items, action.payload];
+        // Ensure productId is stored as string
+        const newItem = {
+          ...action.payload,
+          productId: payloadProductId
+        };
+        newItems = [...state.items, newItem];
       }
 
       return calculateTotals({ ...state, items: newItems });
     }
 
     case 'REMOVE_ITEM': {
-      const newItems = state.items.filter(item => item.productId !== action.payload);
+      // Convert both to strings for reliable comparison
+      const payloadId = String(action.payload);
+      const newItems = state.items.filter(item => String(item.productId) !== payloadId);
+      console.log('[CartReducer] REMOVE_ITEM:', {
+        payloadId,
+        itemsBefore: state.items.length,
+        itemsAfter: newItems.length,
+        removedItem: state.items.find(item => String(item.productId) === payloadId)
+      });
       return calculateTotals({ ...state, items: newItems });
     }
 
     case 'UPDATE_QUANTITY': {
+      // Convert productId to string for reliable comparison
+      const payloadProductId = String(action.payload.productId);
       const newItems = state.items.map(item =>
-        item.productId === action.payload.productId
+        String(item.productId) === payloadProductId
           ? { ...item, quantity: action.payload.quantity }
           : item
       ).filter(item => item.quantity > 0);
@@ -147,8 +164,37 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const removeItem = (productId: string) => {
-    dispatch({ type: 'REMOVE_ITEM', payload: productId });
-    toast.success('Item removed from cart');
+    if (!productId) {
+      console.error('[removeItem] Invalid productId:', productId);
+      toast.error('Unable to remove item: Invalid product ID');
+      return;
+    }
+    
+    // Convert to string for comparison
+    const productIdStr = String(productId);
+    
+    // Debug: Log current cart state
+    console.log('[removeItem] Called with productId:', productIdStr);
+    console.log('[removeItem] Current cart items:', state.items.map(item => ({
+      productId: item.productId,
+      productIdType: typeof item.productId,
+      name: item.name
+    })));
+    
+    const itemToRemove = state.items.find(item => String(item.productId) === productIdStr);
+    
+    if (!itemToRemove) {
+      console.warn('[removeItem] Item not found in cart:', {
+        searchedId: productIdStr,
+        availableIds: state.items.map(item => String(item.productId))
+      });
+      toast.error('Item not found in cart');
+      return;
+    }
+    
+    console.log('[removeItem] Removing item:', itemToRemove.name);
+    dispatch({ type: 'REMOVE_ITEM', payload: productIdStr });
+    toast.success(`${itemToRemove.name} removed from cart`);
   };
 
   const updateQuantity = (productId: string, quantity: number) => {

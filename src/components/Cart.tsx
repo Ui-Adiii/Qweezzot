@@ -65,9 +65,9 @@ const Cart: React.FC = () => {
               {/* Cart Items */}
               <div className="space-y-3">
                 {items.map((item) => (
-                  <Card key={item.productId} className="border-muted">
-                    <CardContent className="p-4">
-                      <div className="flex items-start gap-3">
+                  <Card key={item.productId} className="border-muted" onClick={(e) => e.stopPropagation()}>
+                    <CardContent className="p-4" onClick={(e) => e.stopPropagation()}>
+                      <div className="flex items-start gap-3" onClick={(e) => e.stopPropagation()}>
                         {/* Product Image */}
                         <div className="w-16 h-16 rounded-md bg-muted flex items-center justify-center flex-shrink-0">
                           {item.image ? (
@@ -131,7 +131,18 @@ const Cart: React.FC = () => {
                               variant="ghost"
                               size="sm"
                               className="h-6 w-6 p-0 text-destructive hover:text-destructive"
-                              onClick={() => removeItem(item.productId)}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                console.log('[Cart] Remove button clicked for:', {
+                                  productId: item.productId,
+                                  productIdType: typeof item.productId,
+                                  name: item.name
+                                });
+                                removeItem(String(item.productId));
+                              }}
+                              type="button"
+                              aria-label={`Remove ${item.name} from cart`}
                             >
                               <Trash2 className="h-3 w-3" />
                             </Button>

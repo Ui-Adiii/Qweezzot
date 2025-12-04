@@ -2,21 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, ChevronDown, ChevronRight, RefreshCw } from 'lucide-react';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Users, ChevronDown, ChevronRight, RefreshCw, Maximize2, Minimize2, Search } from 'lucide-react';
 import { authAPI } from '@/api/auth';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 
 interface TeamMember {
   id: string;
+  _id?: string;
   name: string;
   username: string;
   email: string;
+  mobileNo?: string;
   referralCode: string;
   isActive: boolean;
   rank: string;
-  position: 'left' | 'right';
+  position: 'left' | 'right' | null;
   createdAt: string;
+  level?: number;
+  directReferrals?: number;
+  totalTeam?: number;
   children?: TeamMember[];
 }
 
@@ -26,10 +32,14 @@ interface TeamStructure {
     name: string;
     username: string;
     referralCode: string;
+    rank?: string;
+    isActive?: boolean;
   };
   stats: {
     directReferrals: number;
     totalTeam: number;
+    leftTeam?: number;
+    rightTeam?: number;
   };
   tree: TeamMember[];
 }
@@ -38,6 +48,7 @@ const TeamStructure: React.FC = () => {
   const [teamData, setTeamData] = useState<TeamStructure | null>(null);
   const [loading, setLoading] = useState(true);
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set());
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchTeamStructure();
@@ -51,7 +62,7 @@ const TeamStructure: React.FC = () => {
       if (response.success && response.data) {
         setTeamData(response.data);
         if (response.data.tree && response.data.tree.length > 0) {
-          const firstLevelIds = response.data.tree.map((member: TeamMember) => member.id);
+          const firstLevelIds = response.data.tree.map((member: TeamMember) => member.id || member._id).filter(Boolean);
           setExpandedNodes(new Set(firstLevelIds));
         }
       } else {
@@ -76,90 +87,73 @@ const TeamStructure: React.FC = () => {
     setExpandedNodes(newExpanded);
   };
 
-  const renderTree = (members: TeamMember[], level: number = 0): React.ReactNode => {
-    if (!members || members.length === 0) return null;
+  // Expand all nodes recursively
+  const expandAll = (members: TeamMember[]): Set<string> => {
+    const allIds = new Set<string>();
+    const collectIds = (members: TeamMember[]) => {
+      members.forEach(member => {
+        const id = member.id || member._id;
+        if (id) {
+          allIds.add(id);
+          if (member.children && member.children.length > 0) {
+            collectIds(member.children);
+          }
+        }
+      });
+    };
+    collectIds(members);
+    return allIds;
+  };
 
-    return (
-      <div className={`space-y-2 ${level > 0 ? 'ml-6 border-l-2 border-emerald-200/50 pl-4' : ''}`}>
-        {members.map((member, index) => {
-          const hasChildren = member.children && member.children.length > 0;
-          const isExpanded = expandedNodes.has(member.id);
-          // const isLeft = member.position === 'left';
-          const isLeft = member.position?.toLowerCase() === 'left';
+  const handleExpandAll = () => {
+    if (teamData?.tree) {
+      setExpandedNodes(expandAll(teamData.tree));
+    }
+  };
 
-          return (
-            <motion.div
-              key={member.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.05 }}
-              whileHover={{ scale: 1.01, x: 5 }}
-              className="space-y-2"
-            >
-              <Card className={`border-${isLeft ? 'emerald' : 'emerald'}-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-lg transition-all duration-200 ring-1 ring-amber-400/10`}>
-                <CardContent className="p-3">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      {hasChildren && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => toggleNode(member.id)}
-                          className="h-6 w-6 p-0 hover:bg-emerald-50/50"
-                        >
-                          {isExpanded ? (
-                            <ChevronDown className="h-4 w-4 text-emerald-600" />
-                          ) : (
-                            <ChevronRight className="h-4 w-4 text-emerald-600" />
-                          )}
-                        </Button>
-                      )}
-                      {!hasChildren && <div className="w-6" />}
-                      <div>
-                        <div className="flex items-center space-x-2">
-                          <span className="font-medium text-emerald-800">{member.name}</span>
-                          <Badge variant="outline" className="text-xs border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10">
-                            {member.rank}
-                          </Badge>
-                          {member.isActive ? (
-                            <Badge className="bg-emerald-100/70 text-emerald-800 ring-1 ring-emerald-300/30 backdrop-blur-sm text-xs">Active</Badge>
-                          ) : (
-                            <Badge className="bg-amber-100/70 text-amber-800 ring-1 ring-amber-300/30 backdrop-blur-sm text-xs">Inactive</Badge>
-                          )}
-                        </div>
-                        <p className="text-sm text-emerald-700/70">
-                          {member.username} • {member.referralCode}
-                        </p>
-                        {hasChildren && (
-                          <p className="text-xs text-emerald-600/70">
-                            {member.children?.length || 0} sub-members
-                          </p>
-                        )}
-                      </div>
-                    </div>
-                    <Badge className={`backdrop-blur-sm ${
-                      isLeft 
-                        ? 'bg-emerald-100/70 text-emerald-800 ring-1 ring-emerald-300/30' 
-                        : 'bg-amber-100/70 text-amber-800 ring-1 ring-amber-300/30'
-                    }`}>
-                      {/* {member.position.toUpperCase()} */}
-                      {(member.position || "N/A").toUpperCase()}
+  const handleCollapseAll = () => {
+    if (teamData?.tree) {
+      // Keep only first level expanded
+      const firstLevelIds = teamData.tree.map((member: TeamMember) => member.id || member._id).filter(Boolean);
+      setExpandedNodes(new Set(firstLevelIds));
+    }
+  };
 
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-              {hasChildren && isExpanded && (
-                <div className="mt-2">
-                  {renderTree(member.children || [], level + 1)}
-                </div>
-              )}
-            </motion.div>
-          );
-        })}
-      </div>
+  // Flatten tree structure for table display
+  const flattenTree = (members: TeamMember[], level: number = 0, parentName: string = ''): Array<TeamMember & { displayLevel: number; parentName: string }> => {
+    const flattened: Array<TeamMember & { displayLevel: number; parentName: string }> = [];
+    
+    members.forEach(member => {
+      flattened.push({
+        ...member,
+        displayLevel: level,
+        parentName: parentName || 'Root'
+      });
+      
+      if (member.children && member.children.length > 0) {
+        const children = flattenTree(member.children, level + 1, member.name);
+        flattened.push(...children);
+      }
+    });
+    
+    return flattened;
+  };
+
+  // Filter flattened members based on search term
+  const filterMembers = (members: Array<TeamMember & { displayLevel: number; parentName: string }>, search: string): Array<TeamMember & { displayLevel: number; parentName: string }> => {
+    if (!search.trim()) return members;
+    
+    const searchLower = search.toLowerCase();
+    return members.filter(member => 
+      member.name?.toLowerCase().includes(searchLower) ||
+      member.username?.toLowerCase().includes(searchLower) ||
+      member.referralCode?.toLowerCase().includes(searchLower) ||
+      member.email?.toLowerCase().includes(searchLower) ||
+      member.rank?.toLowerCase().includes(searchLower) ||
+      member.mobileNo?.toLowerCase().includes(searchLower)
     );
   };
+
 
   const calculateTeamStats = (members: TeamMember[]): { left: number; right: number } => {
     let left = 0;
@@ -170,7 +164,7 @@ const TeamStructure: React.FC = () => {
         // if (member.position === 'left') left++;
         // else if (member.position === 'right') right++;
         if (member.position?.toLowerCase() === 'left') left++;
-else if (member.position?.toLowerCase() === 'right') right++;
+        else if (member.position?.toLowerCase() === 'right') right++;
 
         
         if (member.children) {
@@ -226,10 +220,25 @@ else if (member.position?.toLowerCase() === 'right') right++;
           </div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">Team Structure</h1>
         </div>
-        <motion.div
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
+        <div className="flex items-center gap-2">
+          <Button 
+            onClick={handleExpandAll} 
+            variant="outline" 
+            size="sm"
+            className="border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-emerald-50/50"
+          >
+            <Maximize2 className="h-4 w-4 mr-2" />
+            Expand All
+          </Button>
+          <Button 
+            onClick={handleCollapseAll} 
+            variant="outline" 
+            size="sm"
+            className="border-emerald-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-emerald-50/50"
+          >
+            <Minimize2 className="h-4 w-4 mr-2" />
+            Collapse All
+          </Button>
           <Button 
             onClick={fetchTeamStructure} 
             variant="outline" 
@@ -239,15 +248,16 @@ else if (member.position?.toLowerCase() === 'right') right++;
             <RefreshCw className={`h-4 w-4 mr-2 ${loading ? 'animate-spin' : ''}`} />
             Refresh
           </Button>
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Team Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         {[
           { label: 'Direct Referrals', value: teamData.stats.directReferrals, color: 'emerald' },
-          { label: 'Left Team', value: teamStats.left, color: 'emerald' },
-          { label: 'Right Team', value: teamStats.right, color: 'amber' },
+          { label: 'Total Team', value: teamData.stats.totalTeam, color: 'blue' },
+          { label: 'Left Team', value: teamData.stats.leftTeam || teamStats.left, color: 'emerald' },
+          { label: 'Right Team', value: teamData.stats.rightTeam || teamStats.right, color: 'amber' },
         ].map((stat, index) => (
           <motion.div
             key={stat.label}
@@ -280,27 +290,148 @@ else if (member.position?.toLowerCase() === 'right') right++;
       >
         <Card className="border-emerald-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-emerald-800">Binary Tree Structure</CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-emerald-800">Complete Team Tree Structure</CardTitle>
+              <div className="relative w-64">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search by name, username, code..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 text-sm"
+                />
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="space-y-6">
               {/* Root User */}
-              <div className="text-center">
+              <div className="text-center mb-6">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="inline-block p-4 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 backdrop-blur-sm rounded-lg border border-emerald-200/50 ring-2 ring-amber-400/20"
+                  className="inline-block p-6 bg-gradient-to-br from-emerald-500/30 to-amber-500/30 backdrop-blur-sm rounded-xl border-2 border-emerald-300/50 ring-4 ring-amber-400/20 shadow-xl"
                 >
-                  <h3 className="font-semibold text-emerald-800">{teamData.user.name}</h3>
-                  <p className="text-sm text-emerald-700/70">{teamData.user.username}</p>
-                  <p className="text-xs text-emerald-600/70">Code: {teamData.user.referralCode}</p>
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <h3 className="font-bold text-xl text-emerald-900">{teamData.user.name}</h3>
+                    {teamData.user.rank && (
+                      <Badge className={`text-xs font-semibold ${
+                        teamData.user.rank === 'Diamond' ? 'bg-blue-100 text-blue-800' :
+                        teamData.user.rank === 'Platinum' ? 'bg-purple-100 text-purple-800' :
+                        teamData.user.rank === 'Gold' ? 'bg-yellow-100 text-yellow-800' :
+                        teamData.user.rank === 'Silver' ? 'bg-gray-100 text-gray-800' :
+                        'bg-orange-100 text-orange-800'
+                      }`}>
+                        {teamData.user.rank}
+                      </Badge>
+                    )}
+                    {teamData.user.isActive !== false && (
+                      <Badge className="bg-emerald-100 text-emerald-800 text-xs">Active</Badge>
+                    )}
+                  </div>
+                  <p className="text-sm font-medium text-emerald-800 mb-1">{teamData.user.username}</p>
+                  <p className="text-xs text-emerald-700/80">Referral Code: {teamData.user.referralCode}</p>
+                  <p className="text-xs text-emerald-600/70 mt-2 font-medium">Level 0 (You)</p>
                 </motion.div>
               </div>
               
-              {/* Team Tree */}
+              {/* Team Table */}
               {teamData.tree && teamData.tree.length > 0 ? (
-                <div className="mt-6">
-                  {renderTree(teamData.tree)}
+                <div className="mt-6 overflow-x-auto">
+                  <Table>
+                    <TableHeader>
+                      <TableRow className="bg-emerald-50/50">
+                        <TableHead className="font-semibold text-emerald-900">Level</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Name</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Username</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Referral Code</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Email</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Mobile</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Rank</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Status</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Position</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Direct Referrals</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Total Team</TableHead>
+                        <TableHead className="font-semibold text-emerald-900">Join Date</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {(() => {
+                        const flattened = flattenTree(teamData.tree);
+                        const filtered = searchTerm ? filterMembers(flattened, searchTerm) : flattened;
+                        
+                        return filtered.length > 0 ? (
+                          filtered.map((member, index) => {
+                            const isLeft = member.position?.toLowerCase() === 'left';
+                            const levelText = member.displayLevel === 0 ? 'Direct' : `Level ${member.displayLevel + 1}`;
+                            
+                            return (
+                              <TableRow 
+                                key={member.id || member._id || index}
+                                className={`hover:bg-emerald-50/30 ${member.displayLevel > 0 ? 'bg-gray-50/50' : ''}`}
+                              >
+                                <TableCell className="font-medium">
+                                  <Badge variant="outline" className="text-xs">
+                                    {levelText}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell className="font-semibold text-emerald-900">
+                                  {member.name}
+                                  {member.displayLevel > 0 && (
+                                    <span className="text-xs text-gray-500 ml-2">({member.parentName})</span>
+                                  )}
+                                </TableCell>
+                                <TableCell className="text-gray-700">{member.username}</TableCell>
+                                <TableCell className="font-mono text-sm">{member.referralCode}</TableCell>
+                                <TableCell className="text-gray-600">{member.email || '-'}</TableCell>
+                                <TableCell className="text-gray-600">{member.mobileNo || '-'}</TableCell>
+                                <TableCell>
+                                  <Badge className={`text-xs font-medium ${
+                                    member.rank === 'Diamond' ? 'bg-blue-100 text-blue-800' :
+                                    member.rank === 'Platinum' ? 'bg-purple-100 text-purple-800' :
+                                    member.rank === 'Gold' ? 'bg-yellow-100 text-yellow-800' :
+                                    member.rank === 'Silver' ? 'bg-gray-100 text-gray-800' :
+                                    'bg-orange-100 text-orange-800'
+                                  }`}>
+                                    {member.rank || 'Bronze'}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell>
+                                  {member.isActive ? (
+                                    <Badge className="bg-emerald-100 text-emerald-800 text-xs">Active</Badge>
+                                  ) : (
+                                    <Badge className="bg-red-100 text-red-800 text-xs">Inactive</Badge>
+                                  )}
+                                </TableCell>
+                                <TableCell>
+                                  <Badge className={`text-xs font-semibold ${
+                                    isLeft 
+                                      ? 'bg-emerald-100 text-emerald-800' 
+                                      : 'bg-amber-100 text-amber-800'
+                                  }`}>
+                                    {member.position ? member.position.toUpperCase() : 'N/A'}
+                                  </Badge>
+                                </TableCell>
+                                <TableCell className="text-center">{member.directReferrals || member.children?.length || 0}</TableCell>
+                                <TableCell className="text-center">{member.totalTeam || 0}</TableCell>
+                                <TableCell className="text-gray-600 text-sm">
+                                  {member.createdAt ? new Date(member.createdAt).toLocaleDateString() : '-'}
+                                </TableCell>
+                              </TableRow>
+                            );
+                          })
+                        ) : (
+                          <TableRow>
+                            <TableCell colSpan={12} className="text-center py-8 text-emerald-700/70">
+                              <Users className="h-12 w-12 text-emerald-300 mx-auto mb-4" />
+                              <p>No members found matching your search</p>
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })()}
+                    </TableBody>
+                  </Table>
                 </div>
               ) : (
                 <div className="text-center py-8 text-emerald-700/70">

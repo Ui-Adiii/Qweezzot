@@ -76,6 +76,7 @@ import MonthlyPurchaseBonus from "./pages/user/MonthlyPurchaseBonus";
 import RankSummary from "./pages/user/RankSummary";
 import UpdateKyc from "./pages/user/UpdateKyc";
 import WalletRequest from "./pages/user/WalletRequest";
+import WalletTransfer from "./pages/user/WalletTransfer";
 
 const queryClient = new QueryClient();
 
@@ -153,6 +154,7 @@ const App = () => (
               <Route path="team-status" element={<TeamStatus />} />
               <Route path="wallet-balance" element={<WalletBalance />} />
               <Route path="wallet-request" element={<WalletRequest />} />
+              <Route path="wallet-transfer" element={<WalletTransfer />} />
               <Route path="transactions" element={<Transactions />} />
               <Route path="withdraw" element={<Withdraw />} />
               <Route path="income-history" element={<IncomeHistoryDetails />} />
