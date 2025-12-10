@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { BarChart3, Trophy, RefreshCw, Calendar } from 'lucide-react';
-import { authAPI } from '@/api/auth';
-import { toast } from 'sonner';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { BarChart3, Trophy, RefreshCw, Calendar } from "lucide-react";
+import { authAPI } from "@/api/auth";
+import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 interface RankHistory {
   _id: string;
@@ -37,24 +37,28 @@ const RankSummary: React.FC = () => {
       } else {
         // Set default data if no data available
         setData({
-          currentRank: 'Bronze',
+          currentRank: "Bronze",
           rankHistory: [],
           totalRankBonuses: 0,
-          rankUpgradeDate: new Date().toISOString()
+          rankUpgradeDate: new Date().toISOString(),
         });
       }
     } catch (error: any) {
       // Only log if it's not a connection error
-      if (error.message && !error.message.includes('Failed to fetch') && !error.message.includes('ERR_CONNECTION_REFUSED')) {
-        console.error('Failed to load rank summary:', error);
-        toast.error('Failed to load rank summary');
+      if (
+        error.message &&
+        !error.message.includes("Failed to fetch") &&
+        !error.message.includes("ERR_CONNECTION_REFUSED")
+      ) {
+        console.error("Failed to load rank summary:", error);
+        toast.error("Failed to load rank summary");
       }
       // Set default data on error
       setData({
-        currentRank: 'Bronze',
+        currentRank: "Bronze",
         rankHistory: [],
         totalRankBonuses: 0,
-        rankUpgradeDate: new Date().toISOString()
+        rankUpgradeDate: new Date().toISOString(),
       });
     } finally {
       setLoading(false);
@@ -62,43 +66,45 @@ const RankSummary: React.FC = () => {
   };
 
   const formatCurrency = (amount: number) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      minimumFractionDigits: 2
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      minimumFractionDigits: 2,
     }).format(amount);
   };
 
   const getRankColor = (rank: string) => {
     const rankLower = rank.toLowerCase();
-    if (rankLower.includes('bronze')) return 'bg-amber-100 text-amber-800';
-    if (rankLower.includes('silver')) return 'bg-gray-100 text-gray-800';
-    if (rankLower.includes('gold')) return 'bg-yellow-100 text-yellow-800';
-    if (rankLower.includes('platinum')) return 'bg-blue-100 text-blue-800';
-    if (rankLower.includes('diamond')) return 'bg-purple-100 text-purple-800';
-    return 'bg-emerald-100 text-emerald-800';
+    if (rankLower.includes("bronze")) return "bg-amber-100 text-amber-800";
+    if (rankLower.includes("silver")) return "bg-gray-100 text-gray-800";
+    if (rankLower.includes("gold")) return "bg-yellow-100 text-yellow-800";
+    if (rankLower.includes("platinum")) return "bg-blue-100 text-blue-800";
+    if (rankLower.includes("diamond")) return "bg-purple-100 text-purple-800";
+    return "bg-blue-100 text-blue-800";
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-emerald-50/30 via-white to-emerald-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-gradient-to-br from-emerald-500/20 to-amber-500/20 rounded-lg">
-            <BarChart3 className="h-8 w-8 text-emerald-600" />
+          <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg">
+            <BarChart3 className="h-8 w-8 text-blue-600" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-700 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
             Rank Summary
           </h1>
         </div>
         <button
           onClick={fetchData}
-          className="p-2 hover:bg-emerald-100 rounded-lg transition-colors"
+          className="p-2 hover:bg-blue-100 rounded-lg transition-colors"
         >
-          <RefreshCw className={`h-5 w-5 text-emerald-600 ${loading ? 'animate-spin' : ''}`} />
+          <RefreshCw
+            className={`h-5 w-5 text-blue-600 ${loading ? "animate-spin" : ""}`}
+          />
         </button>
       </motion.div>
 
@@ -109,11 +115,17 @@ const RankSummary: React.FC = () => {
           <div className="grid gap-6 md:grid-cols-3">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Current Rank</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Current Rank
+                </CardTitle>
                 <Trophy className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <Badge className={`text-lg px-3 py-1 ${getRankColor(data.currentRank)}`}>
+                <Badge
+                  className={`text-lg px-3 py-1 ${getRankColor(
+                    data.currentRank
+                  )}`}
+                >
                   {data.currentRank}
                 </Badge>
               </CardContent>
@@ -121,11 +133,13 @@ const RankSummary: React.FC = () => {
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Total Rank Bonuses</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Total Rank Bonuses
+                </CardTitle>
                 <BarChart3 className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-emerald-600">
+                <div className="text-2xl font-bold text-blue-600">
                   {formatCurrency(data.totalRankBonuses)}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -136,14 +150,16 @@ const RankSummary: React.FC = () => {
 
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Rank Upgrade Date</CardTitle>
+                <CardTitle className="text-sm font-medium">
+                  Rank Upgrade Date
+                </CardTitle>
                 <Calendar className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
                 <div className="text-lg font-semibold">
-                  {data.rankUpgradeDate 
-                    ? new Date(data.rankUpgradeDate).toLocaleDateString('en-IN')
-                    : 'N/A'}
+                  {data.rankUpgradeDate
+                    ? new Date(data.rankUpgradeDate).toLocaleDateString("en-IN")
+                    : "N/A"}
                 </div>
               </CardContent>
             </Card>
@@ -155,18 +171,27 @@ const RankSummary: React.FC = () => {
             </CardHeader>
             <CardContent>
               {data.rankHistory.length === 0 ? (
-                <div className="text-center py-8 text-muted-foreground">No rank history found</div>
+                <div className="text-center py-8 text-muted-foreground">
+                  No rank history found
+                </div>
               ) : (
                 <div className="space-y-4">
                   {data.rankHistory.map((record) => (
-                    <div key={record._id} className="flex items-center justify-between p-4 border rounded-lg">
+                    <div
+                      key={record._id}
+                      className="flex items-center justify-between p-4 border rounded-lg"
+                    >
                       <div>
-                        <p className="font-medium">{record.description || 'Rank Bonus'}</p>
+                        <p className="font-medium">
+                          {record.description || "Rank Bonus"}
+                        </p>
                         <p className="text-sm text-muted-foreground">
-                          {new Date(record.incomeDate).toLocaleDateString('en-IN')}
+                          {new Date(record.incomeDate).toLocaleDateString(
+                            "en-IN"
+                          )}
                         </p>
                       </div>
-                      <Badge className="bg-emerald-100 text-emerald-800">
+                      <Badge className="bg-blue-100 text-blue-800">
                         {formatCurrency(record.amount)}
                       </Badge>
                     </div>
@@ -177,11 +202,12 @@ const RankSummary: React.FC = () => {
           </Card>
         </>
       ) : (
-        <div className="text-center py-8 text-muted-foreground">No rank data available</div>
+        <div className="text-center py-8 text-muted-foreground">
+          No rank data available
+        </div>
       )}
     </div>
   );
 };
 
 export default RankSummary;
-

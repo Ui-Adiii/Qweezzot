@@ -7,19 +7,17 @@ import CTASection from "@/components/sub-components/CTASection";
 import LatestProducts from "@/components/sub-components/LatestProducts";
 import WhyByoteas from "@/components/sub-components/WhyWe";
 import FeaturedProducts from "@/components/sub-components/FeaturedProducts";
-import ByooteasHeroSlider from "@/components/sub-components/HeroSlider";
+import OsfigoHeroSlider from "@/components/sub-components/HeroSlider";
 import GreenMarketingCard from "@/components/sub-components/GreenMarketingCard";
 import MarketingCard from "@/components/sub-components/GreenMarketingCard";
 import Hero from "./Hero";
-
 
 const Home = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <Hero/>
-      <ByooteasHeroSlider/>
-
+      <Hero />
+      <OsfigoHeroSlider />
 
       {/* Highlights Bar */}
       {/* <HighlightsBar /> */}
@@ -36,7 +34,7 @@ const Home = () => {
       {/* Featured Products */}
       <FeaturedProducts />
 
-      <MarketingCard/>
+      <MarketingCard />
     </div>
   );
 };

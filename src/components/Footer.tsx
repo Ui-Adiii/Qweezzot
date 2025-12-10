@@ -28,7 +28,7 @@ const Footer = () => {
                 />
               </div>
               {/* <div className="flex flex-col">
-                <span className="text-lg font-bold">Byooteas Life</span>
+                <span className="text-lg font-bold">Osfigo</span>
                 <span className="text-xs opacity-80">(OPC) Pvt. Ltd</span>
               </div> */}
             </div>
@@ -126,7 +126,7 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-2 text-sm opacity-80 hover:opacity-100 transition-colors">
                 <Mail className="h-4 w-4 flex-shrink-0" />
-                <a href="mailto:info@byooteaslife.com">info@byooteaslife.com</a>
+                <a href="mailto:info@osfigolife.com">info@osfigolife.com</a>
               </li>
             </ul>
           </div>
@@ -170,9 +170,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm opacity-80">
-            <p>
-              © {currentYear} Byooteas Life (OPC) Pvt. Ltd. All rights reserved.
-            </p>
+            <p>© {currentYear} Osfigo (OPC) Pvt. Ltd. All rights reserved.</p>
             <div className="flex gap-4">
               <Link
                 to="/privacy"

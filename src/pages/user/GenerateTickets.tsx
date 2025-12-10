@@ -1,10 +1,16 @@
-import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Badge } from '@/components/ui/badge';
-import { Award, Plus, MessageCircle, AlertCircle, CheckCircle } from 'lucide-react';
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Badge } from "@/components/ui/badge";
+import {
+  Award,
+  Plus,
+  MessageCircle,
+  AlertCircle,
+  CheckCircle,
+} from "lucide-react";
 
 const GenerateTickets: React.FC = () => {
   const [tickets, setTickets] = React.useState([]);
@@ -18,12 +24,12 @@ const GenerateTickets: React.FC = () => {
     try {
       // For now, we'll use empty data until backend API is ready
       setTickets([]);
-      
+
       // TODO: Replace with real API call when backend endpoint is ready
       // const response = await authAPI.getTickets();
       // setTickets(response.data);
     } catch (error: any) {
-      console.error('Failed to load tickets:', error);
+      console.error("Failed to load tickets:", error);
       setTickets([]);
     } finally {
       setLoading(false);
@@ -42,19 +48,21 @@ const GenerateTickets: React.FC = () => {
           Create New Ticket
         </Button>
       </div>
-      
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Create New Ticket */}
         <Card className="border-primary/20 bg-primary/5">
           <CardHeader>
-            <CardTitle className="text-xl text-primary">Create Support Ticket</CardTitle>
+            <CardTitle className="text-xl text-primary">
+              Create Support Ticket
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="subject">Subject</Label>
               <Input id="subject" placeholder="Enter ticket subject" />
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="category">Category</Label>
               <select className="w-full p-2 border border-gray-300 rounded-md">
@@ -66,7 +74,7 @@ const GenerateTickets: React.FC = () => {
                 <option value="general">General Inquiry</option>
               </select>
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="priority">Priority</Label>
               <select className="w-full p-2 border border-gray-300 rounded-md">
@@ -76,37 +84,37 @@ const GenerateTickets: React.FC = () => {
                 <option value="urgent">Urgent</option>
               </select>
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="description">Description</Label>
-              <textarea 
+              <textarea
                 id="description"
                 className="w-full p-3 border border-gray-300 rounded-md h-32"
                 placeholder="Describe your issue in detail..."
               />
             </div>
-            
+
             <Button className="w-full bg-primary hover:bg-primary-dark">
               <MessageCircle className="h-4 w-4 mr-2" />
               Submit Ticket
             </Button>
           </CardContent>
         </Card>
-        
+
         {/* Ticket Statistics */}
         <div className="space-y-6">
-          <Card className="border-green-200 bg-green-50/50">
+          <Card className="border-blue-200 bg-blue-50/50">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-green-700">Open Tickets</p>
-                  <p className="text-2xl font-bold text-green-600">1</p>
+                  <p className="text-sm text-blue-700">Open Tickets</p>
+                  <p className="text-2xl font-bold text-blue-600">1</p>
                 </div>
-                <AlertCircle className="h-8 w-8 text-green-600" />
+                <AlertCircle className="h-8 w-8 text-blue-600" />
               </div>
             </CardContent>
           </Card>
-          
+
           <Card className="border-blue-200 bg-blue-50/50">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -118,7 +126,7 @@ const GenerateTickets: React.FC = () => {
               </div>
             </CardContent>
           </Card>
-          
+
           <Card className="border-purple-200 bg-purple-50/50">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
@@ -132,7 +140,7 @@ const GenerateTickets: React.FC = () => {
           </Card>
         </div>
       </div>
-      
+
       {/* Ticket History */}
       <Card className="border-primary/20">
         <CardHeader>
@@ -150,29 +158,43 @@ const GenerateTickets: React.FC = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold">{ticket.subject}</h3>
-                        <p className="text-sm text-muted-foreground">#{ticket.id}</p>
+                        <p className="text-sm text-muted-foreground">
+                          #{ticket.id}
+                        </p>
                         <div className="flex items-center space-x-2 mt-1">
-                          <span className="text-xs text-gray-500">Created: {ticket.created}</span>
-                          <span className="text-xs text-gray-500">Updated: {ticket.updated}</span>
+                          <span className="text-xs text-gray-500">
+                            Created: {ticket.created}
+                          </span>
+                          <span className="text-xs text-gray-500">
+                            Updated: {ticket.updated}
+                          </span>
                         </div>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-center space-x-4">
                       <div className="text-center">
-                        <Badge 
+                        <Badge
                           variant={
-                            ticket.status === 'Resolved' ? 'default' :
-                            ticket.status === 'In Progress' ? 'secondary' : 'outline'
+                            ticket.status === "Resolved"
+                              ? "default"
+                              : ticket.status === "In Progress"
+                              ? "secondary"
+                              : "outline"
                           }
                           className={
-                            ticket.status === 'Resolved' ? 'bg-green-600' :
-                            ticket.status === 'In Progress' ? 'bg-blue-600' : 'bg-orange-500'
+                            ticket.status === "Resolved"
+                              ? "bg-blue-600"
+                              : ticket.status === "In Progress"
+                              ? "bg-blue-600"
+                              : "bg-orange-500"
                           }
                         >
                           {ticket.status}
                         </Badge>
-                        <p className="text-xs text-muted-foreground mt-1">{ticket.priority}</p>
+                        <p className="text-xs text-muted-foreground mt-1">
+                          {ticket.priority}
+                        </p>
                       </div>
                       <Button size="sm" variant="outline">
                         View Details

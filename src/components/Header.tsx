@@ -32,7 +32,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="transition-transform hover:scale-105">
             <div className="relative flex h-full w-40 items-center justify-center rounded-lg bg-transparent">
-              <img className="h-[9vh] w-auto max-sm:h-[7vh]" src="logo.png" alt="logo" />
+              <img className="h-[7vh] w-auto max-sm:h-[7vh]" src="logo.png" alt="logo" />
             </div>
 
             

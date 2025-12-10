@@ -1,13 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Eye, CheckCircle, Loader2 } from 'lucide-react';
-import { toast } from 'sonner';
-import { kycAPI, KycDocument } from '@/api/kyc';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import { Label } from '@/components/ui/label';
+import React, { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Eye, CheckCircle, Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { kycAPI, KycDocument } from "@/api/kyc";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 
 const KycApproved: React.FC = () => {
   const [kycList, setKycList] = useState<KycDocument[]>([]);
@@ -28,17 +42,21 @@ const KycApproved: React.FC = () => {
   const fetchApprovedKyc = async () => {
     try {
       setLoading(true);
-      const response = await kycAPI.getAllKyc('approved', pagination.page, pagination.limit);
+      const response = await kycAPI.getAllKyc(
+        "approved",
+        pagination.page,
+        pagination.limit
+      );
       if (response.success) {
         setKycList(response.data.kycList);
-        setPagination(prev => ({
+        setPagination((prev) => ({
           ...prev,
           total: response.data.pagination.total,
           pages: response.data.pagination.pages,
         }));
       }
     } catch (error: any) {
-      toast.error(error.message || 'Failed to fetch approved KYC requests');
+      toast.error(error.message || "Failed to fetch approved KYC requests");
     } finally {
       setLoading(false);
     }
@@ -52,17 +70,17 @@ const KycApproved: React.FC = () => {
         setIsDialogOpen(true);
       }
     } catch (error: any) {
-      toast.error(error.message || 'Failed to fetch KYC details');
+      toast.error(error.message || "Failed to fetch KYC details");
     }
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-IN', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
+    return new Date(dateString).toLocaleDateString("en-IN", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
@@ -70,10 +88,17 @@ const KycApproved: React.FC = () => {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-emerald-800">Approved KYC Requests</h1>
-          <p className="text-emerald-600 mt-1">View all approved KYC submissions</p>
+          <h1 className="text-3xl font-bold text-blue-800">
+            Approved KYC Requests
+          </h1>
+          <p className="text-blue-600 mt-1">
+            View all approved KYC submissions
+          </p>
         </div>
-        <Badge variant="outline" className="text-lg px-4 py-2 bg-green-50 text-green-700 border-green-200">
+        <Badge
+          variant="outline"
+          className="text-lg px-4 py-2 bg-blue-50 text-blue-700 border-blue-200"
+        >
           <CheckCircle className="h-4 w-4 mr-2" />
           {pagination.total} Approved
         </Badge>
@@ -86,7 +111,7 @@ const KycApproved: React.FC = () => {
         <CardContent>
           {loading ? (
             <div className="flex justify-center items-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-emerald-600" />
+              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
             </div>
           ) : kycList.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
@@ -111,16 +136,14 @@ const KycApproved: React.FC = () => {
                     {kycList.map((kyc) => (
                       <TableRow key={kyc._id}>
                         <TableCell className="font-medium">
-                          {kyc.userId?.name || 'N/A'}
+                          {kyc.userId?.name || "N/A"}
                         </TableCell>
-                        <TableCell>{kyc.userId?.email || 'N/A'}</TableCell>
-                        <TableCell>{kyc.userId?.mobileNo || 'N/A'}</TableCell>
+                        <TableCell>{kyc.userId?.email || "N/A"}</TableCell>
+                        <TableCell>{kyc.userId?.mobileNo || "N/A"}</TableCell>
                         <TableCell>
-                          {kyc.reviewedAt ? formatDate(kyc.reviewedAt) : 'N/A'}
+                          {kyc.reviewedAt ? formatDate(kyc.reviewedAt) : "N/A"}
                         </TableCell>
-                        <TableCell>
-                          {kyc.reviewedBy?.name || 'N/A'}
-                        </TableCell>
+                        <TableCell>{kyc.reviewedBy?.name || "N/A"}</TableCell>
                         <TableCell>
                           <Button
                             size="sm"
@@ -142,7 +165,12 @@ const KycApproved: React.FC = () => {
                   <Button
                     variant="outline"
                     disabled={pagination.page === 1}
-                    onClick={() => setPagination(prev => ({ ...prev, page: prev.page - 1 }))}
+                    onClick={() =>
+                      setPagination((prev) => ({
+                        ...prev,
+                        page: prev.page - 1,
+                      }))
+                    }
                   >
                     Previous
                   </Button>
@@ -152,7 +180,12 @@ const KycApproved: React.FC = () => {
                   <Button
                     variant="outline"
                     disabled={pagination.page >= pagination.pages}
-                    onClick={() => setPagination(prev => ({ ...prev, page: prev.page + 1 }))}
+                    onClick={() =>
+                      setPagination((prev) => ({
+                        ...prev,
+                        page: prev.page + 1,
+                      }))
+                    }
                   >
                     Next
                   </Button>
@@ -169,7 +202,8 @@ const KycApproved: React.FC = () => {
           <DialogHeader>
             <DialogTitle>KYC Details</DialogTitle>
             <DialogDescription>
-              {selectedKyc && `View documents for ${selectedKyc.userId?.name || 'User'}`}
+              {selectedKyc &&
+                `View documents for ${selectedKyc.userId?.name || "User"}`}
             </DialogDescription>
           </DialogHeader>
 
@@ -179,23 +213,33 @@ const KycApproved: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label className="text-sm font-semibold">User Name</Label>
-                  <p className="text-sm">{selectedKyc.userId?.name || 'N/A'}</p>
+                  <p className="text-sm">{selectedKyc.userId?.name || "N/A"}</p>
                 </div>
                 <div>
                   <Label className="text-sm font-semibold">Email</Label>
-                  <p className="text-sm">{selectedKyc.userId?.email || 'N/A'}</p>
+                  <p className="text-sm">
+                    {selectedKyc.userId?.email || "N/A"}
+                  </p>
                 </div>
                 <div>
                   <Label className="text-sm font-semibold">Mobile</Label>
-                  <p className="text-sm">{selectedKyc.userId?.mobileNo || 'N/A'}</p>
+                  <p className="text-sm">
+                    {selectedKyc.userId?.mobileNo || "N/A"}
+                  </p>
                 </div>
                 <div>
                   <Label className="text-sm font-semibold">Approved At</Label>
-                  <p className="text-sm">{selectedKyc.reviewedAt ? formatDate(selectedKyc.reviewedAt) : 'N/A'}</p>
+                  <p className="text-sm">
+                    {selectedKyc.reviewedAt
+                      ? formatDate(selectedKyc.reviewedAt)
+                      : "N/A"}
+                  </p>
                 </div>
                 {selectedKyc.aadharNumber && (
                   <div>
-                    <Label className="text-sm font-semibold">Aadhar Number</Label>
+                    <Label className="text-sm font-semibold">
+                      Aadhar Number
+                    </Label>
                     <p className="text-sm">{selectedKyc.aadharNumber}</p>
                   </div>
                 )}
@@ -217,7 +261,9 @@ const KycApproved: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 {selectedKyc.aadharFront && (
                   <div>
-                    <Label className="text-sm font-semibold mb-2 block">Aadhar Card Front</Label>
+                    <Label className="text-sm font-semibold mb-2 block">
+                      Aadhar Card Front
+                    </Label>
                     <img
                       src={selectedKyc.aadharFront}
                       alt="Aadhar Front"
@@ -227,7 +273,9 @@ const KycApproved: React.FC = () => {
                 )}
                 {selectedKyc.aadharBack && (
                   <div>
-                    <Label className="text-sm font-semibold mb-2 block">Aadhar Card Back</Label>
+                    <Label className="text-sm font-semibold mb-2 block">
+                      Aadhar Card Back
+                    </Label>
                     <img
                       src={selectedKyc.aadharBack}
                       alt="Aadhar Back"
@@ -237,7 +285,9 @@ const KycApproved: React.FC = () => {
                 )}
                 {selectedKyc.panCard && (
                   <div>
-                    <Label className="text-sm font-semibold mb-2 block">PAN Card</Label>
+                    <Label className="text-sm font-semibold mb-2 block">
+                      PAN Card
+                    </Label>
                     <img
                       src={selectedKyc.panCard}
                       alt="PAN Card"
@@ -247,7 +297,9 @@ const KycApproved: React.FC = () => {
                 )}
                 {selectedKyc.profileImage && (
                   <div>
-                    <Label className="text-sm font-semibold mb-2 block">Profile Image</Label>
+                    <Label className="text-sm font-semibold mb-2 block">
+                      Profile Image
+                    </Label>
                     <img
                       src={selectedKyc.profileImage}
                       alt="Profile"
@@ -271,4 +323,3 @@ const KycApproved: React.FC = () => {
 };
 
 export default KycApproved;
-

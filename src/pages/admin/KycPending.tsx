@@ -1,14 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Eye, CheckCircle, XCircle, Clock, Loader2 } from 'lucide-react';
-import { toast } from 'sonner';
-import { kycAPI, KycDocument } from '@/api/kyc';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
-import { Textarea } from '@/components/ui/textarea';
-import { Label } from '@/components/ui/label';
+import React, { useState, useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Eye, CheckCircle, XCircle, Clock, Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { kycAPI, KycDocument } from "@/api/kyc";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
 
 const KycPending: React.FC = () => {
   const [kycList, setKycList] = useState<KycDocument[]>([]);
@@ -16,9 +30,9 @@ const KycPending: React.FC = () => {
   const [selectedKyc, setSelectedKyc] = useState<KycDocument | null>(null);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [action, setAction] = useState<'approve' | 'reject' | null>(null);
-  const [rejectionReason, setRejectionReason] = useState('');
-  const [adminNotes, setAdminNotes] = useState('');
+  const [action, setAction] = useState<"approve" | "reject" | null>(null);
+  const [rejectionReason, setRejectionReason] = useState("");
+  const [adminNotes, setAdminNotes] = useState("");
   const [pagination, setPagination] = useState({
     page: 1,
     limit: 20,
@@ -33,17 +47,21 @@ const KycPending: React.FC = () => {
   const fetchPendingKyc = async () => {
     try {
       setLoading(true);
-      const response = await kycAPI.getAllKyc('pending', pagination.page, pagination.limit);
+      const response = await kycAPI.getAllKyc(
+        "pending",
+        pagination.page,
+        pagination.limit
+      );
       if (response.success) {
         setKycList(response.data.kycList);
-        setPagination(prev => ({
+        setPagination((prev) => ({
           ...prev,
           total: response.data.pagination.total,
           pages: response.data.pagination.pages,
         }));
       }
     } catch (error: any) {
-      toast.error(error.message || 'Failed to fetch pending KYC requests');
+      toast.error(error.message || "Failed to fetch pending KYC requests");
     } finally {
       setLoading(false);
     }
@@ -57,63 +75,66 @@ const KycPending: React.FC = () => {
         setIsDialogOpen(true);
       }
     } catch (error: any) {
-      toast.error(error.message || 'Failed to fetch KYC details');
+      toast.error(error.message || "Failed to fetch KYC details");
     }
   };
 
   const handleApprove = (kyc: KycDocument) => {
     setSelectedKyc(kyc);
-    setAction('approve');
-    setRejectionReason('');
+    setAction("approve");
+    setRejectionReason("");
     setIsDialogOpen(true);
   };
 
   const handleReject = (kyc: KycDocument) => {
     setSelectedKyc(kyc);
-    setAction('reject');
-    setRejectionReason('');
+    setAction("reject");
+    setRejectionReason("");
     setIsDialogOpen(true);
   };
 
   const handleSubmitAction = async () => {
     if (!selectedKyc) return;
 
-    if (action === 'reject' && !rejectionReason.trim()) {
-      toast.error('Please provide a rejection reason');
+    if (action === "reject" && !rejectionReason.trim()) {
+      toast.error("Please provide a rejection reason");
       return;
     }
 
     try {
       setIsProcessing(true);
       const response = await kycAPI.updateKycStatus(selectedKyc._id, {
-        status: action === 'approve' ? 'approved' : 'rejected',
-        rejectionReason: action === 'reject' ? rejectionReason : undefined,
+        status: action === "approve" ? "approved" : "rejected",
+        rejectionReason: action === "reject" ? rejectionReason : undefined,
         adminNotes: adminNotes || undefined,
       });
 
       if (response.success) {
-        toast.success(response.message || `KYC ${action === 'approve' ? 'approved' : 'rejected'} successfully`);
+        toast.success(
+          response.message ||
+            `KYC ${action === "approve" ? "approved" : "rejected"} successfully`
+        );
         setIsDialogOpen(false);
         setSelectedKyc(null);
         setAction(null);
-        setRejectionReason('');
-        setAdminNotes('');
+        setRejectionReason("");
+        setAdminNotes("");
         fetchPendingKyc();
       }
     } catch (error: any) {
-      toast.error(error.message || 'Failed to update KYC status');
+      toast.error(error.message || "Failed to update KYC status");
     } finally {
       setIsProcessing(false);
     }
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-IN', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
+    return new Date(dateString).toLocaleDateString("en-IN", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
@@ -121,8 +142,12 @@ const KycPending: React.FC = () => {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-emerald-800">Pending KYC Requests</h1>
-          <p className="text-emerald-600 mt-1">Review and approve/reject KYC submissions</p>
+          <h1 className="text-3xl font-bold text-blue-800">
+            Pending KYC Requests
+          </h1>
+          <p className="text-blue-600 mt-1">
+            Review and approve/reject KYC submissions
+          </p>
         </div>
         <Badge variant="outline" className="text-lg px-4 py-2">
           <Clock className="h-4 w-4 mr-2" />
@@ -137,7 +162,7 @@ const KycPending: React.FC = () => {
         <CardContent>
           {loading ? (
             <div className="flex justify-center items-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-emerald-600" />
+              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
             </div>
           ) : kycList.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
@@ -162,21 +187,27 @@ const KycPending: React.FC = () => {
                     {kycList.map((kyc) => (
                       <TableRow key={kyc._id}>
                         <TableCell className="font-medium">
-                          {kyc.userId?.name || 'N/A'}
+                          {kyc.userId?.name || "N/A"}
                         </TableCell>
-                        <TableCell>{kyc.userId?.email || 'N/A'}</TableCell>
-                        <TableCell>{kyc.userId?.mobileNo || 'N/A'}</TableCell>
+                        <TableCell>{kyc.userId?.email || "N/A"}</TableCell>
+                        <TableCell>{kyc.userId?.mobileNo || "N/A"}</TableCell>
                         <TableCell>{formatDate(kyc.submittedAt)}</TableCell>
                         <TableCell>
                           <div className="flex gap-2">
                             {kyc.aadharFront && (
-                              <Badge variant="secondary" className="text-xs">Aadhar</Badge>
+                              <Badge variant="secondary" className="text-xs">
+                                Aadhar
+                              </Badge>
                             )}
                             {kyc.panCard && (
-                              <Badge variant="secondary" className="text-xs">PAN</Badge>
+                              <Badge variant="secondary" className="text-xs">
+                                PAN
+                              </Badge>
                             )}
                             {kyc.profileImage && (
-                              <Badge variant="secondary" className="text-xs">Photo</Badge>
+                              <Badge variant="secondary" className="text-xs">
+                                Photo
+                              </Badge>
                             )}
                           </div>
                         </TableCell>
@@ -193,7 +224,7 @@ const KycPending: React.FC = () => {
                             <Button
                               size="sm"
                               variant="default"
-                              className="bg-green-600 hover:bg-green-700"
+                              className="bg-blue-600 hover:bg-blue-700"
                               onClick={() => handleApprove(kyc)}
                             >
                               <CheckCircle className="h-4 w-4 mr-1" />
@@ -220,7 +251,12 @@ const KycPending: React.FC = () => {
                   <Button
                     variant="outline"
                     disabled={pagination.page === 1}
-                    onClick={() => setPagination(prev => ({ ...prev, page: prev.page - 1 }))}
+                    onClick={() =>
+                      setPagination((prev) => ({
+                        ...prev,
+                        page: prev.page - 1,
+                      }))
+                    }
                   >
                     Previous
                   </Button>
@@ -230,7 +266,12 @@ const KycPending: React.FC = () => {
                   <Button
                     variant="outline"
                     disabled={pagination.page >= pagination.pages}
-                    onClick={() => setPagination(prev => ({ ...prev, page: prev.page + 1 }))}
+                    onClick={() =>
+                      setPagination((prev) => ({
+                        ...prev,
+                        page: prev.page + 1,
+                      }))
+                    }
                   >
                     Next
                   </Button>
@@ -246,10 +287,15 @@ const KycPending: React.FC = () => {
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>
-              {action === 'approve' ? 'Approve KYC' : action === 'reject' ? 'Reject KYC' : 'KYC Details'}
+              {action === "approve"
+                ? "Approve KYC"
+                : action === "reject"
+                ? "Reject KYC"
+                : "KYC Details"}
             </DialogTitle>
             <DialogDescription>
-              {selectedKyc && `Review documents for ${selectedKyc.userId?.name || 'User'}`}
+              {selectedKyc &&
+                `Review documents for ${selectedKyc.userId?.name || "User"}`}
             </DialogDescription>
           </DialogHeader>
 
@@ -259,23 +305,31 @@ const KycPending: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <Label className="text-sm font-semibold">User Name</Label>
-                  <p className="text-sm">{selectedKyc.userId?.name || 'N/A'}</p>
+                  <p className="text-sm">{selectedKyc.userId?.name || "N/A"}</p>
                 </div>
                 <div>
                   <Label className="text-sm font-semibold">Email</Label>
-                  <p className="text-sm">{selectedKyc.userId?.email || 'N/A'}</p>
+                  <p className="text-sm">
+                    {selectedKyc.userId?.email || "N/A"}
+                  </p>
                 </div>
                 <div>
                   <Label className="text-sm font-semibold">Mobile</Label>
-                  <p className="text-sm">{selectedKyc.userId?.mobileNo || 'N/A'}</p>
+                  <p className="text-sm">
+                    {selectedKyc.userId?.mobileNo || "N/A"}
+                  </p>
                 </div>
                 <div>
                   <Label className="text-sm font-semibold">Submitted At</Label>
-                  <p className="text-sm">{formatDate(selectedKyc.submittedAt)}</p>
+                  <p className="text-sm">
+                    {formatDate(selectedKyc.submittedAt)}
+                  </p>
                 </div>
                 {selectedKyc.aadharNumber && (
                   <div>
-                    <Label className="text-sm font-semibold">Aadhar Number</Label>
+                    <Label className="text-sm font-semibold">
+                      Aadhar Number
+                    </Label>
                     <p className="text-sm">{selectedKyc.aadharNumber}</p>
                   </div>
                 )}
@@ -291,7 +345,9 @@ const KycPending: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 {selectedKyc.aadharFront && (
                   <div>
-                    <Label className="text-sm font-semibold mb-2 block">Aadhar Card Front</Label>
+                    <Label className="text-sm font-semibold mb-2 block">
+                      Aadhar Card Front
+                    </Label>
                     <img
                       src={selectedKyc.aadharFront}
                       alt="Aadhar Front"
@@ -301,7 +357,9 @@ const KycPending: React.FC = () => {
                 )}
                 {selectedKyc.aadharBack && (
                   <div>
-                    <Label className="text-sm font-semibold mb-2 block">Aadhar Card Back</Label>
+                    <Label className="text-sm font-semibold mb-2 block">
+                      Aadhar Card Back
+                    </Label>
                     <img
                       src={selectedKyc.aadharBack}
                       alt="Aadhar Back"
@@ -311,7 +369,9 @@ const KycPending: React.FC = () => {
                 )}
                 {selectedKyc.panCard && (
                   <div>
-                    <Label className="text-sm font-semibold mb-2 block">PAN Card</Label>
+                    <Label className="text-sm font-semibold mb-2 block">
+                      PAN Card
+                    </Label>
                     <img
                       src={selectedKyc.panCard}
                       alt="PAN Card"
@@ -321,7 +381,9 @@ const KycPending: React.FC = () => {
                 )}
                 {selectedKyc.profileImage && (
                   <div>
-                    <Label className="text-sm font-semibold mb-2 block">Profile Image</Label>
+                    <Label className="text-sm font-semibold mb-2 block">
+                      Profile Image
+                    </Label>
                     <img
                       src={selectedKyc.profileImage}
                       alt="Profile"
@@ -334,9 +396,11 @@ const KycPending: React.FC = () => {
               {/* Action Form */}
               {action && (
                 <div className="space-y-4 border-t pt-4">
-                  {action === 'reject' && (
+                  {action === "reject" && (
                     <div>
-                      <Label htmlFor="rejectionReason">Rejection Reason *</Label>
+                      <Label htmlFor="rejectionReason">
+                        Rejection Reason *
+                      </Label>
                       <Textarea
                         id="rejectionReason"
                         value={rejectionReason}
@@ -368,8 +432,13 @@ const KycPending: React.FC = () => {
             {action && (
               <Button
                 onClick={handleSubmitAction}
-                disabled={isProcessing || (action === 'reject' && !rejectionReason.trim())}
-                className={action === 'approve' ? 'bg-green-600 hover:bg-green-700' : ''}
+                disabled={
+                  isProcessing ||
+                  (action === "reject" && !rejectionReason.trim())
+                }
+                className={
+                  action === "approve" ? "bg-blue-600 hover:bg-blue-700" : ""
+                }
               >
                 {isProcessing ? (
                   <>
@@ -378,7 +447,7 @@ const KycPending: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    {action === 'approve' ? (
+                    {action === "approve" ? (
                       <>
                         <CheckCircle className="h-4 w-4 mr-2" />
                         Approve
@@ -401,4 +470,3 @@ const KycPending: React.FC = () => {
 };
 
 export default KycPending;
-

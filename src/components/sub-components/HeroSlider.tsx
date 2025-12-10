@@ -12,7 +12,7 @@ import {
   Leaf,
   Target,
   Zap,
-  ArrowRight
+  ArrowRight,
 } from "lucide-react";
 
 interface Slide {
@@ -35,57 +35,64 @@ const HeroSlider = () => {
   const slides: Slide[] = [
     {
       id: 1,
-      title: "BYOOTEAS LIFE",
+      title: "Osfigo",
       subtitle: "Jharkhand's 1st Direct Selling Company",
-      content: "Where Dreams Come True",
-      description: "Start your business journey with zero investment and build your empire with natural products.",
-      bgColor: "from-emerald-900 via-green-900 to-emerald-800",
-      accentColor: "text-emerald-300",
+      content: "Management Private Limited",
+      description:
+        "Start your business journey with zero investment and build your empire with natural products.",
+      bgColor: "from-blue-900 via-blue-900 to-blue-800",
+      accentColor: "text-blue-300",
       icon: <TrendingUp className="w-16 h-16" />,
       features: ["Free Joining", "Daily Income", "Career Growth"],
-      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80"
+      image:
+        "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80",
     },
     {
       id: 2,
       title: "Natural Products",
       subtitle: "100% Ayurvedic & Pure",
       content: "Health is Wealth",
-      description: "Experience the power of pure Ayurveda with our premium range of wellness products.",
-      bgColor: "from-emerald-800 via-green-800 to-emerald-700",
-      accentColor: "text-green-300",
+      description:
+        "Experience the power of pure Ayurveda with our premium range of wellness products.",
+      bgColor: "from-blue-800 via-blue-800 to-blue-700",
+      accentColor: "text-blue-300",
       icon: <Leaf className="w-16 h-16" />,
       features: ["Pure Ingredients", "Lab Tested", "Eco-Friendly"],
-      image: "https://images.pexels.com/photos/302163/pexels-photo-302163.jpeg"
+      image: "https://images.pexels.com/photos/302163/pexels-photo-302163.jpeg",
     },
     {
       id: 3,
       title: "Career Growth",
       subtitle: "Unlimited Opportunities",
       content: "Your Success Journey",
-      description: "Join India's fastest growing business community with complete training and support.",
-      bgColor: "from-green-900 via-emerald-900 to-green-800",
+      description:
+        "Join India's fastest growing business community with complete training and support.",
+      bgColor: "from-blue-900 via-blue-900 to-blue-800",
       accentColor: "text-cyan-300",
       icon: <Award className="w-16 h-16" />,
       features: ["Leadership Program", "Weekly Payouts", "Team Building"],
-      image: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80"
+      image:
+        "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80",
     },
     {
       id: 4,
       title: "Community",
       subtitle: "Growing Together",
       content: "Strong Support System",
-      description: "Be part of a vibrant community where success is celebrated together.",
-      bgColor: "from-emerald-800 via-green-700 to-emerald-600",
+      description:
+        "Be part of a vibrant community where success is celebrated together.",
+      bgColor: "from-blue-800 via-blue-700 to-blue-600",
       accentColor: "text-lime-300",
       icon: <Users className="w-16 h-16" />,
       features: ["Community Events", "Success Stories", "Networking"],
-      image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80"
-    }
+      image:
+        "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80",
+    },
   ];
 
   useEffect(() => {
     if (!isAutoPlaying) return;
-    
+
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
@@ -113,16 +120,16 @@ const HeroSlider = () => {
   const slideVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
-      opacity: 0
+      opacity: 0,
     }),
     center: {
       x: 0,
-      opacity: 1
+      opacity: 1,
     },
     exit: (direction: number) => ({
       x: direction < 0 ? 1000 : -1000,
-      opacity: 0
-    })
+      opacity: 0,
+    }),
   };
 
   return (
@@ -137,7 +144,7 @@ const HeroSlider = () => {
           exit="exit"
           transition={{
             x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.4 }
+            opacity: { duration: 0.4 },
           }}
           className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].bgColor}`}
         >
@@ -157,7 +164,6 @@ const HeroSlider = () => {
           <div className="relative h-full flex items-center">
             <div className="container mx-auto px-6 lg:px-12">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                
                 {/* Left Content */}
                 <motion.div
                   className="lg:col-span-8 text-center lg:text-left space-y-6"
@@ -170,10 +176,10 @@ const HeroSlider = () => {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", delay: 0.3 }}
-                    className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-emerald-500/30"
+                    className="inline-flex items-center gap-2 bg-blue-500/20 backdrop-blur-sm rounded-full px-4 py-2 border border-blue-500/30"
                   >
-                    <Sparkles className="w-4 h-4 text-emerald-300" />
-                    <span className="text-sm font-medium text-emerald-300">
+                    <Sparkles className="w-4 h-4 text-blue-300" />
+                    <span className="text-sm font-medium text-blue-300">
                       {slides[currentSlide].subtitle}
                     </span>
                   </motion.div>
@@ -221,7 +227,7 @@ const HeroSlider = () => {
                         whileHover={{ scale: 1.05 }}
                         className="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium border border-white/20 flex items-center gap-2"
                       >
-                        <div className="w-1.5 h-1.5 bg-emerald-400 rounded-full"></div>
+                        <div className="w-1.5 h-1.5 bg-blue-400 rounded-full"></div>
                         {feature}
                       </motion.span>
                     ))}
@@ -237,12 +243,12 @@ const HeroSlider = () => {
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="group relative bg-gradient-to-r from-emerald-500 to-green-600 text-white font-bold py-3 px-6 rounded-full overflow-hidden flex items-center gap-2"
+                      className="group relative bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold py-3 px-6 rounded-full overflow-hidden flex items-center gap-2"
                     >
                       <span className="relative z-10">Get Started</span>
                       <ArrowRight className="w-4 h-4 relative z-10 group-hover:translate-x-1 transition-transform" />
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-500"
+                        className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500"
                         initial={{ x: "-100%" }}
                         whileHover={{ x: 0 }}
                         transition={{ duration: 0.3 }}
@@ -251,10 +257,10 @@ const HeroSlider = () => {
 
                     <motion.div
                       whileHover={{ scale: 1.05 }}
-                      className="bg-black/30 backdrop-blur-sm px-5 py-3 rounded-xl border border-emerald-500/20"
+                      className="bg-black/30 backdrop-blur-sm px-5 py-3 rounded-xl border border-blue-500/20"
                     >
                       <p className="text-white font-semibold text-sm tracking-wide">
-                        www.mybyooteas.co.in
+                        www.myosfigo.co.in
                       </p>
                     </motion.div>
                   </motion.div>
@@ -281,14 +287,14 @@ const HeroSlider = () => {
                         {slides[currentSlide].icon}
                       </div>
                     </motion.div>
-                    
+
                     {/* Floating Elements */}
                     <motion.div
                       animate={{ y: [-8, 8, -8] }}
                       transition={{ duration: 3, repeat: Infinity }}
-                      className="absolute -top-3 -right-3 w-8 h-8 bg-emerald-400/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-emerald-300/30"
+                      className="absolute -top-3 -right-3 w-8 h-8 bg-blue-400/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-blue-300/30"
                     >
-                      <Zap className="w-3 h-3 text-emerald-300" />
+                      <Zap className="w-3 h-3 text-blue-300" />
                     </motion.div>
                   </div>
                 </motion.div>
@@ -328,7 +334,7 @@ const HeroSlider = () => {
             whileHover={{ scale: 1.2 }}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
               index === currentSlide
-                ? "bg-emerald-400 scale-125"
+                ? "bg-blue-400 scale-125"
                 : "bg-white/50 hover:bg-white/75"
             }`}
             aria-label={`Go to slide ${index + 1}`}
@@ -339,7 +345,7 @@ const HeroSlider = () => {
       {/* Progress Bar */}
       <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 z-10">
         <motion.div
-          className="h-full bg-gradient-to-r from-emerald-400 to-green-500"
+          className="h-full bg-gradient-to-r from-blue-400 to-blue-500"
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
           transition={{ duration: 5, ease: "linear" }}

@@ -1,25 +1,21 @@
-import React from 'react'
-import {
-  Users,
-  TrendingUp,
-  Sparkles,
-  ArrowRight,
-} from "lucide-react";
-import { Card, CardContent } from '../ui/card';
+import React from "react";
+import { Users, TrendingUp, Sparkles, ArrowRight } from "lucide-react";
+import { Card, CardContent } from "../ui/card";
 
 const WhyByoteas = () => {
   const features = [
     {
       icon: TrendingUp,
       title: "Multiple Earning Sources",
-      description: "Earn through multiple channels with our attractive compensation plan",
+      description:
+        "Earn through multiple channels with our attractive compensation plan",
       gradient: "from-blue-500 to-cyan-500",
     },
     {
       icon: Users,
       title: "Team Performance Bonuses",
       description: "Grow together and earn rewards based on team achievements",
-      gradient: "from-green-500 to-emerald-500",
+      gradient: "from-blue-500 to-blue-500",
     },
     {
       icon: Sparkles,
@@ -35,7 +31,7 @@ const WhyByoteas = () => {
       <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
       <div className="absolute top-0 right-0 w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-sm font-medium mb-6">
@@ -43,10 +39,10 @@ const WhyByoteas = () => {
             Why Choose Us
           </div>
           <h2 className="text-5xl font-bold bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent mb-6">
-            Why Choose <span className="text-amber-600">Byooteas Life?</span>
+            Why Choose <span className="text-amber-600">Osfigo?</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Join Jharkhand's premier direct selling company and unlock your 
+            Join Jharkhand's premier direct selling company and unlock your
             potential with our innovative business model
           </p>
         </div>
@@ -59,13 +55,17 @@ const WhyByoteas = () => {
             >
               {/* Animated Border Gradient */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-              
+
               <CardContent className="pt-10 pb-8 px-6 relative z-10">
                 <div className="flex flex-col items-center text-center">
                   {/* Icon Container */}
                   <div className={`mb-6 relative`}>
-                    <div className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300 opacity-30 group-hover:opacity-50`}></div>
-                    <div className={`relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-r ${feature.gradient} rounded-2xl blur-lg group-hover:blur-xl transition-all duration-300 opacity-30 group-hover:opacity-50`}
+                    ></div>
+                    <div
+                      className={`relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br ${feature.gradient} shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                    >
                       <feature.icon className="h-10 w-10 text-white" />
                     </div>
                   </div>

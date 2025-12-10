@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { ShoppingCart, X, Minus, Plus, Trash2 } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { useCart } from '@/contexts/CartContext';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { ShoppingCart, X, Minus, Plus, Trash2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/contexts/CartContext";
+import { useNavigate } from "react-router-dom";
 import {
   Sheet,
   SheetContent,
@@ -12,22 +12,30 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet';
+} from "@/components/ui/sheet";
 
 const Cart: React.FC = () => {
-  const { items, totalAmount, totalItems, totalPV, updateQuantity, removeItem, clearCart } = useCart();
+  const {
+    items,
+    totalAmount,
+    totalItems,
+    totalPV,
+    updateQuantity,
+    removeItem,
+    clearCart,
+  } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   const handleCheckout = () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      navigate('/user/login');
+      navigate("/user/login");
       return;
     }
-    
+
     setIsOpen(false);
-    navigate('/checkout');
+    navigate("/checkout");
   };
 
   return (
@@ -42,7 +50,7 @@ const Cart: React.FC = () => {
           )}
         </Button>
       </SheetTrigger>
-      
+
       <SheetContent className="w-full sm:max-w-lg overflow-y-auto">
         <SheetHeader>
           <SheetTitle className="flex items-center gap-2">
@@ -53,7 +61,7 @@ const Cart: React.FC = () => {
             Review your items and proceed to checkout
           </SheetDescription>
         </SheetHeader>
-        
+
         <div className="mt-6 space-y-4">
           {items.length === 0 ? (
             <div className="text-center py-8">
@@ -65,14 +73,24 @@ const Cart: React.FC = () => {
               {/* Cart Items */}
               <div className="space-y-3">
                 {items.map((item) => (
-                  <Card key={item.productId} className="border-muted" onClick={(e) => e.stopPropagation()}>
-                    <CardContent className="p-4" onClick={(e) => e.stopPropagation()}>
-                      <div className="flex items-start gap-3" onClick={(e) => e.stopPropagation()}>
+                  <Card
+                    key={item.productId}
+                    className="border-muted"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <CardContent
+                      className="p-4"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <div
+                        className="flex items-start gap-3"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         {/* Product Image */}
                         <div className="w-16 h-16 rounded-md bg-muted flex items-center justify-center flex-shrink-0">
                           {item.image ? (
-                            <img 
-                              src={item.image} 
+                            <img
+                              src={item.image}
                               alt={item.name}
                               className="w-full h-full object-cover rounded-md"
                             />
@@ -86,7 +104,7 @@ const Cart: React.FC = () => {
                           <h4 className="font-medium text-sm leading-tight mb-1">
                             {item.name}
                           </h4>
-                          
+
                           <div className="flex items-center gap-2 mb-2">
                             <span className="text-primary font-semibold">
                               ₹{item.discountPrice || item.price}
@@ -110,7 +128,12 @@ const Cart: React.FC = () => {
                                 variant="outline"
                                 size="sm"
                                 className="h-6 w-6 p-0"
-                                onClick={() => updateQuantity(item.productId, Math.max(0, item.quantity - 1))}
+                                onClick={() =>
+                                  updateQuantity(
+                                    item.productId,
+                                    Math.max(0, item.quantity - 1)
+                                  )
+                                }
                               >
                                 <Minus className="h-3 w-3" />
                               </Button>
@@ -121,7 +144,12 @@ const Cart: React.FC = () => {
                                 variant="outline"
                                 size="sm"
                                 className="h-6 w-6 p-0"
-                                onClick={() => updateQuantity(item.productId, item.quantity + 1)}
+                                onClick={() =>
+                                  updateQuantity(
+                                    item.productId,
+                                    item.quantity + 1
+                                  )
+                                }
                               >
                                 <Plus className="h-3 w-3" />
                               </Button>
@@ -134,11 +162,14 @@ const Cart: React.FC = () => {
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                console.log('[Cart] Remove button clicked for:', {
-                                  productId: item.productId,
-                                  productIdType: typeof item.productId,
-                                  name: item.name
-                                });
+                                console.log(
+                                  "[Cart] Remove button clicked for:",
+                                  {
+                                    productId: item.productId,
+                                    productIdType: typeof item.productId,
+                                    name: item.name,
+                                  }
+                                );
                                 removeItem(String(item.productId));
                               }}
                               type="button"
@@ -167,7 +198,7 @@ const Cart: React.FC = () => {
                   </div>
                   <div className="flex justify-between text-sm">
                     <span>Shipping</span>
-                    <span className="text-green-600">Free</span>
+                    <span className="text-blue-600">Free</span>
                   </div>
                   <hr className="my-2" />
                   <div className="flex justify-between font-semibold">
@@ -179,15 +210,15 @@ const Cart: React.FC = () => {
 
               {/* Action Buttons */}
               <div className="space-y-2 pt-4">
-                <Button 
-                  className="w-full" 
+                <Button
+                  className="w-full"
                   onClick={handleCheckout}
                   disabled={items.length === 0}
                 >
                   Proceed to Checkout
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="w-full"
                   onClick={clearCart}
                 >

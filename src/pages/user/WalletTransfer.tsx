@@ -1,14 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowRight, Wallet, RefreshCw, CheckCircle, AlertCircle } from 'lucide-react';
-import { toast } from 'sonner';
-import { authAPI } from '@/api/auth';
-import { walletAPI } from '@/api/wallet';
+import React, { useState, useEffect } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
+  ArrowRight,
+  Wallet,
+  RefreshCw,
+  CheckCircle,
+  AlertCircle,
+} from "lucide-react";
+import { toast } from "sonner";
+import { authAPI } from "@/api/auth";
+import { walletAPI } from "@/api/wallet";
 
 interface WalletData {
   purchaseWallet: number;
@@ -22,18 +40,30 @@ const WalletTransfer = () => {
   const [walletData, setWalletData] = useState<WalletData | null>(null);
   const [loading, setLoading] = useState(true);
   const [transferring, setTransferring] = useState(false);
-  
-  const [fromWalletType, setFromWalletType] = useState<'purchaseWallet' | 'earnedWallet' | 'referralWallet' | 'repurchaseWallet' | 'cashbackWallet'>('earnedWallet');
-  const [toWalletType, setToWalletType] = useState<'purchaseWallet' | 'earnedWallet' | 'referralWallet' | 'repurchaseWallet' | 'cashbackWallet'>('purchaseWallet');
-  const [amount, setAmount] = useState('');
-  const [reason, setReason] = useState('');
+
+  const [fromWalletType, setFromWalletType] = useState<
+    | "purchaseWallet"
+    | "earnedWallet"
+    | "referralWallet"
+    | "repurchaseWallet"
+    | "cashbackWallet"
+  >("earnedWallet");
+  const [toWalletType, setToWalletType] = useState<
+    | "purchaseWallet"
+    | "earnedWallet"
+    | "referralWallet"
+    | "repurchaseWallet"
+    | "cashbackWallet"
+  >("purchaseWallet");
+  const [amount, setAmount] = useState("");
+  const [reason, setReason] = useState("");
 
   const walletTypes = [
-    { value: 'purchaseWallet', label: 'Shopping Wallet', icon: '🛒' },
-    { value: 'earnedWallet', label: 'Earned Wallet', icon: '💰' },
-    { value: 'referralWallet', label: 'Referral Wallet', icon: '👥' },
-    { value: 'repurchaseWallet', label: 'Repurchase Wallet', icon: '🔄' },
-    { value: 'cashbackWallet', label: 'Cashback Wallet', icon: '💵' }
+    { value: "purchaseWallet", label: "Shopping Wallet", icon: "🛒" },
+    { value: "earnedWallet", label: "Earned Wallet", icon: "💰" },
+    { value: "referralWallet", label: "Referral Wallet", icon: "👥" },
+    { value: "repurchaseWallet", label: "Repurchase Wallet", icon: "🔄" },
+    { value: "cashbackWallet", label: "Cashback Wallet", icon: "💵" },
   ];
 
   useEffect(() => {
@@ -58,7 +88,7 @@ const WalletTransfer = () => {
         setWalletData(response.data.wallets);
       }
     } catch (error: any) {
-      toast.error('Failed to load wallet data');
+      toast.error("Failed to load wallet data");
     } finally {
       setLoading(false);
     }
@@ -68,17 +98,17 @@ const WalletTransfer = () => {
     e.preventDefault();
 
     if (!walletData) {
-      toast.error('Wallet data not loaded');
+      toast.error("Wallet data not loaded");
       return;
     }
 
     if (fromWalletType === toWalletType) {
-      toast.error('Source and destination wallets cannot be the same');
+      toast.error("Source and destination wallets cannot be the same");
       return;
     }
 
     if (!amount || parseFloat(amount) <= 0) {
-      toast.error('Please enter a valid amount');
+      toast.error("Please enter a valid amount");
       return;
     }
 
@@ -86,8 +116,12 @@ const WalletTransfer = () => {
     const transferAmount = parseFloat(amount);
 
     if (fromBalance < transferAmount) {
-      const fromWalletLabel = walletTypes.find(w => w.value === fromWalletType)?.label;
-      toast.error(`Insufficient balance in ${fromWalletLabel}. Available: ₹${fromBalance}`);
+      const fromWalletLabel = walletTypes.find(
+        (w) => w.value === fromWalletType
+      )?.label;
+      toast.error(
+        `Insufficient balance in ${fromWalletLabel}. Available: ₹${fromBalance}`
+      );
       return;
     }
 
@@ -97,53 +131,53 @@ const WalletTransfer = () => {
         fromWalletType,
         toWalletType,
         amount: transferAmount,
-        reason: reason || undefined
+        reason: reason || undefined,
       });
 
       if (response.success) {
-        toast.success(response.message || 'Transfer completed successfully');
-        
+        toast.success(response.message || "Transfer completed successfully");
+
         // Refresh wallet data
         await fetchWalletData();
-        
+
         // Reset form
-        setAmount('');
-        setReason('');
+        setAmount("");
+        setReason("");
       } else {
-        throw new Error(response.message || 'Transfer failed');
+        throw new Error(response.message || "Transfer failed");
       }
     } catch (error: any) {
-      toast.error(error.message || 'Failed to transfer wallet amount');
+      toast.error(error.message || "Failed to transfer wallet amount");
     } finally {
       setTransferring(false);
     }
   };
 
   const getAvailableWallets = (excludeType?: string) => {
-    return walletTypes.filter(w => w.value !== excludeType);
+    return walletTypes.filter((w) => w.value !== excludeType);
   };
 
   const getWalletBalance = (walletType: string) => {
-    return walletData ? (walletData[walletType as keyof WalletData] || 0) : 0;
+    return walletData ? walletData[walletType as keyof WalletData] || 0 : 0;
   };
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <RefreshCw className="h-8 w-8 animate-spin text-emerald-600" />
+        <RefreshCw className="h-8 w-8 animate-spin text-blue-600" />
       </div>
     );
   }
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <Card className="shadow-lg border-emerald-200">
-        <CardHeader className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white">
+      <Card className="shadow-lg border-blue-200">
+        <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
           <div className="flex items-center gap-3">
             <Wallet className="h-8 w-8" />
             <div>
               <CardTitle className="text-2xl">Wallet Transfer</CardTitle>
-              <CardDescription className="text-emerald-100 mt-1">
+              <CardDescription className="text-blue-100 mt-1">
                 Transfer amount between your wallets
               </CardDescription>
             </div>
@@ -153,21 +187,29 @@ const WalletTransfer = () => {
         <CardContent className="p-6">
           {/* Current Wallet Balances */}
           <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-700 mb-4">Current Wallet Balances</h3>
+            <h3 className="text-lg font-semibold text-gray-700 mb-4">
+              Current Wallet Balances
+            </h3>
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {walletTypes.map((wallet) => {
                 const balance = getWalletBalance(wallet.value);
                 return (
                   <div
                     key={wallet.value}
-                    className="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded-lg border border-emerald-200"
+                    className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200"
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-2xl">{wallet.icon}</span>
-                      <span className="text-sm font-medium text-gray-700">{wallet.label}</span>
+                      <span className="text-sm font-medium text-gray-700">
+                        {wallet.label}
+                      </span>
                     </div>
-                    <div className="text-2xl font-bold text-emerald-700">
-                      ₹{balance.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    <div className="text-2xl font-bold text-blue-700">
+                      ₹
+                      {balance.toLocaleString("en-IN", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
                     </div>
                   </div>
                 );
@@ -178,13 +220,18 @@ const WalletTransfer = () => {
           {/* Transfer Form */}
           <form onSubmit={handleTransfer} className="space-y-6">
             <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
-              <h3 className="text-lg font-semibold text-gray-700 mb-4">Transfer Details</h3>
-              
+              <h3 className="text-lg font-semibold text-gray-700 mb-4">
+                Transfer Details
+              </h3>
+
               {/* From and To Wallets */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-end">
                 {/* From Wallet */}
                 <div className="space-y-2">
-                  <Label htmlFor="fromWallet" className="text-sm font-medium text-gray-700">
+                  <Label
+                    htmlFor="fromWallet"
+                    className="text-sm font-medium text-gray-700"
+                  >
                     From Wallet <span className="text-red-500">*</span>
                   </Label>
                   <Select
@@ -198,7 +245,7 @@ const WalletTransfer = () => {
                           setToWalletType(available[0].value as any);
                         } else {
                           // If no other wallet available, reset to first wallet type
-                          setToWalletType('earnedWallet' as any);
+                          setToWalletType("earnedWallet" as any);
                         }
                       }
                     }}
@@ -208,35 +255,45 @@ const WalletTransfer = () => {
                     </SelectTrigger>
                     <SelectContent>
                       {walletTypes
-                        .filter(w => w.value !== 'purchaseWallet') // Exclude Shopping Wallet from From Wallet
+                        .filter((w) => w.value !== "purchaseWallet") // Exclude Shopping Wallet from From Wallet
                         .map((wallet) => (
-                        <SelectItem key={wallet.value} value={wallet.value}>
-                          <div className="flex items-center gap-2">
-                            <span>{wallet.icon}</span>
-                            <span>{wallet.label}</span>
-                            <span className="text-xs text-gray-500 ml-auto">
-                              ₹{getWalletBalance(wallet.value).toLocaleString('en-IN')}
-                            </span>
-                          </div>
-                        </SelectItem>
-                      ))}
+                          <SelectItem key={wallet.value} value={wallet.value}>
+                            <div className="flex items-center gap-2">
+                              <span>{wallet.icon}</span>
+                              <span>{wallet.label}</span>
+                              <span className="text-xs text-gray-500 ml-auto">
+                                ₹
+                                {getWalletBalance(wallet.value).toLocaleString(
+                                  "en-IN"
+                                )}
+                              </span>
+                            </div>
+                          </SelectItem>
+                        ))}
                     </SelectContent>
                   </Select>
                   <div className="text-sm text-gray-600 mt-1">
-                    Available: ₹{getWalletBalance(fromWalletType).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    Available: ₹
+                    {getWalletBalance(fromWalletType).toLocaleString("en-IN", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
                   </div>
                 </div>
 
                 {/* Arrow Icon */}
                 <div className="flex justify-center items-center">
-                  <div className="bg-emerald-100 p-3 rounded-full">
-                    <ArrowRight className="h-6 w-6 text-emerald-600" />
+                  <div className="bg-blue-100 p-3 rounded-full">
+                    <ArrowRight className="h-6 w-6 text-blue-600" />
                   </div>
                 </div>
 
                 {/* To Wallet */}
                 <div className="space-y-2">
-                  <Label htmlFor="toWallet" className="text-sm font-medium text-gray-700">
+                  <Label
+                    htmlFor="toWallet"
+                    className="text-sm font-medium text-gray-700"
+                  >
                     To Wallet <span className="text-red-500">*</span>
                   </Label>
                   <Select
@@ -248,22 +305,29 @@ const WalletTransfer = () => {
                     </SelectTrigger>
                     <SelectContent>
                       {walletTypes
-                        .filter(w => w.value !== fromWalletType) // Exclude selected From Wallet
+                        .filter((w) => w.value !== fromWalletType) // Exclude selected From Wallet
                         .map((wallet) => (
-                        <SelectItem key={wallet.value} value={wallet.value}>
-                          <div className="flex items-center gap-2">
-                            <span>{wallet.icon}</span>
-                            <span>{wallet.label}</span>
-                            <span className="text-xs text-gray-500 ml-auto">
-                              ₹{getWalletBalance(wallet.value).toLocaleString('en-IN')}
-                            </span>
-                          </div>
-                        </SelectItem>
-                      ))}
+                          <SelectItem key={wallet.value} value={wallet.value}>
+                            <div className="flex items-center gap-2">
+                              <span>{wallet.icon}</span>
+                              <span>{wallet.label}</span>
+                              <span className="text-xs text-gray-500 ml-auto">
+                                ₹
+                                {getWalletBalance(wallet.value).toLocaleString(
+                                  "en-IN"
+                                )}
+                              </span>
+                            </div>
+                          </SelectItem>
+                        ))}
                     </SelectContent>
                   </Select>
                   <div className="text-sm text-gray-600 mt-1">
-                    Current: ₹{getWalletBalance(toWalletType).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    Current: ₹
+                    {getWalletBalance(toWalletType).toLocaleString("en-IN", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}
                   </div>
                   {/* Auto-update toWalletType if it matches fromWalletType */}
                   {fromWalletType === toWalletType && (
@@ -276,7 +340,10 @@ const WalletTransfer = () => {
 
               {/* Amount */}
               <div className="mt-6 space-y-2">
-                <Label htmlFor="amount" className="text-sm font-medium text-gray-700">
+                <Label
+                  htmlFor="amount"
+                  className="text-sm font-medium text-gray-700"
+                >
                   Transfer Amount (₹) <span className="text-red-500">*</span>
                 </Label>
                 <Input
@@ -292,13 +359,20 @@ const WalletTransfer = () => {
                   className="w-full"
                 />
                 <div className="text-sm text-gray-600">
-                  Maximum transferable: ₹{getWalletBalance(fromWalletType).toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                  Maximum transferable: ₹
+                  {getWalletBalance(fromWalletType).toLocaleString("en-IN", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
                 </div>
               </div>
 
               {/* Reason */}
               <div className="mt-6 space-y-2">
-                <Label htmlFor="reason" className="text-sm font-medium text-gray-700">
+                <Label
+                  htmlFor="reason"
+                  className="text-sm font-medium text-gray-700"
+                >
                   Reason (Optional)
                 </Label>
                 <Textarea
@@ -319,8 +393,8 @@ const WalletTransfer = () => {
                 type="button"
                 variant="outline"
                 onClick={() => {
-                  setAmount('');
-                  setReason('');
+                  setAmount("");
+                  setReason("");
                 }}
                 disabled={transferring}
               >
@@ -328,8 +402,10 @@ const WalletTransfer = () => {
               </Button>
               <Button
                 type="submit"
-                disabled={transferring || !amount || fromWalletType === toWalletType}
-                className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                disabled={
+                  transferring || !amount || fromWalletType === toWalletType
+                }
+                className="bg-blue-600 hover:bg-blue-700 text-white"
               >
                 {transferring ? (
                   <>
@@ -353,10 +429,20 @@ const WalletTransfer = () => {
               <div className="text-sm text-blue-800">
                 <p className="font-medium mb-1">Important Notes:</p>
                 <ul className="list-disc list-inside space-y-1 text-blue-700">
-                  <li>You can only transfer from wallets that have sufficient balance</li>
-                  <li>Transfer transactions are recorded and cannot be reversed</li>
-                  <li>Both debit and credit transactions will be created for your records</li>
-                  <li>Please verify the details before confirming the transfer</li>
+                  <li>
+                    You can only transfer from wallets that have sufficient
+                    balance
+                  </li>
+                  <li>
+                    Transfer transactions are recorded and cannot be reversed
+                  </li>
+                  <li>
+                    Both debit and credit transactions will be created for your
+                    records
+                  </li>
+                  <li>
+                    Please verify the details before confirming the transfer
+                  </li>
                 </ul>
               </div>
             </div>
@@ -368,4 +454,3 @@ const WalletTransfer = () => {
 };
 
 export default WalletTransfer;
-
