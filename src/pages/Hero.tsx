@@ -32,7 +32,7 @@ const Hero = () => {
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <video
+        {/* <video
           autoPlay
           muted
           loop
@@ -41,14 +41,19 @@ const Hero = () => {
           poster="/api/placeholder/1920/1080"
         >
           <source
-            src="https://www.pexels.com/download/video/5480231/"
+            src="https://www.pexels.com/download/video/1580505/"
             type="video/mp4"
           />
           <source
-            src="https://www.pexels.com/download/video/4132710/"
-            type="video/webm"
+            src="https://www.pexels.com/download/video/5940320/"
+            type="video/webp"
           />
-        </video>
+        </video> */}
+        <img
+          src="https://img.freepik.com/premium-photo/virtual-education-concept-with-holographic-icon_153608-82641.jpg"
+          className="w-full h-full object-cover"
+          alt=""
+        />
         {/* Video Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/100  via-black/80 to-transparent" />
       </div>
