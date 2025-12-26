@@ -27,17 +27,12 @@ const Footer = () => {
                   alt="logo"
                 />
               </div>
-              {/* <div className="flex flex-col">
-                <span className="text-lg font-bold">Osfigo</span>
-                <span className="text-xs opacity-80">(OPC) Pvt. Ltd</span>
-              </div> */}
             </div>
-            <p className="text-sm opacity-80 mb-4">
-              Jharkhand's 1st Direct Selling Company
-            </p>
+            <p className="text-sm opacity-80 mb-4">Mission Aarthik Aazadi</p>
             <p className="text-sm opacity-80">
-              Committed to providing world-class Ayurvedic wellness products and
-              an unmatched compensation plan.
+              QWEEZZOT Private Limited is a growth-driven company empowering
+              households through quality products, transparent BP systems, and
+              sustainable income opportunities.
             </p>
           </div>
 
@@ -66,7 +61,7 @@ const Footer = () => {
                   to="/services"
                   className="text-sm opacity-80 hover:opacity-100 hover:text-secondary transition-colors"
                 >
-                  Our Services
+                  Business Plan
                 </Link>
               </li>
               <li>
@@ -75,38 +70,6 @@ const Footer = () => {
                   className="text-sm opacity-80 hover:opacity-100 hover:text-secondary transition-colors"
                 >
                   Products
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/join"
-                  className="text-sm opacity-80 hover:opacity-100 hover:text-secondary transition-colors"
-                >
-                  Join Now
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/ds-search"
-                  className="text-sm opacity-80 hover:opacity-100 hover:text-secondary transition-colors"
-                >
-                  DS Search
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/de-list"
-                  className="text-sm opacity-80 hover:opacity-100 hover:text-secondary transition-colors"
-                >
-                  DE List
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/legals"
-                  className="text-sm opacity-80 hover:opacity-100 hover:text-secondary transition-colors"
-                >
-                  Legal Certificates
                 </Link>
               </li>
             </ul>
@@ -118,15 +81,15 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm opacity-80">
                 <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                <span>Jharkhand, India</span>
+                <span>Jaipur, Rajasthan, India</span>
               </li>
               <li className="flex items-center gap-2 text-sm opacity-80 hover:opacity-100 transition-colors">
                 <Phone className="h-4 w-4 flex-shrink-0" />
-                <a href="tel:+911234567890">+91 123 456 7890</a>
+                <a href="tel:xxxxxxxxxx">xxx-xxx-xxxx</a>
               </li>
               <li className="flex items-center gap-2 text-sm opacity-80 hover:opacity-100 transition-colors">
                 <Mail className="h-4 w-4 flex-shrink-0" />
-                <a href="mailto:info@osfigolife.com">info@osfigolife.com</a>
+                <a href="mailto:care@qweezzot.com">care@qweezzot.com</a>
               </li>
             </ul>
           </div>
@@ -170,7 +133,9 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm opacity-80">
-            <p>© {currentYear} Osfigo (OPC) Pvt. Ltd. All rights reserved.</p>
+            <p>
+              © {currentYear} QWEEZZOT Private Limited. All rights reserved.
+            </p>
             <div className="flex gap-4">
               <Link
                 to="/privacy"

@@ -3,27 +3,29 @@ import { Users, TrendingUp, Sparkles, ArrowRight } from "lucide-react";
 import { Card, CardContent } from "../ui/card";
 
 const WhyByoteas = () => {
-  const features = [
-    {
-      icon: TrendingUp,
-      title: "Multiple Earning Sources",
-      description:
-        "Earn through multiple channels with our attractive compensation plan",
-      gradient: "from-blue-500 to-cyan-500",
-    },
-    {
-      icon: Users,
-      title: "Team Performance Bonuses",
-      description: "Grow together and earn rewards based on team achievements",
-      gradient: "from-blue-500 to-blue-500",
-    },
-    {
-      icon: Sparkles,
-      title: "Premium Products",
-      description: "Access to world-class Ayurvedic wellness products",
-      gradient: "from-purple-500 to-pink-500",
-    },
-  ];
+const features = [
+  {
+    icon: TrendingUp,
+    title: "Structured Business Growth",
+    description:
+      "Grow through a transparent and performance-based business structure designed for long-term sustainability.",
+    gradient: "from-[#0099CC] to-cyan-500",
+  },
+  {
+    icon: Users,
+    title: "Team-Based Opportunity",
+    description:
+      "Build and grow with a community-driven model supported by collaboration and shared progress.",
+    gradient: "from-[#0A1F2E] to-slate-700",
+  },
+  {
+    icon: Sparkles,
+    title: "Everyday-Use Product Portfolio",
+    description:
+      "Engage with a wide range of quality lifestyle and consumer products designed for regular household needs.",
+    gradient: "from-[#786C46] to-yellow-600",
+  },
+];
 
   return (
     <section className="py-24 bg-gradient-to-br from-slate-50 via-white to-slate-100 relative overflow-hidden">
@@ -39,11 +41,11 @@ const WhyByoteas = () => {
             Why Choose Us
           </div>
           <h2 className="text-5xl font-bold bg-gradient-to-br from-gray-900 to-gray-600 bg-clip-text text-transparent mb-6">
-            Why Choose <span className="text-amber-600">Osfigo?</span>
+            Why Choose <span className="text-yellow-700">Qweezzot?</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Join Jharkhand's premier direct selling company and unlock your
-            potential with our innovative business model
+            Built on trust, transparency, and purpose—designed for long-term,
+            sustainable success.
           </p>
         </div>
 

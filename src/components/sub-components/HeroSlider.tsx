@@ -35,60 +35,62 @@ const HeroSlider = () => {
   const slides: Slide[] = [
     {
       id: 1,
-      title: "Osfigo",
-      subtitle: "Jharkhand's 1st Direct Selling Company",
-      content: "Management Private Limited",
+      title: "QWEEZZOT",
+      subtitle: "Mission Aarthik Aazadi",
+      content: "Private Limited Company",
       description:
-        "Start your business journey with zero investment and build your empire with natural products.",
+        "Join a transparent, growth-driven business platform designed to empower households with sustainable income opportunities.",
       bgColor: "from-blue-900 via-blue-900 to-blue-800",
       accentColor: "text-blue-300",
       icon: <TrendingUp className="w-16 h-16" />,
-      features: ["Free Joining", "Daily Income", "Career Growth"],
+      features: ["Low Investment Model", "Weekly Payouts", "Scalable Income"],
       image:
         "https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80",
     },
     {
       id: 2,
-      title: "Natural Products",
-      subtitle: "100% Ayurvedic & Pure",
-      content: "Health is Wealth",
+      title: "Everyday Products",
+      subtitle: "Quality You Can Trust",
+      content: "Value for Daily Life",
       description:
-        "Experience the power of pure Ayurveda with our premium range of wellness products.",
+        "Explore a wide range of high-quality everyday-use products designed to deliver value and earning potential.",
       bgColor: "from-blue-800 via-blue-800 to-blue-700",
       accentColor: "text-blue-300",
       icon: <Leaf className="w-16 h-16" />,
-      features: ["Pure Ingredients", "Lab Tested", "Eco-Friendly"],
-      image: "https://images.pexels.com/photos/302163/pexels-photo-302163.jpeg",
+      features: ["35+ Products", "Quality Tested", "Regular Demand"],
+      image:
+        "https://images.pexels.com/photos/4066292/pexels-photo-4066292.jpeg",
     },
     {
       id: 3,
-      title: "Career Growth",
-      subtitle: "Unlimited Opportunities",
-      content: "Your Success Journey",
+      title: "Income & Growth",
+      subtitle: "Unlimited Earning Opportunity",
+      content: "Build Your Future",
       description:
-        "Join India's fastest growing business community with complete training and support.",
+        "Earn through direct income, matching income, leadership rewards, and a transparent BP-based system.",
       bgColor: "from-blue-900 via-blue-900 to-blue-800",
       accentColor: "text-cyan-300",
       icon: <Award className="w-16 h-16" />,
-      features: ["Leadership Program", "Weekly Payouts", "Team Building"],
+      features: ["Binary Matching", "Rank Income", "Leadership Rewards"],
       image:
         "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80",
     },
     {
       id: 4,
-      title: "Community",
-      subtitle: "Growing Together",
-      content: "Strong Support System",
+      title: "Strong Community",
+      subtitle: "Grow Together",
+      content: "Support & Training",
       description:
-        "Be part of a vibrant community where success is celebrated together.",
+        "Be part of a supportive community backed by free training, digital tools, and strong leadership guidance.",
       bgColor: "from-blue-800 via-blue-700 to-blue-600",
       accentColor: "text-lime-300",
       icon: <Users className="w-16 h-16" />,
-      features: ["Community Events", "Success Stories", "Networking"],
+      features: ["Free Training", "Team Support", "Digital Dashboard"],
       image:
         "https://images.unsplash.com/photo-1511632765486-a01980e01a18?ixlib=rb-4.1.0&auto=format&fit=crop&w=1200&q=80",
     },
   ];
+
 
   useEffect(() => {
     if (!isAutoPlaying) return;

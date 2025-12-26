@@ -14,9 +14,9 @@ const Header = () => {
     { name: "About", path: "/about" },
     { name: "Services", path: "/services" },
     { name: "Products", path: "/products" },
-    { name: "Compensation Plan", path: "/compensation-plan" },
     { name: "Brand", path: "/brand" },
-    { name: "Join Now", path: "/join" },
+    { name: "Contact Us", path: "/contact" },
+    // { name: "Join Now", path: "/join" },
   ];
 
   const userMenuItems = [
@@ -32,7 +32,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="transition-transform hover:scale-105">
             <div className="relative flex h-full w-40 items-center justify-center rounded-lg bg-transparent">
-              <img className="h-[7vh] w-auto max-sm:h-[7vh]" src="logo.png" alt="logo" />
+              <img className="h-[15vh] w-auto " src="logo.png" alt="logo" />
             </div>
 
             

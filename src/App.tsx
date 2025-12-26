@@ -9,12 +9,8 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
-import Join from "./pages/Join";
-import CompensationPlan from "./pages/CompensationPlan";
 import Brand from "./pages/Brand";
-import DSSearch from "./pages/DSSearch";
-import DEList from "./pages/DEList";
-import Legals from "./pages/Legals";
+
 import NotFound from "./pages/NotFound";
 
 // User Panel Pages
@@ -77,6 +73,7 @@ import RankSummary from "./pages/user/RankSummary";
 import UpdateKyc from "./pages/user/UpdateKyc";
 import WalletRequest from "./pages/user/WalletRequest";
 import WalletTransfer from "./pages/user/WalletTransfer";
+import Contact from "./pages/Contct";
 
 const queryClient = new QueryClient();
 
@@ -96,12 +93,10 @@ const App = () => (
               <Route path="/services" element={<Services />} />
               <Route path="/products" element={<Products />} />
               <Route path="/products/:id" element={<ProductDetail />} />
-              <Route path="/compensation-plan" element={<CompensationPlan />} />
+          
               <Route path="/brand" element={<Brand />} />
-              <Route path="/join" element={<Join />} />
-              <Route path="/ds-search" element={<DSSearch />} />
-              <Route path="/de-list" element={<DEList />} />
-              <Route path="/legals" element={<Legals />} />
+              <Route path="/contact" element={<Contact />} />
+              
             </Route>
 
             {/* User Panel Routes */}

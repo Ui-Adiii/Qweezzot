@@ -134,9 +134,9 @@ const Products = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white py-20 relative overflow-hidden">
+      <section className="bg-gradient-to-br from-sky-600 via-sky-700 to-sky-800 text-white py-20 relative overflow-hidden">
         <motion.div
           className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-amber-400/20 to-yellow-500/20 rounded-full blur-3xl"
           animate={{
@@ -166,17 +166,17 @@ const Products = () => {
       </section>
 
       {/* Guarantee Badge */}
-      <section className="py-8 bg-white/80 backdrop-blur-sm border-b border-blue-200/50">
+      <section className="py-8 bg-white/80 backdrop-blur-sm border-b border-sky-200/50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             className="flex items-center justify-center gap-3"
           >
-            <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-              <Shield className="h-8 w-8 text-blue-600" />
+            <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <Shield className="h-8 w-8 text-sky-600" />
             </div>
-            <p className="text-lg font-semibold text-blue-800">
+            <p className="text-lg font-semibold text-sky-800">
               30 Days Money Back & Replacement Guarantee
             </p>
           </motion.div>
@@ -184,7 +184,7 @@ const Products = () => {
       </section>
 
       {/* Category Filter */}
-      <section className="py-12 bg-white/60 backdrop-blur-sm border-b border-blue-200/50">
+      <section className="py-12 bg-white/60 backdrop-blur-sm border-b border-sky-200/50">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((category, index) => {
@@ -207,8 +207,8 @@ const Products = () => {
                     className={cn(
                       "transition-all duration-300 rounded-full px-5 py-2.5 font-medium border-2",
                       activeCategory === category.id
-                        ? "bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg border-transparent ring-2 ring-amber-400/30"
-                        : "bg-white/90 backdrop-blur-sm border-blue-300/50 text-blue-800 hover:border-blue-500/70 hover:bg-blue-50/80 hover:shadow-blue-500/30 hover:shadow-lg hover:-translate-y-1 hover:text-blue-600"
+                        ? "bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg border-transparent ring-2 ring-amber-400/30"
+                        : "bg-white/90 backdrop-blur-sm border-sky-300/50 text-sky-800 hover:border-sky-500/70 hover:bg-sky-50/80 hover:shadow-sky-500/30 hover:shadow-lg hover:-translate-y-1 hover:text-sky-600"
                     )}
                   >
                     <Icon className="h-4 w-4 mr-2" />
@@ -229,18 +229,18 @@ const Products = () => {
               {[...Array(8)].map((_, i) => (
                 <Card
                   key={i}
-                  className="border-blue-200/50 bg-white/60 backdrop-blur-sm animate-pulse"
+                  className="border-sky-200/50 bg-white/60 backdrop-blur-sm animate-pulse"
                 >
                   <CardContent className="pt-6">
-                    <div className="mb-4 h-48 rounded-lg bg-blue-200/50"></div>
-                    <div className="mb-2 h-6 bg-blue-200/50 rounded w-20"></div>
-                    <div className="mb-2 h-6 bg-blue-200/50 rounded w-3/4"></div>
-                    <div className="mb-4 h-4 bg-blue-200/50 rounded w-full"></div>
+                    <div className="mb-4 h-48 rounded-lg bg-sky-200/50"></div>
+                    <div className="mb-2 h-6 bg-sky-200/50 rounded w-20"></div>
+                    <div className="mb-2 h-6 bg-sky-200/50 rounded w-3/4"></div>
+                    <div className="mb-4 h-4 bg-sky-200/50 rounded w-full"></div>
                     <div className="mb-4 flex gap-2">
-                      <div className="h-6 bg-blue-200/50 rounded w-16"></div>
-                      <div className="h-6 bg-blue-200/50 rounded w-12"></div>
+                      <div className="h-6 bg-sky-200/50 rounded w-16"></div>
+                      <div className="h-6 bg-sky-200/50 rounded w-12"></div>
                     </div>
-                    <div className="h-10 bg-blue-200/50 rounded w-full"></div>
+                    <div className="h-10 bg-sky-200/50 rounded w-full"></div>
                   </CardContent>
                 </Card>
               ))}
@@ -268,7 +268,7 @@ const Products = () => {
                       whileHover={{ scale: 1.02, y: -5 }}
                     >
                       <Card
-                        className="group relative border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ring-1 ring-amber-400/10 cursor-pointer h-full flex flex-col"
+                        className="group relative border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ring-1 ring-amber-400/10 cursor-pointer h-full flex flex-col"
                         onClick={() => navigate(`/products/${product._id}`)}
                       >
                         {/* Discount Badge */}
@@ -284,7 +284,7 @@ const Products = () => {
                         {/* Popular Badge for first 3 products */}
                         {index < 3 && (
                           <div className="absolute top-4 left-4 z-20">
-                            <Badge className="bg-gradient-to-r from-blue-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-blue-300/30">
+                            <Badge className="bg-gradient-to-r from-sky-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-sky-300/30">
                               <Star className="h-3 w-3 mr-1 fill-current" />
                               Popular
                             </Badge>
@@ -302,7 +302,7 @@ const Products = () => {
 
                         <CardContent className="pt-6 p-0 flex-1 flex flex-col">
                           {/* Product Image */}
-                          <div className="relative h-56 bg-gradient-to-br from-blue-50/70 to-amber-50/50 overflow-hidden flex-shrink-0">
+                          <div className="relative h-56 bg-gradient-to-br from-sky-50/70 to-amber-50/50 overflow-hidden flex-shrink-0">
                             {product.images && product.images.length > 0 ? (
                               <motion.img
                                 src={product.images[0]}
@@ -312,7 +312,7 @@ const Products = () => {
                               />
                             ) : (
                               <div className="flex items-center justify-center h-full">
-                                <Heart className="h-16 w-16 text-blue-300" />
+                                <Heart className="h-16 w-16 text-sky-300" />
                               </div>
                             )}
                             {/* Overlay on hover */}
@@ -322,29 +322,29 @@ const Products = () => {
                           <div className="p-4 space-y-3">
                             {/* Category Badge */}
                             <div>
-                              <Badge className="bg-blue-100/70 text-blue-800 ring-1 ring-blue-300/30 backdrop-blur-sm text-xs transition-all duration-300 cursor-pointer hover:bg-gradient-to-r hover:from-blue-600 hover:to-amber-500 hover:text-white hover:ring-amber-400/30">
+                              <Badge className="bg-sky-100/70 text-sky-800 ring-1 ring-sky-300/30 backdrop-blur-sm text-xs transition-all duration-300 cursor-pointer hover:bg-gradient-to-r hover:from-sky-600 hover:to-amber-500 hover:text-white hover:ring-amber-400/30">
                                 {product.category.charAt(0).toUpperCase() +
                                   product.category.slice(1)}
                               </Badge>
                             </div>
 
                             {/* Product Info */}
-                            <h3 className="text-lg font-bold text-blue-900 line-clamp-2 min-h-[3.5rem]">
+                            <h3 className="text-lg font-bold text-sky-900 line-clamp-2 min-h-[3.5rem]">
                               {product.name}
                             </h3>
-                            <p className="text-sm text-blue-700/70 line-clamp-2 min-h-[2.5rem]">
+                            <p className="text-sm text-sky-700/70 line-clamp-2 min-h-[2.5rem]">
                               {product.description}
                             </p>
 
                             {/* Price */}
                             <div className="flex items-center gap-2 flex-wrap">
-                              <span className="text-2xl font-bold text-blue-700">
+                              <span className="text-2xl font-bold text-sky-700">
                                 {formatCurrency(finalPrice)}
                               </span>
                               {product.discountPrice &&
                                 product.discountPrice > 0 &&
                                 product.discountPrice < product.price && (
-                                  <span className="text-sm text-blue-600/70 line-through">
+                                  <span className="text-sm text-sky-600/70 line-through">
                                     {formatCurrency(product.price)}
                                   </span>
                                 )}
@@ -355,7 +355,7 @@ const Products = () => {
                               product.dp &&
                               product.mrp > 0 &&
                               product.dp > 0 && (
-                                <div className="space-y-1 p-2 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200/50">
+                                <div className="space-y-1 p-2 bg-gradient-to-r from-sky-50 to-cyan-50 rounded-lg border border-sky-200/50">
                                   <div className="flex justify-between text-xs">
                                     <span className="text-gray-600">MRP:</span>
                                     <span className="font-semibold text-gray-800">
@@ -368,18 +368,18 @@ const Products = () => {
                                       ₹{product.dp.toLocaleString()}
                                     </span>
                                   </div>
-                                  <div className="flex justify-between items-center pt-1 border-t border-blue-200/50">
-                                    <span className="text-xs font-bold text-blue-700">
+                                  <div className="flex justify-between items-center pt-1 border-t border-sky-200/50">
+                                    <span className="text-xs font-bold text-sky-700">
                                       Retail Profit:
                                     </span>
                                     <div className="flex items-center gap-2">
-                                      <span className="text-sm font-bold text-blue-600">
+                                      <span className="text-sm font-bold text-sky-600">
                                         ₹
                                         {(
                                           product.mrp - product.dp
                                         ).toLocaleString()}
                                       </span>
-                                      <Badge className="bg-gradient-to-r from-blue-500 to-blue-500 text-white text-xs px-2 py-0.5">
+                                      <Badge className="bg-gradient-to-r from-sky-500 to-sky-500 text-white text-xs px-2 py-0.5">
                                         {Math.round(
                                           ((product.mrp - product.dp) /
                                             product.dp) *
@@ -412,7 +412,7 @@ const Products = () => {
                                       <Badge
                                         key={idx}
                                         variant="outline"
-                                        className="text-xs bg-white/60 backdrop-blur-sm border-blue-200/50 ring-1 ring-amber-400/10"
+                                        className="text-xs bg-white/60 backdrop-blur-sm border-sky-200/50 ring-1 ring-amber-400/10"
                                       >
                                         {feature}
                                       </Badge>
@@ -420,7 +420,7 @@ const Products = () => {
                                   {product.features.length > 2 && (
                                     <Badge
                                       variant="outline"
-                                      className="text-xs bg-white/60 backdrop-blur-sm border-blue-200/50 ring-1 ring-amber-400/10"
+                                      className="text-xs bg-white/60 backdrop-blur-sm border-sky-200/50 ring-1 ring-amber-400/10"
                                     >
                                       +{product.features.length - 2}
                                     </Badge>
@@ -440,7 +440,7 @@ const Products = () => {
                               >
                                 <Button
                                   variant="outline"
-                                  className="w-full border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50"
+                                  className="w-full border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50"
                                   onClick={() =>
                                     navigate(`/products/${product._id}`)
                                   }
@@ -454,7 +454,7 @@ const Products = () => {
                                 className="flex-1"
                               >
                                 <Button
-                                  className="w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+                                  className="w-full bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
                                   onClick={() => handleAddToCart(product)}
                                   disabled={!product.inStock}
                                 >
@@ -486,7 +486,7 @@ const Products = () => {
                     <Button
                       onClick={loadMore}
                       size="lg"
-                      className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30 px-8 py-6 text-lg"
+                      className="bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30 px-8 py-6 text-lg"
                     >
                       View More Products
                       <ArrowRight className="h-5 w-5 ml-2" />
@@ -497,7 +497,7 @@ const Products = () => {
 
               {/* Products Count Info */}
               {!loading && filteredProducts.length > 0 && (
-                <div className="text-center mt-8 text-blue-700/70">
+                <div className="text-center mt-8 text-sky-700/70">
                   <p className="text-sm">
                     Showing {visibleProducts.length} of{" "}
                     {filteredProducts.length} products
@@ -513,8 +513,8 @@ const Products = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-center py-12"
             >
-              <div className="p-4 bg-white/70 backdrop-blur-sm rounded-lg border border-blue-200/50 ring-1 ring-amber-400/10 inline-block">
-                <p className="text-xl text-blue-800">
+              <div className="p-4 bg-white/70 backdrop-blur-sm rounded-lg border border-sky-200/50 ring-1 ring-amber-400/10 inline-block">
+                <p className="text-xl text-sky-800">
                   No products found in this category.
                 </p>
               </div>
@@ -524,7 +524,7 @@ const Products = () => {
       </section>
 
       {/* Product Benefits */}
-      <section className="py-20 bg-white/60 backdrop-blur-sm border-t border-blue-200/50">
+      <section className="py-20 bg-white/60 backdrop-blur-sm border-t border-sky-200/50">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -532,7 +532,7 @@ const Products = () => {
             viewport={{ once: true }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-4xl font-bold mb-12 text-blue-800">
+            <h2 className="text-4xl font-bold mb-12 text-sky-800">
               Why Choose Our Products?
             </h2>
 
@@ -561,15 +561,15 @@ const Products = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className="p-6 bg-white/70 backdrop-blur-xl rounded-xl border border-blue-200/50 shadow-lg ring-1 ring-amber-400/10"
+                  className="p-6 bg-white/70 backdrop-blur-xl rounded-xl border border-sky-200/50 shadow-lg ring-1 ring-amber-400/10"
                 >
-                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-500/20 to-amber-500/20 mx-auto ring-2 ring-amber-400/20">
-                    <benefit.icon className="h-8 w-8 text-blue-600" />
+                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-sky-500/20 to-amber-500/20 mx-auto ring-2 ring-amber-400/20">
+                    <benefit.icon className="h-8 w-8 text-sky-600" />
                   </div>
-                  <h3 className="text-xl font-bold mb-2 text-blue-800">
+                  <h3 className="text-xl font-bold mb-2 text-sky-800">
                     {benefit.title}
                   </h3>
-                  <p className="text-blue-700/70">{benefit.desc}</p>
+                  <p className="text-sky-700/70">{benefit.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -578,7 +578,7 @@ const Products = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800 text-white relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-sky-600 via-sky-700 to-sky-800 text-white relative overflow-hidden">
         <motion.div
           className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-amber-400/20 to-yellow-500/20 rounded-full blur-3xl"
           animate={{

@@ -12,39 +12,39 @@ const Brand = () => {
   const brandPillars = [
     {
       icon: Microscope,
-      title: "Self Research & Development",
+      title: "In-House Research & Development",
       description:
-        "Our dedicated R&D team works tirelessly to innovate and improve our product formulations.",
+        "Our internal R&D team focuses on product innovation, quality improvement, and long-term value creation.",
     },
     {
       icon: Award,
-      title: "Lab Tested Products",
+      title: "Quality Tested Products",
       description:
-        "Every product undergoes rigorous testing in certified laboratories to ensure quality and safety.",
+        "Every product undergoes strict quality checks to ensure safety, durability, and reliability.",
     },
     {
       icon: Leaf,
-      title: "100% Pure Ayurveda",
+      title: "Premium Everyday Products",
       description:
-        "Authentic Ayurvedic formulations using natural ingredients sourced from trusted suppliers.",
+        "Carefully selected materials and formulations designed for daily use and long-lasting performance.",
     },
     {
       icon: Shield,
-      title: "100% Satisfaction Guarantee",
+      title: "Customer Satisfaction Promise",
       description:
-        "We stand behind our products with a complete satisfaction guarantee for your peace of mind.",
+        "We stand behind our products with transparent policies and customer-first support.",
     },
     {
       icon: TrendingUp,
-      title: "100% Result Oriented",
+      title: "Result-Oriented Business Model",
       description:
-        "Our products are designed to deliver measurable results and improve your overall wellness.",
+        "Our system is designed to deliver measurable growth, income stability, and long-term success.",
     },
     {
       icon: CheckCircle,
-      title: "Quality Certified",
+      title: "Certified & Compliant",
       description:
-        "Certified by leading quality assurance organizations for your safety and trust.",
+        "All operations follow regulatory standards and compliance guidelines to ensure trust.",
     },
   ];
 
@@ -56,17 +56,18 @@ const Brand = () => {
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
             <div className="mb-8">
               <h1 className="text-6xl md:text-7xl font-bold mb-4 tracking-tight">
-                Osfigo
+                QWEEZZOT
               </h1>
               <div className="flex items-center justify-center gap-3 text-2xl opacity-90">
-                <span>Wellness</span>
+                <span>Opportunity</span>
                 <span className="text-gold">|</span>
-                <span>Wellbeing</span>
+                <span>Growth</span>
               </div>
             </div>
             <p className="text-xl opacity-90 max-w-2xl mx-auto">
-              Your trusted partner in natural wellness. Committed to delivering
-              100% pure Ayurvedic solutions for a healthier life.
+              A growth-driven company committed to empowering households through
+              quality products, transparent systems, and sustainable income
+              opportunities.
             </p>
           </div>
         </div>
@@ -80,8 +81,8 @@ const Brand = () => {
               Our Brand Promise
             </h2>
             <p className="text-xl text-muted-foreground">
-              Quality, purity, and effectiveness are at the heart of everything
-              we do. Discover what makes Osfigo your trusted wellness partner.
+              Trust, transparency, and long-term value are the foundation of
+              everything we do at QWEEZZOT.
             </p>
           </div>
 
@@ -116,20 +117,20 @@ const Brand = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               <div>
                 <h2 className="text-4xl font-bold mb-6">
-                  Our Commitment to Quality
+                  Commitment to Quality & Trust
                 </h2>
                 <p className="text-lg text-muted-foreground mb-6">
-                  At Osfigo, quality is not just a promise—it's our foundation.
-                  Every product is crafted with precision, tested rigorously,
-                  and delivered with care.
+                  At QWEEZZOT, quality is not just a promise—it is a process.
+                  Every product and system is designed with precision,
+                  transparency, and accountability.
                 </p>
                 <div className="space-y-4">
                   {[
-                    "Sourced from certified Ayurvedic suppliers",
-                    "Manufactured in GMP-certified facilities",
-                    "Third-party lab tested for purity",
-                    "30-day satisfaction guarantee",
-                    "Continuous quality monitoring",
+                    "Products sourced from trusted manufacturers",
+                    "Standardized quality control processes",
+                    "Transparent pricing and BP system",
+                    "Clear refund and replacement policies",
+                    "Continuous monitoring and improvement",
                   ].map((item, index) => (
                     <div key={index} className="flex items-start gap-3">
                       <div className="flex-shrink-0 mt-1">
@@ -140,14 +141,15 @@ const Brand = () => {
                   ))}
                 </div>
               </div>
+
               <div className="relative">
                 <div className="aspect-square rounded-2xl bg-gradient-hero shadow-gold overflow-hidden">
                   <div className="absolute inset-0 flex items-center justify-center">
                     <div className="text-center text-primary-foreground p-8">
-                      <Leaf className="h-24 w-24 mx-auto mb-4 opacity-90" />
-                      <p className="text-2xl font-bold">Pure Ayurveda</p>
+                      <Shield className="h-24 w-24 mx-auto mb-4 opacity-90" />
+                      <p className="text-2xl font-bold">Trusted Brand</p>
                       <p className="text-lg opacity-90 mt-2">
-                        Nature's Gift to Wellness
+                        Built on Transparency & Ethics
                       </p>
                     </div>
                   </div>
@@ -163,14 +165,14 @@ const Brand = () => {
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12">
-              Certified & Trusted
+              Legal & Compliance Standards
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                "GMP Certified",
-                "ISO Certified",
-                "Ayush Approved",
-                "Lab Tested",
+                "Company Registered",
+                "GST Compliant",
+                "Trademark Registered",
+                "Policy Verified",
               ].map((badge, index) => (
                 <Card key={index} className="border-primary/20 shadow-soft">
                   <CardContent className="pt-6 text-center">

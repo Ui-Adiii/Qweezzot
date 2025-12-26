@@ -473,7 +473,7 @@ const UserRegister = () => {
                 <div
                   className={`flex items-center justify-center w-10 h-10 rounded-full ${
                     currentStep >= step.number
-                      ? "bg-blue-600 text-white"
+                      ? "bg-sky-600 text-white"
                       : "bg-gray-200 text-gray-600"
                   }`}
                 >
@@ -482,7 +482,7 @@ const UserRegister = () => {
                 <span
                   className={`ml-2 text-sm font-medium ${
                     currentStep >= step.number
-                      ? "text-blue-600"
+                      ? "text-sky-600"
                       : "text-gray-400"
                   }`}
                 >
@@ -491,7 +491,7 @@ const UserRegister = () => {
                 {index < steps.length - 1 && (
                   <div
                     className={`w-8 h-0.5 mx-4 ${
-                      currentStep > step.number ? "bg-blue-600" : "bg-gray-200"
+                      currentStep > step.number ? "bg-sky-600" : "bg-gray-200"
                     }`}
                   />
                 )}
@@ -506,8 +506,8 @@ const UserRegister = () => {
   const renderPersonalDetails = () => (
     <div className="space-y-4">
       <div className="flex items-center space-x-2 mb-4">
-        <User size={20} className="text-blue-600" />
-        <h3 className="text-lg font-semibold text-blue-600">
+        <User size={20} className="text-sky-600" />
+        <h3 className="text-lg font-semibold text-sky-600">
           Personal Details
         </h3>
       </div>
@@ -728,8 +728,8 @@ const UserRegister = () => {
   const renderCommunicationDetails = () => (
     <div className="space-y-4">
       <div className="flex items-center space-x-2 mb-4">
-        <MapPin size={20} className="text-blue-600" />
-        <h3 className="text-lg font-semibold text-blue-600">
+        <MapPin size={20} className="text-sky-600" />
+        <h3 className="text-lg font-semibold text-sky-600">
           Communication Details
         </h3>
       </div>
@@ -883,8 +883,8 @@ const UserRegister = () => {
   const renderBankDetails = () => (
     <div className="space-y-4">
       <div className="flex items-center space-x-2 mb-4">
-        <CreditCard size={20} className="text-blue-600" />
-        <h3 className="text-lg font-semibold text-blue-600">
+        <CreditCard size={20} className="text-sky-600" />
+        <h3 className="text-lg font-semibold text-sky-600">
           Bank & PAN Details
         </h3>
         <span className="text-sm text-gray-500">(Optional)</span>
@@ -977,8 +977,8 @@ const UserRegister = () => {
   const renderNomineeDetails = () => (
     <div className="space-y-4">
       <div className="flex items-center space-x-2 mb-4">
-        <Users size={20} className="text-blue-600" />
-        <h3 className="text-lg font-semibold text-blue-600">Nominee Details</h3>
+        <Users size={20} className="text-sky-600" />
+        <h3 className="text-lg font-semibold text-sky-600">Nominee Details</h3>
         <span className="text-sm text-gray-500">(Optional)</span>
       </div>
 
@@ -1030,8 +1030,8 @@ const UserRegister = () => {
   const renderJoiningDetails = () => (
     <div className="space-y-4">
       <div className="flex items-center space-x-2 mb-4">
-        <UserPlus size={20} className="text-blue-600" />
-        <h3 className="text-lg font-semibold text-blue-600">Joining Details</h3>
+        <UserPlus size={20} className="text-sky-600" />
+        <h3 className="text-lg font-semibold text-sky-600">Joining Details</h3>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1049,7 +1049,7 @@ const UserRegister = () => {
             className={fetchingSponsor ? "opacity-70" : ""}
           />
           {fetchingSponsor && (
-            <p className="text-xs text-blue-600 flex items-center">
+            <p className="text-xs text-sky-600 flex items-center">
               <Loader2 className="h-3 w-3 mr-1 animate-spin" />
               Fetching sponsor details...
             </p>
@@ -1075,7 +1075,7 @@ const UserRegister = () => {
             className="bg-gray-50 cursor-not-allowed"
           />
           {formData.sponsorName && (
-            <p className="text-xs text-blue-600">✓ Sponsor verified</p>
+            <p className="text-xs text-sky-600">✓ Sponsor verified</p>
           )}
         </div>
       </div>
@@ -1129,7 +1129,7 @@ const UserRegister = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 to-sky-50 p-4">
       <div className="max-w-4xl mx-auto">
         <Card className="w-full">
           <CardHeader className="text-center">
@@ -1181,7 +1181,7 @@ const UserRegister = () => {
           <CardFooter className="justify-center space-y-4">
             <div className="text-sm text-center">
               Already have an account?{" "}
-              <Link to="/user/login" className="text-blue-600 hover:underline">
+              <Link to="/user/login" className="text-sky-600 hover:underline">
                 Sign in here
               </Link>
             </div>
