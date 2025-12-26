@@ -7,60 +7,64 @@ import { cn } from "@/lib/utils";
 const Join = () => {
   const starterPacks = [
     {
-      name: "Standard",
-      investment: "Free",
-      productValue: "Explore",
+      name: "Free Registration",
+      investment: "₹0",
+      productValue: "Explore Platform",
       cashBack: "-",
-      repurchaseWallet: "30% Redeem",
-      monthlyCapping: "-",
-      features: ["Access to Products", "Basic Training", "Community Support"],
-      popular: false,
-    },
-    {
-      name: "2PV Pack",
-      investment: "Up to ₹2,000",
-      productValue: "Up to ₹6,000",
-      cashBack: "-",
-      repurchaseWallet: "30% Redeem",
+      repurchaseWallet: "30% Wallet",
       monthlyCapping: "-",
       features: [
-        "Starter Product Kit",
-        "Training & Support",
-        "Referral Commissions",
-        "Team Building Tools",
+        "Free ID Registration",
+        "Access to Digital Dashboard",
+        "Basic Business Training",
+        "Community Support",
       ],
       popular: false,
     },
     {
-      name: "4PV Pack",
+      name: "Starter Pack",
+      investment: "Up to ₹2,000",
+      productValue: "Up to ₹6,000",
+      cashBack: "-",
+      repurchaseWallet: "30% Wallet",
+      monthlyCapping: "-",
+      features: [
+        "Product Starter Kit",
+        "Business Training Access",
+        "Direct Referral Income",
+        "Team Structure Eligibility",
+      ],
+      popular: false,
+    },
+    {
+      name: "Growth Pack",
       investment: "Up to ₹4,000",
       productValue: "Up to ₹12,000",
       cashBack: "₹4,200",
-      repurchaseWallet: "30% Redeem",
-      monthlyCapping: "No Capping",
+      repurchaseWallet: "30% Wallet",
+      monthlyCapping: "No Limit",
       features: [
-        "Premium Product Kit",
-        "Advanced Training",
-        "Higher Commissions",
-        "Performance Bonuses",
-        "Marketing Materials",
+        "Expanded Product Portfolio",
+        "Higher Income Eligibility",
+        "Binary Matching Income",
+        "Leadership Qualification",
+        "Business Tools & Support",
       ],
       popular: true,
     },
     {
-      name: "10PV Pack",
+      name: "Leadership Pack",
       investment: "Up to ₹10,000",
       productValue: "Up to ₹30,000",
       cashBack: "₹8,400",
-      repurchaseWallet: "30% Redeem",
+      repurchaseWallet: "30% Wallet",
       monthlyCapping: "₹12 Lakh",
       features: [
-        "Elite Product Portfolio",
-        "VIP Training Access",
-        "Maximum Commissions",
-        "Unlimited Earning Potential",
-        "Premium Support",
-        "Exclusive Rewards",
+        "Premium Product Portfolio",
+        "Maximum Income Eligibility",
+        "Leadership & Royalty Income",
+        "Priority Training & Support",
+        "Rewards & Recognition",
       ],
       popular: false,
     },
@@ -72,10 +76,13 @@ const Join = () => {
       <section className="bg-gradient-hero text-primary-foreground py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">Start Your Journey</h1>
-            <p className="text-2xl mb-4 opacity-90">Believe in Yourself!</p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+              Start Your Business Journey
+            </h1>
+            <p className="text-2xl mb-4 opacity-90">Mission Aarthik Aazadi</p>
             <p className="text-xl opacity-80">
-              Every great success starts with a simple decision to try.
+              A transparent system designed to help you build sustainable
+              income.
             </p>
           </div>
         </div>
@@ -85,10 +92,13 @@ const Join = () => {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6">Choose Your Starter Pack</h2>
+            <h2 className="text-4xl font-bold mb-6">
+              Choose Your Business Entry Pack
+            </h2>
             <p className="text-xl text-muted-foreground">
-              Select the package that best fits your goals and budget. All packs come with our 30-day
-              money-back guarantee and comprehensive training.
+              Select a pack that matches your goals. Every pack gives you access
+              to our digital system, training support, and transparent income
+              model.
             </p>
           </div>
 
@@ -108,37 +118,55 @@ const Join = () => {
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                     <span className="inline-flex items-center gap-1 px-4 py-1 rounded-full bg-gradient-gold text-accent-foreground font-semibold text-sm shadow-gold">
                       <Star className="h-4 w-4" />
-                      Most Popular
+                      Recommended
                     </span>
                   </div>
                 )}
 
                 <CardHeader className="text-center pb-4">
                   <CardTitle className="text-2xl mb-2">{pack.name}</CardTitle>
-                  <div className="text-3xl font-bold text-primary mb-2">{pack.investment}</div>
-                  <p className="text-sm text-muted-foreground">Investment</p>
+                  <div className="text-3xl font-bold text-primary mb-2">
+                    {pack.investment}
+                  </div>
+                  <p className="text-sm text-muted-foreground">
+                    Business Entry Cost
+                  </p>
                 </CardHeader>
 
                 <CardContent>
                   {/* Value Props */}
                   <div className="space-y-3 mb-6 pb-6 border-b border-border">
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Product Value:</span>
+                      <span className="text-sm text-muted-foreground">
+                        Product Value:
+                      </span>
                       <span className="font-semibold">{pack.productValue}</span>
                     </div>
                     {pack.cashBack !== "-" && (
                       <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">Cash Back:</span>
-                        <span className="font-semibold text-secondary">{pack.cashBack}</span>
+                        <span className="text-sm text-muted-foreground">
+                          Cashback:
+                        </span>
+                        <span className="font-semibold text-secondary">
+                          {pack.cashBack}
+                        </span>
                       </div>
                     )}
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Wallet:</span>
-                      <span className="font-semibold">{pack.repurchaseWallet}</span>
+                      <span className="text-sm text-muted-foreground">
+                        Repurchase Wallet:
+                      </span>
+                      <span className="font-semibold">
+                        {pack.repurchaseWallet}
+                      </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Monthly Cap:</span>
-                      <span className="font-semibold">{pack.monthlyCapping}</span>
+                      <span className="text-sm text-muted-foreground">
+                        Income Capping:
+                      </span>
+                      <span className="font-semibold">
+                        {pack.monthlyCapping}
+                      </span>
                     </div>
                   </div>
 
@@ -146,7 +174,7 @@ const Join = () => {
                   <ul className="space-y-3 mb-6">
                     {pack.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-sm">
-                        <Check className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                        <Check className="h-4 w-4 text-primary mt-0.5" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -160,7 +188,7 @@ const Join = () => {
                     size="lg"
                   >
                     <Link to="/user/login">
-                      Select Plan
+                      Activate Now
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>
@@ -171,124 +199,56 @@ const Join = () => {
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-12 text-center">How to Get Started</h2>
-
-            <div className="space-y-6">
-              <Card className="border-primary/20 shadow-soft">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-primary flex-shrink-0">
-                      <span className="text-xl font-bold text-primary-foreground">1</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2">Choose Your Pack</h3>
-                      <p className="text-muted-foreground">
-                        Select the starter pack that aligns with your goals and budget. Higher packs offer
-                        greater benefits and earning potential.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-primary/20 shadow-soft">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-primary flex-shrink-0">
-                      <span className="text-xl font-bold text-primary-foreground">2</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2">Activate Your ID</h3>
-                      <p className="text-muted-foreground">
-                        Complete the registration process and activate your unique distributor ID. You'll get
-                        immediate access to our training portal.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-primary/20 shadow-soft">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-primary flex-shrink-0">
-                      <span className="text-xl font-bold text-primary-foreground">3</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2">Receive Your Products</h3>
-                      <p className="text-muted-foreground">
-                        Your starter kit will be delivered to your doorstep. Experience our products firsthand
-                        and learn about their benefits.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-primary/20 shadow-soft">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-primary flex-shrink-0">
-                      <span className="text-xl font-bold text-primary-foreground">4</span>
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold mb-2">Start Building</h3>
-                      <p className="text-muted-foreground">
-                        Begin your journey! Share products, build your team, and start earning through our
-                        comprehensive compensation plan.
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Benefits Overview */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <h2 className="text-4xl font-bold mb-12 text-center">What You Get</h2>
+            <h2 className="text-4xl font-bold mb-12 text-center">
+              Why Join QWEEZZOT?
+            </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Card className="border-none shadow-soft hover:shadow-gold transition-all">
+              <Card className="border-none shadow-soft hover:shadow-gold">
                 <CardContent className="pt-8 text-center">
                   <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-primary mx-auto">
                     <TrendingUp className="h-8 w-8 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">Multiple Income Streams</h3>
+                  <h3 className="text-xl font-bold mb-3">
+                    Multiple Income Sources
+                  </h3>
                   <p className="text-muted-foreground">
-                    Earn from direct sales, team performance, referrals, and bonuses
+                    Earn through direct income, matching income, leadership
+                    bonuses, and rewards.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-none shadow-soft hover:shadow-gold transition-all">
+              <Card className="border-none shadow-soft hover:shadow-gold">
                 <CardContent className="pt-8 text-center">
                   <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-primary mx-auto">
                     <Star className="h-8 w-8 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">Premium Products</h3>
+                  <h3 className="text-xl font-bold mb-3">
+                    Transparent BP System
+                  </h3>
                   <p className="text-muted-foreground">
-                    Access to world-class Ayurvedic wellness products at special rates
+                    Clear tracking, fair income distribution, and no hidden
+                    deductions.
                   </p>
                 </CardContent>
               </Card>
 
-              <Card className="border-none shadow-soft hover:shadow-gold transition-all">
+              <Card className="border-none shadow-soft hover:shadow-gold">
                 <CardContent className="pt-8 text-center">
                   <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-primary mx-auto">
                     <Check className="h-8 w-8 text-primary-foreground" />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">Complete Support</h3>
+                  <h3 className="text-xl font-bold mb-3">
+                    Free Training & Support
+                  </h3>
                   <p className="text-muted-foreground">
-                    Training, marketing materials, and ongoing guidance from our team
+                    Step-by-step guidance, business training, and leadership
+                    support at every level.
                   </p>
                 </CardContent>
               </Card>
@@ -300,22 +260,17 @@ const Join = () => {
       {/* Final CTA */}
       <section className="py-20 bg-gradient-primary text-primary-foreground">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Begin?</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Your Time Starts Now
+          </h2>
           <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-            Take the first step towards financial freedom and wellness. Your journey starts today.
+            Register today and take the first step toward building long-term
+            financial stability.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Button variant="gold" size="lg" className="shadow-gold">
-              Activate Your ID Now
+              Activate Your ID
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              className="bg-primary-foreground/10 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary backdrop-blur-sm"
-              asChild
-            >
-              <Link to="/services">Learn About the Plan</Link>
             </Button>
           </div>
         </div>

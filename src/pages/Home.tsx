@@ -17,7 +17,7 @@ const Home = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <Hero />
-      <OsfigoHeroSlider />
+      {/* <OsfigoHeroSlider /> */}
 
       {/* Highlights Bar */}
       {/* <HighlightsBar /> */}

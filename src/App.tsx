@@ -74,6 +74,9 @@ import UpdateKyc from "./pages/user/UpdateKyc";
 import WalletRequest from "./pages/user/WalletRequest";
 import WalletTransfer from "./pages/user/WalletTransfer";
 import Contact from "./pages/Contct";
+import Legals from "./pages/Legals";
+import Join from "./pages/Join";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -90,9 +93,13 @@ const App = () => (
             <Route element={<Layout />}>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
+              <Route path="/legal" element={<Legals />} />
               <Route path="/services" element={<Services />} />
+              <Route path="/join" element={<Join />} />
+              <Route path="/terms" element={<Terms/>} />
               <Route path="/products" element={<Products />} />
-              <Route path="/products/:id" element={<ProductDetail />} />
+                <Route path="/products/:id" element={<ProductDetail />} />
+                
           
               <Route path="/brand" element={<Brand />} />
               <Route path="/contact" element={<Contact />} />

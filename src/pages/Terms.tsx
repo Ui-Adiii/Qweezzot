@@ -1,64 +1,71 @@
-import { Shield, FileText, CheckCircle, Award } from "lucide-react";
+import { CheckCircle, Shield } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-const Legal = () => {
-  const legalPoints = [
+const Terms = () => {
+  const terms = [
     {
-      title: "Company Registration",
+      title: "KYC Requirement",
       description:
-        "QWEEZZOT Private Limited is a legally registered company operating in accordance with applicable laws and regulations.",
+        "Completion of Know Your Customer (KYC) verification is mandatory for all members to become eligible for income payouts and withdrawals.",
     },
     {
-      title: "GST Compliance",
+      title: "One ID Policy",
       description:
-        "The company is registered under GST and follows proper tax invoicing, reporting, and statutory compliance.",
+        "Each individual is allowed to hold only one ID. Multiple accounts under the same person are strictly prohibited.",
     },
     {
-      title: "Trademark Protection",
+      title: "Payout Schedule",
       description:
-        "The brand name, logo, and intellectual assets of QWEEZZOT are protected under applicable trademark laws.",
+        "All eligible payouts are processed on a weekly basis, subject to company policies and verification procedures.",
     },
     {
-      title: "Direct Selling Guidelines",
+      title: "Policy Compliance",
       description:
-        "All business operations are aligned with direct selling rules and ethical business practices.",
+        "All members must follow the company’s rules, guidelines, and operational policies at all times.",
     },
     {
-      title: "Transparent Policies",
+      title: "Zero Tolerance for Fraud",
       description:
-        "Clear policies related to payouts, refunds, returns, and conduct are defined and communicated to all members.",
-    },
-    {
-      title: "Data & Privacy Protection",
-      description:
-        "Member information and data are handled responsibly and used strictly for business and compliance purposes.",
+        "Any fraudulent activity, manipulation, or misuse of the system will lead to immediate suspension or termination of the account.",
     },
   ];
 
   return (
-    <div className="min-h-screen">     
+    <div className="min-h-screen">
+      {/* Breadcrumb */}
+      <div className="bg-primary text-primary-foreground py-4">
+        <div className="container mx-auto px-4">
+          <div className="flex items-center gap-2 text-sm">
+            <a href="/" className="hover:text-secondary transition-colors">
+              Home
+            </a>
+            <span>/</span>
+            <span>Terms & Conditions</span>
+          </div>
+        </div>
+      </div>
 
       {/* Hero */}
       <section className="bg-gradient-primary text-primary-foreground py-20">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-5xl md:text-6xl font-bold mb-6">
-              Legal & Compliance
+              Terms & Conditions
             </h1>
             <p className="text-xl opacity-90">
-              Built on transparency, accountability, and ethical business
-              practices.
+              Clear guidelines designed to ensure transparency, fairness, and
+              trust across the QWEEZZOT platform.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Legal Content */}
+      {/* Main Content */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {legalPoints.map((item, index) => (
+              {terms.map((item, index) => (
                 <Card
                   key={index}
                   className="border-none shadow-soft hover:shadow-gold transition-all duration-300"
@@ -85,7 +92,7 @@ const Legal = () => {
         </div>
       </section>
 
-      {/* Compliance Commitment */}
+      {/* Compliance Section */}
       <section className="py-20 bg-muted">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -93,26 +100,26 @@ const Legal = () => {
               <Shield className="h-10 w-10 text-primary-foreground" />
             </div>
             <h2 className="text-3xl font-bold mb-4">
-              Commitment to Legal Integrity
+              Commitment to Fair Practices
             </h2>
             <p className="text-lg text-muted-foreground">
-              QWEEZZOT is committed to operating with honesty, transparency, and
-              full compliance. Our legal framework is designed to protect the
-              interests of the company, partners, and customers.
+              QWEEZZOT operates on ethical principles, transparent systems, and
+              compliance with applicable laws. These terms exist to protect both
+              the company and its members while maintaining a trustworthy
+              business environment.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Disclaimer */}
+      {/* Note */}
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto p-6 bg-muted/50 rounded-lg">
             <p className="text-sm text-muted-foreground">
-              <strong>Disclaimer:</strong> Participation in the business is
-              subject to compliance with company policies and applicable laws.
-              Income depends on individual effort, performance, and adherence to
-              the system. The company does not guarantee fixed earnings.
+              <strong>Note:</strong> The company reserves the right to update or
+              modify these terms and conditions at any time. Continued use of
+              the platform implies acceptance of the latest version.
             </p>
           </div>
         </div>
@@ -121,4 +128,4 @@ const Legal = () => {
   );
 };
 
-export default Legal;
+export default Terms;
