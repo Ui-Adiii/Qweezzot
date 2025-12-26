@@ -205,7 +205,7 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({
   return (
     <aside className="fixed top-0 left-0 z-40 w-72 h-screen">
       {/* Glass Background */}
-      <div className="h-full bg-gradient-to-b from-sky-900/95 via-sky-800/95 to-sky-900/95 backdrop-blur-xl border-r border-sky-700/30 shadow-2xl">
+      <div className="h-full bg-gradient-to-b from-sky-600/95 via-sky-600/95 to-sky-600/95 backdrop-blur-xl border-r border-sky-700/30 shadow-2xl">
         <div className="h-full px-4 py-6 overflow-y-auto">
           {/* Logo/Brand Section with Glass Effect */}
           <div className="mb-8 px-3 pt-4">
