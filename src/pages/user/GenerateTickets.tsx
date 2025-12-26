@@ -103,26 +103,26 @@ const GenerateTickets: React.FC = () => {
 
         {/* Ticket Statistics */}
         <div className="space-y-6">
-          <Card className="border-blue-200 bg-blue-50/50">
+          <Card className="border-sky-200 bg-sky-50/50">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-blue-700">Open Tickets</p>
-                  <p className="text-2xl font-bold text-blue-600">1</p>
+                  <p className="text-sm text-sky-700">Open Tickets</p>
+                  <p className="text-2xl font-bold text-sky-600">1</p>
                 </div>
-                <AlertCircle className="h-8 w-8 text-blue-600" />
+                <AlertCircle className="h-8 w-8 text-sky-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card className="border-blue-200 bg-blue-50/50">
+          <Card className="border-sky-200 bg-sky-50/50">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-blue-700">In Progress</p>
-                  <p className="text-2xl font-bold text-blue-600">1</p>
+                  <p className="text-sm text-sky-700">In Progress</p>
+                  <p className="text-2xl font-bold text-sky-600">1</p>
                 </div>
-                <MessageCircle className="h-8 w-8 text-blue-600" />
+                <MessageCircle className="h-8 w-8 text-sky-600" />
               </div>
             </CardContent>
           </Card>
@@ -184,9 +184,9 @@ const GenerateTickets: React.FC = () => {
                           }
                           className={
                             ticket.status === "Resolved"
-                              ? "bg-blue-600"
+                              ? "bg-sky-600"
                               : ticket.status === "In Progress"
-                              ? "bg-blue-600"
+                              ? "bg-sky-600"
                               : "bg-orange-500"
                           }
                         >

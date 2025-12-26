@@ -90,7 +90,7 @@ const UserProfile = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600"></div>
       </div>
     );
   }
@@ -104,15 +104,15 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 max-w-4xl mx-auto space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
           My Profile
         </h1>
         {!editing ? (
           <Button
             onClick={() => setEditing(true)}
-            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+            className="flex items-center gap-2 bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
           >
             <Edit className="h-4 w-4" />
             Edit Profile
@@ -121,7 +121,7 @@ const UserProfile = () => {
           <div className="flex gap-2">
             <Button
               onClick={handleSave}
-              className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+              className="flex items-center gap-2 bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
             >
               <Save className="h-4 w-4" />
               Save
@@ -129,7 +129,7 @@ const UserProfile = () => {
             <Button
               variant="outline"
               onClick={handleCancel}
-              className="flex items-center gap-2 border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10"
+              className="flex items-center gap-2 border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10"
             >
               <X className="h-4 w-4" />
               Cancel
@@ -140,13 +140,13 @@ const UserProfile = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Profile Information */}
-        <Card className="lg:col-span-2 border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="lg:col-span-2 border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-blue-800">
-              <User className="h-5 w-5 text-blue-600" />
+            <CardTitle className="flex items-center gap-2 text-sky-800">
+              <User className="h-5 w-5 text-sky-600" />
               Profile Information
             </CardTitle>
-            <CardDescription className="text-blue-700/70">
+            <CardDescription className="text-sky-700/70">
               Manage your personal information and account details
             </CardDescription>
           </CardHeader>
@@ -202,18 +202,18 @@ const UserProfile = () => {
 
         {/* Account Details */}
         <div className="space-y-6">
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="text-blue-800">Account Status</CardTitle>
+              <CardTitle className="text-sky-800">Account Status</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-blue-700/70">Status:</span>
+                  <span className="text-sky-700/70">Status:</span>
                   <span
                     className={`px-2 py-1 rounded text-sm font-medium backdrop-blur-sm ${
                       profile.isActive
-                        ? "bg-blue-100/70 text-blue-800 ring-1 ring-blue-300/30"
+                        ? "bg-sky-100/70 text-sky-800 ring-1 ring-sky-300/30"
                         : "bg-red-100/70 text-red-800 ring-1 ring-red-300/30"
                     }`}
                   >
@@ -221,8 +221,8 @@ const UserProfile = () => {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-blue-700/70">Referral Code:</span>
-                  <span className="font-mono font-bold text-blue-700 bg-white/60 backdrop-blur-sm px-2 py-1 rounded ring-1 ring-amber-400/20">
+                  <span className="text-sky-700/70">Referral Code:</span>
+                  <span className="font-mono font-bold text-sky-700 bg-white/60 backdrop-blur-sm px-2 py-1 rounded ring-1 ring-amber-400/20">
                     {profile.referralCode}
                   </span>
                 </div>
@@ -230,27 +230,27 @@ const UserProfile = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="text-blue-800">Wallet Summary</CardTitle>
+              <CardTitle className="text-sky-800">Wallet Summary</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <div className="flex justify-between py-2 border-b border-blue-200/50">
-                  <span className="text-blue-700/70">Shopping Wallet:</span>
-                  <span className="font-bold text-blue-800">
+                <div className="flex justify-between py-2 border-b border-sky-200/50">
+                  <span className="text-sky-700/70">Shopping Wallet:</span>
+                  <span className="font-bold text-sky-800">
                     ₹{profile.wallets.purchaseWallet}
                   </span>
                 </div>
-                <div className="flex justify-between py-2 border-b border-blue-200/50">
-                  <span className="text-blue-700/70">Earned Wallet:</span>
-                  <span className="font-bold text-blue-800">
+                <div className="flex justify-between py-2 border-b border-sky-200/50">
+                  <span className="text-sky-700/70">Earned Wallet:</span>
+                  <span className="font-bold text-sky-800">
                     ₹{profile.wallets.earnedWallet}
                   </span>
                 </div>
                 <div className="flex justify-between py-2">
-                  <span className="text-blue-700/70">Referral Wallet:</span>
-                  <span className="font-bold text-blue-800">
+                  <span className="text-sky-700/70">Referral Wallet:</span>
+                  <span className="font-bold text-sky-800">
                     ₹{profile.wallets.referralWallet}
                   </span>
                 </div>

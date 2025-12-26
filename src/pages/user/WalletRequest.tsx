@@ -255,7 +255,7 @@ const WalletRequest: React.FC = () => {
     switch (status) {
       case "approved":
         return (
-          <Badge className="bg-blue-100 text-blue-800 border-blue-300">
+          <Badge className="bg-sky-100 text-sky-800 border-sky-300">
             <CheckCircle className="h-3 w-3 mr-1" />
             Approved
           </Badge>
@@ -311,25 +311,25 @@ const WalletRequest: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center space-x-3"
       >
-        <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-          <Wallet className="h-8 w-8 text-blue-600" />
+        <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+          <Wallet className="h-8 w-8 text-sky-600" />
         </div>
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
           Wallet Request
         </h1>
       </motion.div>
 
       {/* Admin Payment Details */}
       {paymentSettings && (
-        <Card className="border-blue-200/50 bg-gradient-to-br from-blue-50/80 to-purple-50/80 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-gradient-to-br from-sky-50/80 to-purple-50/80 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-xl text-blue-800 flex items-center gap-2">
+            <CardTitle className="text-xl text-sky-800 flex items-center gap-2">
               <FileText className="h-5 w-5" />
               Payment Details (Read Only)
             </CardTitle>
@@ -351,8 +351,8 @@ const WalletRequest: React.FC = () => {
                   paymentSettings.accountNumber ||
                   (paymentSettings.bankAccounts &&
                     paymentSettings.bankAccounts.length > 0)) && (
-                  <div className="p-4 bg-white/70 backdrop-blur-xl rounded-lg border border-blue-200/50 ring-1 ring-blue-400/10 shadow-md">
-                    <h3 className="font-semibold text-blue-800 mb-3 flex items-center gap-2">
+                  <div className="p-4 bg-white/70 backdrop-blur-xl rounded-lg border border-sky-200/50 ring-1 ring-sky-400/10 shadow-md">
+                    <h3 className="font-semibold text-sky-800 mb-3 flex items-center gap-2">
                       <FileText className="h-4 w-4" />
                       Bank Transfer Details
                     </h3>
@@ -430,7 +430,7 @@ const WalletRequest: React.FC = () => {
                   (paymentSettings.upiAccounts &&
                     paymentSettings.upiAccounts.length > 0)) && (
                   <div className="p-4 bg-white/70 backdrop-blur-xl rounded-lg border border-purple-200/50 ring-1 ring-purple-400/10 shadow-md">
-                    <h3 className="font-semibold text-blue-800 mb-3 flex items-center gap-2">
+                    <h3 className="font-semibold text-sky-800 mb-3 flex items-center gap-2">
                       <FileText className="h-4 w-4" />
                       UPI Payment Details
                     </h3>
@@ -482,9 +482,9 @@ const WalletRequest: React.FC = () => {
       )}
 
       {/* Request Form */}
-      <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+      <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
         <CardHeader>
-          <CardTitle className="text-xl text-blue-800">
+          <CardTitle className="text-xl text-sky-800">
             Create Wallet Request
           </CardTitle>
         </CardHeader>
@@ -492,7 +492,7 @@ const WalletRequest: React.FC = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="walletType" className="text-blue-800">
+                <Label htmlFor="walletType" className="text-sky-800">
                   Wallet Type <span className="text-red-500">*</span>
                 </Label>
                 <select
@@ -504,7 +504,7 @@ const WalletRequest: React.FC = () => {
                       walletType: e.target.value,
                     }))
                   }
-                  className="w-full p-2 border border-blue-200/50 bg-white/80 backdrop-blur-sm rounded-md ring-1 ring-amber-400/10"
+                  className="w-full p-2 border border-sky-200/50 bg-white/80 backdrop-blur-sm rounded-md ring-1 ring-amber-400/10"
                   required
                   disabled
                 >
@@ -513,7 +513,7 @@ const WalletRequest: React.FC = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="amount" className="text-blue-800">
+                <Label htmlFor="amount" className="text-sky-800">
                   Total Amount <span className="text-red-500">*</span>
                 </Label>
                 <Input
@@ -526,14 +526,14 @@ const WalletRequest: React.FC = () => {
                     setFormData((prev) => ({ ...prev, amount: e.target.value }))
                   }
                   placeholder="Enter amount"
-                  className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                  className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
                   required
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="requestDetails" className="text-blue-800">
+              <Label htmlFor="requestDetails" className="text-sky-800">
                 Request Details
               </Label>
               <Textarea
@@ -546,14 +546,14 @@ const WalletRequest: React.FC = () => {
                   }))
                 }
                 placeholder="Enter any additional details about your request..."
-                className="w-full p-3 border border-blue-200/50 bg-white/80 backdrop-blur-sm rounded-md h-24 ring-1 ring-amber-400/10"
+                className="w-full p-3 border border-sky-200/50 bg-white/80 backdrop-blur-sm rounded-md h-24 ring-1 ring-amber-400/10"
                 rows={4}
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="paymentMethod" className="text-blue-800">
+                <Label htmlFor="paymentMethod" className="text-sky-800">
                   Payment Method <span className="text-red-500">*</span>
                 </Label>
                 <select
@@ -565,7 +565,7 @@ const WalletRequest: React.FC = () => {
                       paymentMethod: e.target.value,
                     }))
                   }
-                  className="w-full p-2 border border-blue-200/50 bg-white/80 backdrop-blur-sm rounded-md ring-1 ring-amber-400/10"
+                  className="w-full p-2 border border-sky-200/50 bg-white/80 backdrop-blur-sm rounded-md ring-1 ring-amber-400/10"
                   required
                 >
                   <option value="bank">Bank Transfer</option>
@@ -574,7 +574,7 @@ const WalletRequest: React.FC = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="transactionId" className="text-blue-800">
+                <Label htmlFor="transactionId" className="text-sky-800">
                   Transaction ID
                 </Label>
                 <Input
@@ -588,13 +588,13 @@ const WalletRequest: React.FC = () => {
                     }))
                   }
                   placeholder="Enter transaction ID (optional)"
-                  className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                  className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
                 />
               </div>
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="screenshot" className="text-blue-800">
+              <Label htmlFor="screenshot" className="text-sky-800">
                 Payment Screenshot <span className="text-red-500">*</span>
               </Label>
               <input
@@ -611,7 +611,7 @@ const WalletRequest: React.FC = () => {
                     <img
                       src={screenshotPreview}
                       alt="Screenshot preview"
-                      className="w-32 h-32 object-cover rounded-lg border-2 border-blue-200/50"
+                      className="w-32 h-32 object-cover rounded-lg border-2 border-sky-200/50"
                     />
                     <Button
                       type="button"
@@ -630,12 +630,12 @@ const WalletRequest: React.FC = () => {
                     onClick={() => fileInputRef.current?.click()}
                     className="h-32 w-32 border-dashed flex flex-col items-center justify-center"
                   >
-                    <ImageIcon className="h-8 w-8 mb-2 text-blue-600" />
+                    <ImageIcon className="h-8 w-8 mb-2 text-sky-600" />
                     <span className="text-sm">Choose File</span>
                   </Button>
                 )}
                 {screenshotFile && (
-                  <p className="text-sm text-blue-700">{screenshotFile.name}</p>
+                  <p className="text-sm text-sky-700">{screenshotFile.name}</p>
                 )}
               </div>
             </div>
@@ -644,7 +644,7 @@ const WalletRequest: React.FC = () => {
               <Button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+                className="w-full bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
               >
                 <FileText className="h-4 w-4 mr-2" />
                 {submitting ? "Submitting..." : "SUBMIT"}
@@ -655,16 +655,16 @@ const WalletRequest: React.FC = () => {
       </Card>
 
       {/* Request History */}
-      <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+      <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
         <CardHeader>
-          <CardTitle className="text-xl text-blue-800">
+          <CardTitle className="text-xl text-sky-800">
             Request History
           </CardTitle>
         </CardHeader>
         <CardContent>
           {loading ? (
             <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600 mx-auto"></div>
             </div>
           ) : requests.length === 0 ? (
             <div className="text-center py-8 text-muted-foreground">
@@ -707,7 +707,7 @@ const WalletRequest: React.FC = () => {
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                         {getWalletTypeName(request.walletType)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-blue-700">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-sky-700">
                         {formatCurrency(request.amount)}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 capitalize">
@@ -716,10 +716,10 @@ const WalletRequest: React.FC = () => {
                       <td className="px-6 py-4 text-sm">
                         {request.paymentMethod === "bank" &&
                         request.bankDetails ? (
-                          <div className="space-y-1 bg-blue-50 p-2 rounded border border-blue-200">
+                          <div className="space-y-1 bg-sky-50 p-2 rounded border border-sky-200">
                             {request.bankDetails.bankName && (
                               <div className="text-gray-700">
-                                <span className="font-semibold text-blue-700">
+                                <span className="font-semibold text-sky-700">
                                   Bank:
                                 </span>
                                 <span className="ml-1">
@@ -729,7 +729,7 @@ const WalletRequest: React.FC = () => {
                             )}
                             {request.bankDetails.accountNumber && (
                               <div className="text-gray-700">
-                                <span className="font-semibold text-blue-700">
+                                <span className="font-semibold text-sky-700">
                                   A/C No:
                                 </span>
                                 <span className="ml-1 font-mono">
@@ -739,7 +739,7 @@ const WalletRequest: React.FC = () => {
                             )}
                             {request.bankDetails.ifscCode && (
                               <div className="text-gray-700">
-                                <span className="font-semibold text-blue-700">
+                                <span className="font-semibold text-sky-700">
                                   IFSC:
                                 </span>
                                 <span className="ml-1 font-mono">
@@ -749,7 +749,7 @@ const WalletRequest: React.FC = () => {
                             )}
                             {request.bankDetails.accountHolderName && (
                               <div className="text-gray-700">
-                                <span className="font-semibold text-blue-700">
+                                <span className="font-semibold text-sky-700">
                                   Account Holder:
                                 </span>
                                 <span className="ml-1">
@@ -763,7 +763,7 @@ const WalletRequest: React.FC = () => {
                           <div className="space-y-1 bg-purple-50 p-2 rounded border border-purple-200">
                             {request.upiDetails.upiId && (
                               <div className="text-gray-700">
-                                <span className="font-semibold text-blue-700">
+                                <span className="font-semibold text-sky-700">
                                   UPI ID:
                                 </span>
                                 <span className="ml-1 font-mono">
@@ -773,7 +773,7 @@ const WalletRequest: React.FC = () => {
                             )}
                             {request.upiDetails.name && (
                               <div className="text-gray-700">
-                                <span className="font-semibold text-blue-700">
+                                <span className="font-semibold text-sky-700">
                                   Name:
                                 </span>
                                 <span className="ml-1">
@@ -797,7 +797,7 @@ const WalletRequest: React.FC = () => {
                             href={request.screenshot}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800"
+                            className="text-sky-600 hover:text-sky-800"
                           >
                             <ImageIcon className="h-5 w-5" />
                           </a>

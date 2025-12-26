@@ -119,17 +119,17 @@ const UserSettings = () => {
   };
 
   return (
-    <div className="p-6 max-w-4xl mx-auto space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 max-w-4xl mx-auto space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex justify-between items-center"
       >
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-            <Settings className="h-8 w-8 text-blue-600" />
+          <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+            <Settings className="h-8 w-8 text-sky-600" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
             Settings
           </h1>
         </div>
@@ -137,7 +137,7 @@ const UserSettings = () => {
           <Button
             onClick={saveSettings}
             disabled={loading}
-            className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+            className="flex items-center gap-2 bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
           >
             <Save className="h-4 w-4" />
             Save Changes
@@ -152,13 +152,13 @@ const UserSettings = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-blue-800">
-                <Bell className="h-5 w-5 text-blue-600" />
+              <CardTitle className="flex items-center gap-2 text-sky-800">
+                <Bell className="h-5 w-5 text-sky-600" />
                 Notifications
               </CardTitle>
-              <CardDescription className="text-blue-700/70">
+              <CardDescription className="text-sky-700/70">
                 Manage how you receive notifications
               </CardDescription>
             </CardHeader>
@@ -185,8 +185,8 @@ const UserSettings = () => {
                   className="flex items-center justify-between"
                 >
                   <div className="space-y-0.5">
-                    <Label className="text-blue-800">{item.label}</Label>
-                    <p className="text-sm text-blue-700/70">{item.desc}</p>
+                    <Label className="text-sky-800">{item.label}</Label>
+                    <p className="text-sm text-sky-700/70">{item.desc}</p>
                   </div>
                   <Switch
                     checked={
@@ -211,23 +211,23 @@ const UserSettings = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-blue-800">
-                <Shield className="h-5 w-5 text-blue-600" />
+              <CardTitle className="flex items-center gap-2 text-sky-800">
+                <Shield className="h-5 w-5 text-sky-600" />
                 Security & Privacy
               </CardTitle>
-              <CardDescription className="text-blue-700/70">
+              <CardDescription className="text-sky-700/70">
                 Manage your security preferences
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="flex items-center justify-between">
                 <div className="space-y-0.5">
-                  <Label className="text-blue-800">
+                  <Label className="text-sky-800">
                     Two-Factor Authentication
                   </Label>
-                  <p className="text-sm text-blue-700/70">
+                  <p className="text-sm text-sky-700/70">
                     Add extra security to your account
                   </p>
                 </div>
@@ -240,7 +240,7 @@ const UserSettings = () => {
               </div>
 
               <div className="space-y-2">
-                <Label className="text-blue-800">Profile Visibility</Label>
+                <Label className="text-sky-800">Profile Visibility</Label>
                 <div className="space-y-2">
                   <div className="flex items-center space-x-2">
                     <input
@@ -251,9 +251,9 @@ const UserSettings = () => {
                       onChange={() =>
                         handleSettingsChange("profileVisibility", "private")
                       }
-                      className="text-blue-600"
+                      className="text-sky-600"
                     />
-                    <Label htmlFor="private" className="text-blue-800">
+                    <Label htmlFor="private" className="text-sky-800">
                       Private (Only you can see your profile)
                     </Label>
                   </div>
@@ -266,9 +266,9 @@ const UserSettings = () => {
                       onChange={() =>
                         handleSettingsChange("profileVisibility", "public")
                       }
-                      className="text-blue-600"
+                      className="text-sky-600"
                     />
-                    <Label htmlFor="public" className="text-blue-800">
+                    <Label htmlFor="public" className="text-sky-800">
                       Public (Visible to other members)
                     </Label>
                   </div>
@@ -285,20 +285,20 @@ const UserSettings = () => {
           transition={{ delay: 0.3 }}
           className="lg:col-span-2"
         >
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-blue-800">
-                <Lock className="h-5 w-5 text-blue-600" />
+              <CardTitle className="flex items-center gap-2 text-sky-800">
+                <Lock className="h-5 w-5 text-sky-600" />
                 Change Password
               </CardTitle>
-              <CardDescription className="text-blue-700/70">
+              <CardDescription className="text-sky-700/70">
                 Update your account password
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="space-y-2">
-                  <Label htmlFor="currentPassword" className="text-blue-800">
+                  <Label htmlFor="currentPassword" className="text-sky-800">
                     Current Password
                   </Label>
                   <div className="relative">
@@ -313,7 +313,7 @@ const UserSettings = () => {
                         }))
                       }
                       placeholder="Enter current password"
-                      className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                      className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
                       disabled={loading}
                     />
                     <Button
@@ -326,16 +326,16 @@ const UserSettings = () => {
                       }
                     >
                       {showCurrentPassword ? (
-                        <EyeOff className="h-4 w-4 text-blue-600" />
+                        <EyeOff className="h-4 w-4 text-sky-600" />
                       ) : (
-                        <Eye className="h-4 w-4 text-blue-600" />
+                        <Eye className="h-4 w-4 text-sky-600" />
                       )}
                     </Button>
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="newPassword" className="text-blue-800">
+                  <Label htmlFor="newPassword" className="text-sky-800">
                     New Password
                   </Label>
                   <div className="relative">
@@ -350,7 +350,7 @@ const UserSettings = () => {
                         }))
                       }
                       placeholder="Enter new password"
-                      className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                      className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
                     />
                     <Button
                       type="button"
@@ -360,16 +360,16 @@ const UserSettings = () => {
                       onClick={() => setShowNewPassword(!showNewPassword)}
                     >
                       {showNewPassword ? (
-                        <EyeOff className="h-4 w-4 text-blue-600" />
+                        <EyeOff className="h-4 w-4 text-sky-600" />
                       ) : (
-                        <Eye className="h-4 w-4 text-blue-600" />
+                        <Eye className="h-4 w-4 text-sky-600" />
                       )}
                     </Button>
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="confirmPassword" className="text-blue-800">
+                  <Label htmlFor="confirmPassword" className="text-sky-800">
                     Confirm Password
                   </Label>
                   <Input
@@ -383,7 +383,7 @@ const UserSettings = () => {
                       }))
                     }
                     placeholder="Confirm new password"
-                    className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                    className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
                   />
                 </div>
               </div>
@@ -401,7 +401,7 @@ const UserSettings = () => {
                     !passwordForm.newPassword ||
                     !passwordForm.confirmPassword
                   }
-                  className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+                  className="bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
                 >
                   {loading ? "Updating..." : "Update Password"}
                 </Button>

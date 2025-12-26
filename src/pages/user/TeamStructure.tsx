@@ -208,11 +208,11 @@ const TeamStructure: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+      <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
         <div className="flex items-center justify-center min-h-[400px]">
           <div className="text-center">
-            <RefreshCw className="h-8 w-8 animate-spin text-blue-600 mx-auto mb-4" />
-            <p className="text-blue-700/70">Loading team structure...</p>
+            <RefreshCw className="h-8 w-8 animate-spin text-sky-600 mx-auto mb-4" />
+            <p className="text-sky-700/70">Loading team structure...</p>
           </div>
         </div>
       </div>
@@ -221,13 +221,13 @@ const TeamStructure: React.FC = () => {
 
   if (!teamData) {
     return (
-      <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
-        <div className="text-center py-12 text-blue-700/70">
-          <Users className="h-16 w-16 text-blue-300 mx-auto mb-4" />
+      <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
+        <div className="text-center py-12 text-sky-700/70">
+          <Users className="h-16 w-16 text-sky-300 mx-auto mb-4" />
           <p className="text-lg font-medium">No team structure available</p>
           <Button
             onClick={fetchTeamStructure}
-            className="mt-4 border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50"
+            className="mt-4 border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50"
             variant="outline"
           >
             <RefreshCw className="h-4 w-4 mr-2" />
@@ -241,17 +241,17 @@ const TeamStructure: React.FC = () => {
   const teamStats = calculateTeamStats(teamData.tree);
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-            <Users className="h-8 w-8 text-blue-600" />
+          <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+            <Users className="h-8 w-8 text-sky-600" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
             Team Structure
           </h1>
         </div>
@@ -260,7 +260,7 @@ const TeamStructure: React.FC = () => {
             onClick={handleExpandAll}
             variant="outline"
             size="sm"
-            className="border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50"
+            className="border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50"
           >
             <Maximize2 className="h-4 w-4 mr-2" />
             Expand All
@@ -269,7 +269,7 @@ const TeamStructure: React.FC = () => {
             onClick={handleCollapseAll}
             variant="outline"
             size="sm"
-            className="border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50"
+            className="border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50"
           >
             <Minimize2 className="h-4 w-4 mr-2" />
             Collapse All
@@ -278,7 +278,7 @@ const TeamStructure: React.FC = () => {
             onClick={fetchTeamStructure}
             variant="outline"
             disabled={loading}
-            className="border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50"
+            className="border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50"
           >
             <RefreshCw
               className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`}
@@ -294,17 +294,17 @@ const TeamStructure: React.FC = () => {
           {
             label: "Direct Referrals",
             value: teamData.stats.directReferrals,
-            color: "blue",
+            color: "sky",
           },
           {
             label: "Total Team",
             value: teamData.stats.totalTeam,
-            color: "blue",
+            color: "sky",
           },
           {
             label: "Left Team",
             value: teamData.stats.leftTeam || teamStats.left,
-            color: "blue",
+            color: "sky",
           },
           {
             label: "Right Team",
@@ -319,7 +319,7 @@ const TeamStructure: React.FC = () => {
             transition={{ delay: index * 0.1 }}
             whileHover={{ scale: 1.02, y: -5 }}
           >
-            <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-blue-500">
+            <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-sky-500">
               <CardContent className="p-4 text-center">
                 <motion.p
                   initial={{ opacity: 0, scale: 0.5 }}
@@ -343,10 +343,10 @@ const TeamStructure: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
             <div className="flex items-center justify-between">
-              <CardTitle className="text-blue-800">
+              <CardTitle className="text-sky-800">
                 Complete Team Tree Structure
               </CardTitle>
               <div className="relative w-64">
@@ -356,7 +356,7 @@ const TeamStructure: React.FC = () => {
                   placeholder="Search by name, username, code..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                  className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 text-sm"
                 />
               </div>
             </div>
@@ -368,17 +368,17 @@ const TeamStructure: React.FC = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="inline-block p-6 bg-gradient-to-br from-blue-500/30 to-amber-500/30 backdrop-blur-sm rounded-xl border-2 border-blue-300/50 ring-4 ring-amber-400/20 shadow-xl"
+                  className="inline-block p-6 bg-gradient-to-br from-sky-500/30 to-amber-500/30 backdrop-blur-sm rounded-xl border-2 border-sky-300/50 ring-4 ring-amber-400/20 shadow-xl"
                 >
                   <div className="flex items-center justify-center gap-2 mb-2">
-                    <h3 className="font-bold text-xl text-blue-900">
+                    <h3 className="font-bold text-xl text-sky-900">
                       {teamData.user.name}
                     </h3>
                     {teamData.user.rank && (
                       <Badge
                         className={`text-xs font-semibold ${
                           teamData.user.rank === "Diamond"
-                            ? "bg-blue-100 text-blue-800"
+                            ? "bg-sky-100 text-sky-800"
                             : teamData.user.rank === "Platinum"
                             ? "bg-purple-100 text-purple-800"
                             : teamData.user.rank === "Gold"
@@ -392,18 +392,18 @@ const TeamStructure: React.FC = () => {
                       </Badge>
                     )}
                     {teamData.user.isActive !== false && (
-                      <Badge className="bg-blue-100 text-blue-800 text-xs">
+                      <Badge className="bg-sky-100 text-sky-800 text-xs">
                         Active
                       </Badge>
                     )}
                   </div>
-                  <p className="text-sm font-medium text-blue-800 mb-1">
+                  <p className="text-sm font-medium text-sky-800 mb-1">
                     {teamData.user.username}
                   </p>
-                  <p className="text-xs text-blue-700/80">
+                  <p className="text-xs text-sky-700/80">
                     Referral Code: {teamData.user.referralCode}
                   </p>
-                  <p className="text-xs text-blue-600/70 mt-2 font-medium">
+                  <p className="text-xs text-sky-600/70 mt-2 font-medium">
                     Level 0 (You)
                   </p>
                 </motion.div>
@@ -414,41 +414,41 @@ const TeamStructure: React.FC = () => {
                 <div className="mt-6 overflow-x-auto">
                   <Table>
                     <TableHeader>
-                      <TableRow className="bg-blue-50/50">
-                        <TableHead className="font-semibold text-blue-900">
+                      <TableRow className="bg-sky-50/50">
+                        <TableHead className="font-semibold text-sky-900">
                           Level
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Name
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Username
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Referral Code
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Email
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Mobile
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Rank
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Status
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Position
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Direct Referrals
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Total Team
                         </TableHead>
-                        <TableHead className="font-semibold text-blue-900">
+                        <TableHead className="font-semibold text-sky-900">
                           Join Date
                         </TableHead>
                       </TableRow>
@@ -472,7 +472,7 @@ const TeamStructure: React.FC = () => {
                             return (
                               <TableRow
                                 key={member.id || member._id || index}
-                                className={`hover:bg-blue-50/30 ${
+                                className={`hover:bg-sky-50/30 ${
                                   member.displayLevel > 0 ? "bg-gray-50/50" : ""
                                 }`}
                               >
@@ -481,7 +481,7 @@ const TeamStructure: React.FC = () => {
                                     {levelText}
                                   </Badge>
                                 </TableCell>
-                                <TableCell className="font-semibold text-blue-900">
+                                <TableCell className="font-semibold text-sky-900">
                                   {member.name}
                                   {member.displayLevel > 0 && (
                                     <span className="text-xs text-gray-500 ml-2">
@@ -505,7 +505,7 @@ const TeamStructure: React.FC = () => {
                                   <Badge
                                     className={`text-xs font-medium ${
                                       member.rank === "Diamond"
-                                        ? "bg-blue-100 text-blue-800"
+                                        ? "bg-sky-100 text-sky-800"
                                         : member.rank === "Platinum"
                                         ? "bg-purple-100 text-purple-800"
                                         : member.rank === "Gold"
@@ -520,7 +520,7 @@ const TeamStructure: React.FC = () => {
                                 </TableCell>
                                 <TableCell>
                                   {member.isActive ? (
-                                    <Badge className="bg-blue-100 text-blue-800 text-xs">
+                                    <Badge className="bg-sky-100 text-sky-800 text-xs">
                                       Active
                                     </Badge>
                                   ) : (
@@ -533,7 +533,7 @@ const TeamStructure: React.FC = () => {
                                   <Badge
                                     className={`text-xs font-semibold ${
                                       isLeft
-                                        ? "bg-blue-100 text-blue-800"
+                                        ? "bg-sky-100 text-sky-800"
                                         : "bg-amber-100 text-amber-800"
                                     }`}
                                   >
@@ -564,9 +564,9 @@ const TeamStructure: React.FC = () => {
                           <TableRow>
                             <TableCell
                               colSpan={12}
-                              className="text-center py-8 text-blue-700/70"
+                              className="text-center py-8 text-sky-700/70"
                             >
-                              <Users className="h-12 w-12 text-blue-300 mx-auto mb-4" />
+                              <Users className="h-12 w-12 text-sky-300 mx-auto mb-4" />
                               <p>No members found matching your search</p>
                             </TableCell>
                           </TableRow>
@@ -576,8 +576,8 @@ const TeamStructure: React.FC = () => {
                   </Table>
                 </div>
               ) : (
-                <div className="text-center py-8 text-blue-700/70">
-                  <Users className="h-12 w-12 text-blue-300 mx-auto mb-4" />
+                <div className="text-center py-8 text-sky-700/70">
+                  <Users className="h-12 w-12 text-sky-300 mx-auto mb-4" />
                   <p>No team members yet</p>
                   <p className="text-sm">
                     Start referring members to build your team!

@@ -216,7 +216,7 @@ const UserWallet = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600"></div>
       </div>
     );
   }
@@ -232,7 +232,7 @@ const UserWallet = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "approved":
-        return <CheckCircle className="h-4 w-4 text-blue-600" />;
+        return <CheckCircle className="h-4 w-4 text-sky-600" />;
       case "rejected":
         return <XCircle className="h-4 w-4 text-red-600" />;
       default:
@@ -243,7 +243,7 @@ const UserWallet = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "approved":
-        return "bg-blue-100 text-blue-800";
+        return "bg-sky-100 text-sky-800";
       case "rejected":
         return "bg-red-100 text-red-800";
       default:
@@ -252,26 +252,26 @@ const UserWallet = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       {/* Header */}
       <div className="flex justify-between items-center">
         <div className="space-y-1">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
             E-Wallet
           </h1>
-          <p className="text-blue-700/70">
+          <p className="text-sky-700/70">
             Manage your wallet balance and transactions
           </p>
         </div>
 
         <Dialog open={isTopupDialogOpen} onOpenChange={setIsTopupDialogOpen}>
           <DialogTrigger asChild>
-            <Button className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30">
+            <Button className="bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30">
               <Plus className="mr-2 h-4 w-4" />
               Add Funds
             </Button>
           </DialogTrigger>
-          <DialogContent className="max-w-2xl bg-white/90 backdrop-blur-xl border-blue-200/50 ring-1 ring-amber-400/10">
+          <DialogContent className="max-w-2xl bg-white/90 backdrop-blur-xl border-sky-200/50 ring-1 ring-amber-400/10">
             <DialogHeader>
               <DialogTitle>Add Funds to Wallet</DialogTitle>
               <DialogDescription>
@@ -301,8 +301,8 @@ const UserWallet = () => {
 
               {/* Payment Details */}
               {paymentSettings && (
-                <div className="p-4 bg-white/70 backdrop-blur-xl rounded-lg border border-blue-200/50 ring-1 ring-amber-400/10 shadow-lg">
-                  <h3 className="font-semibold text-blue-800 mb-3">
+                <div className="p-4 bg-white/70 backdrop-blur-xl rounded-lg border border-sky-200/50 ring-1 ring-amber-400/10 shadow-lg">
+                  <h3 className="font-semibold text-sky-800 mb-3">
                     {topupForm.paymentMethod === "bank"
                       ? "Bank Details"
                       : "UPI Details"}
@@ -467,7 +467,7 @@ const UserWallet = () => {
                 <Button
                   type="submit"
                   disabled={isSubmittingTopup}
-                  className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+                  className="bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
                 >
                   {isSubmittingTopup ? "Submitting..." : "Submit Request"}
                 </Button>
@@ -479,105 +479,105 @@ const UserWallet = () => {
 
       {/* Wallet Balance Cards with Glass Effect */}
       <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-blue-500">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-sky-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-blue-800">
+            <CardTitle className="text-sm font-medium text-sky-800">
               Total Balance
             </CardTitle>
-            <div className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-              <Wallet className="h-4 w-4 text-blue-600" />
+            <div className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <Wallet className="h-4 w-4 text-sky-600" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-900">
+            <div className="text-2xl font-bold text-sky-900">
               ₹{totalBalance.toLocaleString()}
             </div>
-            <p className="text-xs text-blue-600/70">Combined wallet balance</p>
+            <p className="text-xs text-sky-600/70">Combined wallet balance</p>
           </CardContent>
         </Card>
 
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-blue-500">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-sky-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-blue-800">
+            <CardTitle className="text-sm font-medium text-sky-800">
               Shopping Wallet
             </CardTitle>
-            <div className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-              <CreditCard className="h-4 w-4 text-blue-600" />
+            <div className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <CreditCard className="h-4 w-4 text-sky-600" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-900">
+            <div className="text-2xl font-bold text-sky-900">
               ₹{walletData?.purchaseWallet?.toLocaleString() || 0}
             </div>
-            <p className="text-xs text-blue-600/70">Available for purchases</p>
+            <p className="text-xs text-sky-600/70">Available for purchases</p>
           </CardContent>
         </Card>
 
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-blue-500">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-sky-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-blue-800">
+            <CardTitle className="text-sm font-medium text-sky-800">
               Earned Wallet
             </CardTitle>
-            <div className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-              <DollarSign className="h-4 w-4 text-blue-600" />
+            <div className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <DollarSign className="h-4 w-4 text-sky-600" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-900">
+            <div className="text-2xl font-bold text-sky-900">
               ₹{walletData?.earnedWallet?.toLocaleString() || 0}
             </div>
-            <p className="text-xs text-blue-600/70">BV Commission (50-65%)</p>
+            <p className="text-xs text-sky-600/70">BV Commission (50-65%)</p>
           </CardContent>
         </Card>
 
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-blue-500">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-sky-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-blue-800">
+            <CardTitle className="text-sm font-medium text-sky-800">
               Referral Wallet
             </CardTitle>
-            <div className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-              <TrendingUp className="h-4 w-4 text-blue-600" />
+            <div className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <TrendingUp className="h-4 w-4 text-sky-600" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-900">
+            <div className="text-2xl font-bold text-sky-900">
               ₹{walletData?.referralWallet?.toLocaleString() || 0}
             </div>
-            <p className="text-xs text-blue-600/70">Referral earnings</p>
+            <p className="text-xs text-sky-600/70">Referral earnings</p>
           </CardContent>
         </Card>
 
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-blue-500">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-sky-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-blue-800">
+            <CardTitle className="text-sm font-medium text-sky-800">
               Repurchase Wallet
             </CardTitle>
-            <div className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-              <RefreshCw className="h-4 w-4 text-blue-600" />
+            <div className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <RefreshCw className="h-4 w-4 text-sky-600" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-900">
+            <div className="text-2xl font-bold text-sky-900">
               ₹{walletData?.repurchaseWallet?.toLocaleString() || 0}
             </div>
-            <p className="text-xs text-blue-600/70">Repurchase bonuses</p>
+            <p className="text-xs text-sky-600/70">Repurchase bonuses</p>
           </CardContent>
         </Card>
 
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-blue-500">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 border-l-4 border-sky-500">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium text-blue-800">
+            <CardTitle className="text-sm font-medium text-sky-800">
               Cashback Wallet
             </CardTitle>
-            <div className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-              <DollarSign className="h-4 w-4 text-blue-600" />
+            <div className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+              <DollarSign className="h-4 w-4 text-sky-600" />
             </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-900">
+            <div className="text-2xl font-bold text-sky-900">
               ₹{walletData?.cashbackWallet?.toLocaleString() || 0}
             </div>
-            <p className="text-xs text-blue-600/70">
+            <p className="text-xs text-sky-600/70">
               Cashback & package rewards
             </p>
           </CardContent>
@@ -592,20 +592,20 @@ const UserWallet = () => {
         </TabsList>
 
         <TabsContent value="transactions" className="space-y-4">
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-blue-800">
-                <RefreshCw className="h-5 w-5 text-blue-600" />
+              <CardTitle className="flex items-center gap-2 text-sky-800">
+                <RefreshCw className="h-5 w-5 text-sky-600" />
                 Recent Transactions
               </CardTitle>
-              <CardDescription className="text-blue-700/70">
+              <CardDescription className="text-sky-700/70">
                 Your latest wallet transactions and activities
               </CardDescription>
             </CardHeader>
             <CardContent>
               {transactionsLoading ? (
                 <div className="flex items-center justify-center py-8">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-sky-600"></div>
                 </div>
               ) : transactions.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
@@ -620,11 +620,11 @@ const UserWallet = () => {
                   {transactions.map((transaction) => (
                     <div
                       key={transaction.id}
-                      className="flex items-center justify-between p-4 border border-blue-200/50 bg-white/60 backdrop-blur-sm rounded-lg hover:shadow-md transition-all duration-200 ring-1 ring-amber-400/5"
+                      className="flex items-center justify-between p-4 border border-sky-200/50 bg-white/60 backdrop-blur-sm rounded-lg hover:shadow-md transition-all duration-200 ring-1 ring-amber-400/5"
                     >
                       <div className="flex items-center gap-3">
                         {transaction.type === "credit" ? (
-                          <ArrowUpRight className="h-5 w-5 text-blue-600" />
+                          <ArrowUpRight className="h-5 w-5 text-sky-600" />
                         ) : (
                           <ArrowDownRight className="h-5 w-5 text-red-600" />
                         )}
@@ -642,7 +642,7 @@ const UserWallet = () => {
                         <p
                           className={`font-semibold ${
                             transaction.type === "credit"
-                              ? "text-blue-600"
+                              ? "text-sky-600"
                               : "text-red-600"
                           }`}
                         >
@@ -659,20 +659,20 @@ const UserWallet = () => {
         </TabsContent>
 
         <TabsContent value="topup-requests" className="space-y-4">
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-blue-800">
-                <Upload className="h-5 w-5 text-blue-600" />
+              <CardTitle className="flex items-center gap-2 text-sky-800">
+                <Upload className="h-5 w-5 text-sky-600" />
                 Top-up Requests
               </CardTitle>
-              <CardDescription className="text-blue-700/70">
+              <CardDescription className="text-sky-700/70">
                 Track your wallet top-up requests and their status
               </CardDescription>
             </CardHeader>
             <CardContent>
               {topupRequestsLoading ? (
                 <div className="flex items-center justify-center py-8">
-                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                  <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-sky-600"></div>
                 </div>
               ) : topupRequests.length === 0 ? (
                 <div className="text-center py-8 text-gray-500">
@@ -687,7 +687,7 @@ const UserWallet = () => {
                   {topupRequests.map((request) => (
                     <div
                       key={request._id}
-                      className="flex items-center justify-between p-4 border border-blue-200/50 bg-white/60 backdrop-blur-sm rounded-lg hover:shadow-md transition-all duration-200 ring-1 ring-amber-400/5"
+                      className="flex items-center justify-between p-4 border border-sky-200/50 bg-white/60 backdrop-blur-sm rounded-lg hover:shadow-md transition-all duration-200 ring-1 ring-amber-400/5"
                     >
                       <div className="flex items-center gap-3">
                         {getStatusIcon(request.status)}

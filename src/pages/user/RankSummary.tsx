@@ -78,32 +78,32 @@ const RankSummary: React.FC = () => {
     if (rankLower.includes("bronze")) return "bg-amber-100 text-amber-800";
     if (rankLower.includes("silver")) return "bg-gray-100 text-gray-800";
     if (rankLower.includes("gold")) return "bg-yellow-100 text-yellow-800";
-    if (rankLower.includes("platinum")) return "bg-blue-100 text-blue-800";
+    if (rankLower.includes("platinum")) return "bg-sky-100 text-sky-800";
     if (rankLower.includes("diamond")) return "bg-purple-100 text-purple-800";
-    return "bg-blue-100 text-blue-800";
+    return "bg-sky-100 text-sky-800";
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg">
-            <BarChart3 className="h-8 w-8 text-blue-600" />
+          <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg">
+            <BarChart3 className="h-8 w-8 text-sky-600" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
             Rank Summary
           </h1>
         </div>
         <button
           onClick={fetchData}
-          className="p-2 hover:bg-blue-100 rounded-lg transition-colors"
+          className="p-2 hover:bg-sky-100 rounded-lg transition-colors"
         >
           <RefreshCw
-            className={`h-5 w-5 text-blue-600 ${loading ? "animate-spin" : ""}`}
+            className={`h-5 w-5 text-sky-600 ${loading ? "animate-spin" : ""}`}
           />
         </button>
       </motion.div>
@@ -139,7 +139,7 @@ const RankSummary: React.FC = () => {
                 <BarChart3 className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-blue-600">
+                <div className="text-2xl font-bold text-sky-600">
                   {formatCurrency(data.totalRankBonuses)}
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -191,7 +191,7 @@ const RankSummary: React.FC = () => {
                           )}
                         </p>
                       </div>
-                      <Badge className="bg-blue-100 text-blue-800">
+                      <Badge className="bg-sky-100 text-sky-800">
                         {formatCurrency(record.amount)}
                       </Badge>
                     </div>

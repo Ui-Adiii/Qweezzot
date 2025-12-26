@@ -52,23 +52,23 @@ const DirectTeam: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-            <UserPlus className="h-8 w-8 text-blue-600" />
+          <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+            <UserPlus className="h-8 w-8 text-sky-600" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
             Direct Team
           </h1>
         </div>
@@ -76,43 +76,43 @@ const DirectTeam: React.FC = () => {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-700/70 mb-1">
+                <p className="text-sm text-sky-700/70 mb-1">
                   Total Direct Members
                 </p>
-                <p className="text-3xl font-bold text-blue-700">
+                <p className="text-3xl font-bold text-sky-700">
                   {stats.total}
                 </p>
               </div>
-              <UserPlus className="h-10 w-10 text-blue-600/50" />
+              <UserPlus className="h-10 w-10 text-sky-600/50" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardContent className="p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-blue-700/70 mb-1">
+                <p className="text-sm text-sky-700/70 mb-1">
                   Active Direct Members
                 </p>
-                <p className="text-3xl font-bold text-blue-600">
+                <p className="text-3xl font-bold text-sky-600">
                   {stats.active}
                 </p>
               </div>
-              <UserCheck className="h-10 w-10 text-blue-600/50" />
+              <UserCheck className="h-10 w-10 text-sky-600/50" />
             </div>
           </CardContent>
         </Card>
       </div>
 
       {/* Direct Team Members Table */}
-      <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+      <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
         <CardHeader>
-          <CardTitle className="text-xl text-blue-800">
+          <CardTitle className="text-xl text-sky-800">
             Direct Team Members ({teamData.length})
           </CardTitle>
         </CardHeader>
@@ -168,7 +168,7 @@ const DirectTeam: React.FC = () => {
                         {member.mobileNo}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <Badge className="bg-blue-100 text-blue-800">
+                        <Badge className="bg-sky-100 text-sky-800">
                           {member.rank}
                         </Badge>
                       </td>
@@ -185,7 +185,7 @@ const DirectTeam: React.FC = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         {member.isActive ? (
-                          <Badge className="bg-blue-100 text-blue-800">
+                          <Badge className="bg-sky-100 text-sky-800">
                             <UserCheck className="h-3 w-3 mr-1" />
                             Active
                           </Badge>

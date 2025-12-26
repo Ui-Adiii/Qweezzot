@@ -128,7 +128,7 @@ const Withdraw: React.FC = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case "approved":
-        return <CheckCircle className="h-4 w-4 text-blue-600" />;
+        return <CheckCircle className="h-4 w-4 text-sky-600" />;
       case "rejected":
         return <XCircle className="h-4 w-4 text-red-600" />;
       default:
@@ -139,7 +139,7 @@ const Withdraw: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "approved":
-        return "bg-blue-100 text-blue-800";
+        return "bg-sky-100 text-sky-800";
       case "rejected":
         return "bg-red-100 text-red-800";
       default:
@@ -156,17 +156,17 @@ const Withdraw: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-            <ArrowDownRight className="h-8 w-8 text-blue-600" />
+          <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+            <ArrowDownRight className="h-8 w-8 text-sky-600" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
             Withdraw Funds
           </h1>
         </div>
@@ -175,7 +175,7 @@ const Withdraw: React.FC = () => {
             variant="outline"
             onClick={fetchWalletData}
             disabled={loading}
-            className="border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50"
+            className="border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50"
           >
             <RefreshCw
               className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`}
@@ -191,15 +191,15 @@ const Withdraw: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2 }}
         >
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="text-xl text-blue-800">
+              <CardTitle className="text-xl text-sky-800">
                 Withdrawal Request
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="wallet" className="text-blue-800">
+                <Label htmlFor="wallet" className="text-sky-800">
                   Select Wallet
                 </Label>
                 <Select
@@ -208,10 +208,10 @@ const Withdraw: React.FC = () => {
                     setSelectedWallet(value)
                   }
                 >
-                  <SelectTrigger className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10">
+                  <SelectTrigger className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-white/95 backdrop-blur-xl border-blue-200/50">
+                  <SelectContent className="bg-white/95 backdrop-blur-xl border-sky-200/50">
                     <SelectItem value="earnedWallet">
                       Earned Wallet ({formatCurrency(walletData.earnedWallet)})
                     </SelectItem>
@@ -221,13 +221,13 @@ const Withdraw: React.FC = () => {
                     </SelectItem>
                   </SelectContent>
                 </Select>
-                <p className="text-xs text-blue-700/70">
+                <p className="text-xs text-sky-700/70">
                   Available: {formatCurrency(getAvailableBalance())}
                 </p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="amount" className="text-blue-800">
+                <Label htmlFor="amount" className="text-sky-800">
                   Withdrawal Amount
                 </Label>
                 <Input
@@ -237,25 +237,25 @@ const Withdraw: React.FC = () => {
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                   max={getAvailableBalance()}
-                  className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                  className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
                 />
-                <p className="text-xs text-blue-700/70">
+                <p className="text-xs text-sky-700/70">
                   Maximum: {formatCurrency(getAvailableBalance())}
                 </p>
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="method" className="text-blue-800">
+                <Label htmlFor="method" className="text-sky-800">
                   Withdrawal Method
                 </Label>
                 <Select
                   value={withdrawMethod}
                   onValueChange={setWithdrawMethod}
                 >
-                  <SelectTrigger className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10">
+                  <SelectTrigger className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10">
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent className="bg-white/95 backdrop-blur-xl border-blue-200/50">
+                  <SelectContent className="bg-white/95 backdrop-blur-xl border-sky-200/50">
                     <SelectItem value="bank">Bank Transfer</SelectItem>
                     <SelectItem value="upi">UPI</SelectItem>
                     <SelectItem value="wallet">Digital Wallet</SelectItem>
@@ -264,7 +264,7 @@ const Withdraw: React.FC = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="account" className="text-blue-800">
+                <Label htmlFor="account" className="text-sky-800">
                   Account Details
                 </Label>
                 <Input
@@ -272,7 +272,7 @@ const Withdraw: React.FC = () => {
                   placeholder="Account number or UPI ID"
                   value={accountDetails}
                   onChange={(e) => setAccountDetails(e.target.value)}
-                  className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                  className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
                 />
               </div>
 
@@ -281,7 +281,7 @@ const Withdraw: React.FC = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <Button
-                  className="w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+                  className="w-full bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
                   onClick={handleWithdraw}
                   disabled={loading || submitting || !amount || !accountDetails}
                 >
@@ -300,7 +300,7 @@ const Withdraw: React.FC = () => {
             transition={{ delay: 0.3 }}
             whileHover={{ scale: 1.02, y: -5 }}
           >
-            <Card className="border-blue-200/50 bg-gradient-to-br from-blue-600/90 to-blue-700/90 backdrop-blur-xl shadow-xl ring-2 ring-amber-400/20 overflow-hidden relative">
+            <Card className="border-sky-200/50 bg-gradient-to-br from-sky-600/90 to-sky-700/90 backdrop-blur-xl shadow-xl ring-2 ring-amber-400/20 overflow-hidden relative">
               <motion.div
                 className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-400/20 to-yellow-500/20 rounded-full blur-3xl"
                 animate={{
@@ -342,20 +342,20 @@ const Withdraw: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+            <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
               <CardHeader>
-                <CardTitle className="text-blue-800">
+                <CardTitle className="text-sky-800">
                   Withdrawal History
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 {withdrawalsLoading ? (
                   <div className="flex items-center justify-center py-8">
-                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
+                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-sky-600"></div>
                   </div>
                 ) : withdrawals.length === 0 ? (
-                  <div className="text-center py-8 text-blue-700/70">
-                    <CreditCard className="h-12 w-12 text-blue-300 mx-auto mb-4" />
+                  <div className="text-center py-8 text-sky-700/70">
+                    <CreditCard className="h-12 w-12 text-sky-300 mx-auto mb-4" />
                     <p className="text-sm">No withdrawal history yet</p>
                     <p className="text-xs mt-1">
                       Your withdrawal requests will appear here
@@ -366,7 +366,7 @@ const Withdraw: React.FC = () => {
                     {withdrawals.map((withdrawal) => (
                       <div
                         key={withdrawal._id}
-                        className="flex items-center justify-between p-4 border border-blue-200/50 bg-white/60 backdrop-blur-sm rounded-lg hover:shadow-md transition-all duration-200 ring-1 ring-amber-400/5"
+                        className="flex items-center justify-between p-4 border border-sky-200/50 bg-white/60 backdrop-blur-sm rounded-lg hover:shadow-md transition-all duration-200 ring-1 ring-amber-400/5"
                       >
                         <div className="flex items-center gap-3">
                           {getStatusIcon(withdrawal.status)}

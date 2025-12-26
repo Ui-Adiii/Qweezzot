@@ -214,17 +214,17 @@ const RePurchase: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-            <RotateCcw className="h-8 w-8 text-blue-600" />
+          <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+            <RotateCcw className="h-8 w-8 text-sky-600" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
             Re Purchase
           </h1>
         </div>
@@ -232,7 +232,7 @@ const RePurchase: React.FC = () => {
           variant="outline"
           onClick={fetchPurchasedProducts}
           disabled={loading}
-          className="border-blue-200 hover:bg-blue-50"
+          className="border-sky-200 hover:bg-sky-50"
         >
           <RefreshCw
             className={`h-4 w-4 mr-2 ${loading ? "animate-spin" : ""}`}
@@ -246,9 +246,9 @@ const RePurchase: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
       >
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-xl text-blue-900">
+            <CardTitle className="text-xl text-sky-900">
               Previously Purchased Products
             </CardTitle>
             <p className="text-sm text-gray-600 mt-2">
@@ -282,7 +282,7 @@ const RePurchase: React.FC = () => {
                 </p>
                 <Button
                   onClick={() => navigate("/products")}
-                  className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600"
+                  className="bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600"
                 >
                   <ShoppingCart className="h-4 w-4 mr-2" />
                   Browse Products
@@ -298,10 +298,10 @@ const RePurchase: React.FC = () => {
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ scale: 1.02, y: -5 }}
                   >
-                    <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30 h-full flex flex-col">
+                    <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30 h-full flex flex-col">
                       <CardContent className="p-6 flex flex-col flex-1">
                         {/* Product Image */}
-                        <div className="w-full h-40 bg-gradient-to-br from-blue-100 to-amber-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                        <div className="w-full h-40 bg-gradient-to-br from-sky-100 to-amber-100 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
                           {product.product?.images &&
                           product.product.images.length > 0 ? (
                             <img
@@ -310,12 +310,12 @@ const RePurchase: React.FC = () => {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <Package className="h-16 w-16 text-blue-400" />
+                            <Package className="h-16 w-16 text-sky-400" />
                           )}
                         </div>
 
                         {/* Product Name */}
-                        <h3 className="text-lg font-bold text-blue-900 mb-2 line-clamp-2">
+                        <h3 className="text-lg font-bold text-sky-900 mb-2 line-clamp-2">
                           {product.productName}
                         </h3>
 
@@ -335,7 +335,7 @@ const RePurchase: React.FC = () => {
                             </span>
                             <Badge
                               variant="secondary"
-                              className="bg-blue-100 text-blue-700"
+                              className="bg-sky-100 text-sky-700"
                             >
                               {product.totalPurchased} times
                             </Badge>
@@ -345,7 +345,7 @@ const RePurchase: React.FC = () => {
                               <span className="text-gray-600">
                                 Repurchase Price:
                               </span>
-                              <span className="font-bold text-blue-700">
+                              <span className="font-bold text-sky-700">
                                 ₹
                                 {(
                                   product.product.repurchaseSellingPrice ||
@@ -368,7 +368,7 @@ const RePurchase: React.FC = () => {
                                     : "destructive"
                                 }
                                 className={
-                                  product.product.inStock ? "bg-blue-600" : ""
+                                  product.product.inStock ? "bg-sky-600" : ""
                                 }
                               >
                                 {product.product.inStock
@@ -381,7 +381,7 @@ const RePurchase: React.FC = () => {
 
                         {/* Repurchase Button */}
                         <Button
-                          className="w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30 mt-auto"
+                          className="w-full bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30 mt-auto"
                           onClick={() => handleRepurchase(product)}
                           disabled={
                             repurchasing === product.productId ||
@@ -418,10 +418,10 @@ const RePurchase: React.FC = () => {
           >
             <Card className="border-amber-200/50 bg-gradient-to-br from-amber-50/70 to-yellow-50/50 backdrop-blur-sm rounded-lg ring-1 ring-amber-400/10">
               <CardContent className="p-4">
-                <h4 className="font-bold text-blue-900 mb-2">
+                <h4 className="font-bold text-sky-900 mb-2">
                   Repurchase Benefits:
                 </h4>
-                <ul className="text-blue-800 text-sm space-y-1">
+                <ul className="text-sky-800 text-sm space-y-1">
                   <li>
                     • Maintain active status and continue earning commissions
                   </li>

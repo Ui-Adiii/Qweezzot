@@ -82,21 +82,21 @@ const MyPurchase: React.FC = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-        <Card className="border-blue-200 bg-blue-50/50">
+        <Card className="border-sky-200 bg-sky-50/50">
           <CardContent className="p-4 text-center">
-            <p className="text-2xl font-bold text-blue-600">
+            <p className="text-2xl font-bold text-sky-600">
               ₹{stats.totalPurchases.toLocaleString()}
             </p>
-            <p className="text-sm text-blue-700">Total Purchases</p>
+            <p className="text-sm text-sky-700">Total Purchases</p>
           </CardContent>
         </Card>
 
-        <Card className="border-blue-200 bg-blue-50/50">
+        <Card className="border-sky-200 bg-sky-50/50">
           <CardContent className="p-4 text-center">
-            <p className="text-2xl font-bold text-blue-600">
+            <p className="text-2xl font-bold text-sky-600">
               {stats.totalOrders}
             </p>
-            <p className="text-sm text-blue-700">Total Orders</p>
+            <p className="text-sm text-sky-700">Total Orders</p>
           </CardContent>
         </Card>
 
@@ -199,7 +199,7 @@ const MyPurchase: React.FC = () => {
                             className={
                               purchase.status === "delivered" ||
                               purchase.status === "completed"
-                                ? "bg-blue-600"
+                                ? "bg-sky-600"
                                 : purchase.status === "cancelled"
                                 ? "bg-red-600"
                                 : "bg-orange-500"

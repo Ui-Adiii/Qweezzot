@@ -64,16 +64,16 @@ const NewMember: React.FC = () => {
 
         {/* Referral Information */}
         <div className="space-y-6">
-          <Card className="border-blue-200 bg-blue-50/50">
+          <Card className="border-sky-200 bg-sky-50/50">
             <CardHeader>
-              <CardTitle className="text-lg text-blue-800 flex items-center">
+              <CardTitle className="text-lg text-sky-800 flex items-center">
                 <Share2 className="h-5 w-5 mr-2" />
                 Your Referral Links
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <Label className="text-blue-700">Left Position Link</Label>
+                <Label className="text-sky-700">Left Position Link</Label>
                 <div className="flex items-center space-x-2 mt-1">
                   <Input
                     value={`${window.location.origin}/user/register?ref=YOUR_CODE&pos=LEFT`}
@@ -96,7 +96,7 @@ const NewMember: React.FC = () => {
               </div>
 
               <div>
-                <Label className="text-blue-700">Right Position Link</Label>
+                <Label className="text-sky-700">Right Position Link</Label>
                 <div className="flex items-center space-x-2 mt-1">
                   <Input
                     value={`${window.location.origin}/user/register?ref=YOUR_CODE&pos=RIGHT`}
@@ -120,9 +120,9 @@ const NewMember: React.FC = () => {
             </CardContent>
           </Card>
 
-          <Card className="border-blue-200 bg-blue-50/50">
+          <Card className="border-sky-200 bg-sky-50/50">
             <CardHeader>
-              <CardTitle className="text-lg text-blue-800 flex items-center">
+              <CardTitle className="text-lg text-sky-800 flex items-center">
                 <Users className="h-5 w-5 mr-2" />
                 Your Team Stats
               </CardTitle>
@@ -130,12 +130,12 @@ const NewMember: React.FC = () => {
             <CardContent>
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-blue-600">12</p>
-                  <p className="text-sm text-blue-700">Direct Referrals</p>
+                  <p className="text-2xl font-bold text-sky-600">12</p>
+                  <p className="text-sm text-sky-700">Direct Referrals</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-2xl font-bold text-blue-600">48</p>
-                  <p className="text-sm text-blue-700">Total Team</p>
+                  <p className="text-2xl font-bold text-sky-600">48</p>
+                  <p className="text-sm text-sky-700">Total Team</p>
                 </div>
               </div>
             </CardContent>

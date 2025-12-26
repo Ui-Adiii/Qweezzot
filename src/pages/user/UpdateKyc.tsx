@@ -167,7 +167,7 @@ const UpdateKyc: React.FC = () => {
     switch (status) {
       case "approved":
         return (
-          <Badge className="bg-blue-100 text-blue-800 border-blue-300">
+          <Badge className="bg-sky-100 text-sky-800 border-sky-300">
             <CheckCircle className="h-3 w-3 mr-1" />
             Approved
           </Badge>
@@ -194,23 +194,23 @@ const UpdateKyc: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center justify-between"
       >
         <div className="flex items-center space-x-3">
-          <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-            <FileText className="h-8 w-8 text-blue-600" />
+          <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+            <FileText className="h-8 w-8 text-sky-600" />
           </div>
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+          <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
             Update KYC Documents
           </h1>
         </div>
@@ -222,10 +222,10 @@ const UpdateKyc: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <Card className="border-blue-200/50 bg-blue-50/50 backdrop-blur-xl shadow-lg ring-1 ring-blue-400/10">
+          <Card className="border-sky-200/50 bg-sky-50/50 backdrop-blur-xl shadow-lg ring-1 ring-sky-400/10">
             <CardContent className="p-4 flex items-center space-x-3">
-              <CheckCircle className="h-5 w-5 text-blue-600" />
-              <p className="text-blue-800">
+              <CheckCircle className="h-5 w-5 text-sky-600" />
+              <p className="text-sky-800">
                 Your KYC has been approved. Contact admin if you need to update
                 your documents.
               </p>
@@ -274,16 +274,16 @@ const UpdateKyc: React.FC = () => {
         </motion.div>
       )}
 
-      <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+      <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
         <CardHeader>
-          <CardTitle className="text-xl text-blue-800">
+          <CardTitle className="text-xl text-sky-800">
             Document Details
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="aadharNumber" className="text-blue-800">
+              <Label htmlFor="aadharNumber" className="text-sky-800">
                 Aadhar Number <span className="text-red-500">*</span>
               </Label>
               <Input
@@ -297,12 +297,12 @@ const UpdateKyc: React.FC = () => {
                 }
                 placeholder="Enter 12-digit Aadhar Number"
                 maxLength={12}
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="panNumber" className="text-blue-800">
+              <Label htmlFor="panNumber" className="text-sky-800">
                 PAN Number <span className="text-red-500">*</span>
               </Label>
               <Input
@@ -316,7 +316,7 @@ const UpdateKyc: React.FC = () => {
                 }
                 placeholder="Enter PAN Number"
                 maxLength={10}
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
           </div>
@@ -325,9 +325,9 @@ const UpdateKyc: React.FC = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Aadhar Front */}
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-lg text-blue-800">
+            <CardTitle className="text-lg text-sky-800">
               Aadhar Card (Front)
             </CardTitle>
           </CardHeader>
@@ -344,7 +344,7 @@ const UpdateKyc: React.FC = () => {
                 <img
                   src={previews.aadharFront}
                   alt="Aadhar Front"
-                  className="w-full h-48 object-cover rounded-lg border-2 border-blue-200/50"
+                  className="w-full h-48 object-cover rounded-lg border-2 border-sky-200/50"
                 />
                 <Button
                   variant="outline"
@@ -369,9 +369,9 @@ const UpdateKyc: React.FC = () => {
         </Card>
 
         {/* Aadhar Back */}
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-lg text-blue-800">
+            <CardTitle className="text-lg text-sky-800">
               Aadhar Card (Back)
             </CardTitle>
           </CardHeader>
@@ -388,7 +388,7 @@ const UpdateKyc: React.FC = () => {
                 <img
                   src={previews.aadharBack}
                   alt="Aadhar Back"
-                  className="w-full h-48 object-cover rounded-lg border-2 border-blue-200/50"
+                  className="w-full h-48 object-cover rounded-lg border-2 border-sky-200/50"
                 />
                 <Button
                   variant="outline"
@@ -413,9 +413,9 @@ const UpdateKyc: React.FC = () => {
         </Card>
 
         {/* PAN Card */}
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-lg text-blue-800">PAN Card</CardTitle>
+            <CardTitle className="text-lg text-sky-800">PAN Card</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <input
@@ -430,7 +430,7 @@ const UpdateKyc: React.FC = () => {
                 <img
                   src={previews.panCard}
                   alt="PAN Card"
-                  className="w-full h-48 object-cover rounded-lg border-2 border-blue-200/50"
+                  className="w-full h-48 object-cover rounded-lg border-2 border-sky-200/50"
                 />
                 <Button
                   variant="outline"
@@ -455,9 +455,9 @@ const UpdateKyc: React.FC = () => {
         </Card>
 
         {/* Profile Image */}
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-lg text-blue-800">
+            <CardTitle className="text-lg text-sky-800">
               Profile Image
             </CardTitle>
           </CardHeader>
@@ -474,7 +474,7 @@ const UpdateKyc: React.FC = () => {
                 <img
                   src={previews.profileImage}
                   alt="Profile"
-                  className="w-full h-48 object-cover rounded-lg border-2 border-blue-200/50"
+                  className="w-full h-48 object-cover rounded-lg border-2 border-sky-200/50"
                 />
                 <Button
                   variant="outline"
@@ -503,7 +503,7 @@ const UpdateKyc: React.FC = () => {
         <Button
           onClick={handleSubmit}
           disabled={submitting}
-          className="w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+          className="w-full bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
         >
           <Upload className="h-4 w-4 mr-2" />
           {submitting ? "Submitting..." : "Submit KYC Request"}
@@ -511,9 +511,9 @@ const UpdateKyc: React.FC = () => {
       </motion.div>
 
       {kycData && kycData.reviewedAt && (
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-lg text-blue-800">
+            <CardTitle className="text-lg text-sky-800">
               Review Information
             </CardTitle>
           </CardHeader>

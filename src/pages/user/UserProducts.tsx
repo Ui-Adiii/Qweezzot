@@ -321,7 +321,7 @@ const UserProducts = () => {
             <DialogTrigger asChild>
               <Button
                 onClick={openCreateDialog}
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-sky-600 hover:bg-sky-700"
               >
                 <Plus className="mr-2 h-4 w-4" />
                 Add Product
@@ -542,7 +542,7 @@ const UserProducts = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="bg-blue-600 hover:bg-blue-700"
+                    className="bg-sky-600 hover:bg-sky-700"
                   >
                     {isSubmitting ? "Creating..." : "Create Product"}
                   </Button>
@@ -589,7 +589,7 @@ const UserProducts = () => {
                 <ShoppingCart className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
               <CardContent>
-                <div className="text-2xl font-bold text-blue-600">
+                <div className="text-2xl font-bold text-sky-600">
                   {userProducts.filter((p) => p.inStock).length}
                 </div>
                 <p className="text-xs text-muted-foreground">
@@ -622,21 +622,21 @@ const UserProducts = () => {
           {/* My Products Grid */}
           {loading ? (
             <div className="flex items-center justify-center min-h-[400px]">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600"></div>
             </div>
           ) : (
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {userProducts.length === 0 ? (
-                  <div className="col-span-full text-center py-12 text-blue-700/70">
-                    <Package className="mx-auto h-16 w-16 text-blue-300 mb-4" />
+                  <div className="col-span-full text-center py-12 text-sky-700/70">
+                    <Package className="mx-auto h-16 w-16 text-sky-300 mb-4" />
                     <p className="text-lg font-medium">No products yet</p>
                     <p className="text-sm mb-4">
                       Start by adding your first product
                     </p>
                     <Button
                       onClick={openCreateDialog}
-                      className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+                      className="bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
                     >
                       <Plus className="mr-2 h-4 w-4" />
                       Add Your First Product
@@ -668,7 +668,7 @@ const UserProducts = () => {
                           transition={{ delay: index * 0.05 }}
                           whileHover={{ scale: 1.02, y: -5 }}
                         >
-                          <Card className="group relative border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ring-1 ring-amber-400/10 h-full flex flex-col">
+                          <Card className="group relative border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ring-1 ring-amber-400/10 h-full flex flex-col">
                             {/* Discount Badge */}
                             {discountPercent > 0 && (
                               <div className="absolute top-4 right-4 z-20">
@@ -684,7 +684,7 @@ const UserProducts = () => {
                               <Badge
                                 className={
                                   product.inStock
-                                    ? "bg-gradient-to-r from-blue-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-blue-300/30"
+                                    ? "bg-gradient-to-r from-sky-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-sky-300/30"
                                     : "bg-red-500/90 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg backdrop-blur-sm"
                                 }
                               >
@@ -693,7 +693,7 @@ const UserProducts = () => {
                             </div>
 
                             {/* Product Image */}
-                            <div className="relative h-56 bg-gradient-to-br from-blue-50/70 to-amber-50/50 overflow-hidden flex-shrink-0">
+                            <div className="relative h-56 bg-gradient-to-br from-sky-50/70 to-amber-50/50 overflow-hidden flex-shrink-0">
                               {product.images && product.images.length > 0 ? (
                                 <motion.img
                                   src={product.images[0]}
@@ -703,7 +703,7 @@ const UserProducts = () => {
                                 />
                               ) : (
                                 <div className="flex items-center justify-center h-full">
-                                  <ImageIcon className="h-12 w-12 text-blue-300" />
+                                  <ImageIcon className="h-12 w-12 text-sky-300" />
                                 </div>
                               )}
                               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -711,17 +711,17 @@ const UserProducts = () => {
 
                             <CardHeader className="pb-2">
                               <div className="flex justify-between items-start">
-                                <CardTitle className="text-lg leading-tight text-blue-900 line-clamp-2 min-h-[3.5rem]">
+                                <CardTitle className="text-lg leading-tight text-sky-900 line-clamp-2 min-h-[3.5rem]">
                                   {product.name}
                                 </CardTitle>
                               </div>
                               <div className="flex items-center gap-2 flex-wrap mt-2">
-                                <span className="text-2xl font-bold text-blue-700">
+                                <span className="text-2xl font-bold text-sky-700">
                                   ₹{finalPrice.toLocaleString()}
                                 </span>
                                 {product.discountPrice &&
                                   product.discountPrice < product.price && (
-                                    <span className="text-sm text-blue-600/70 line-through">
+                                    <span className="text-sm text-sky-600/70 line-through">
                                       ₹{product.price.toLocaleString()}
                                     </span>
                                   )}
@@ -735,16 +735,16 @@ const UserProducts = () => {
                             </CardHeader>
 
                             <CardContent className="pt-0 flex-1 flex flex-col">
-                              <p className="text-sm text-blue-700/70 mb-3 line-clamp-2 min-h-[2.5rem]">
+                              <p className="text-sm text-sky-700/70 mb-3 line-clamp-2 min-h-[2.5rem]">
                                 {product.description}
                               </p>
 
-                              <div className="space-y-2 text-xs text-blue-700/70 mb-4">
+                              <div className="space-y-2 text-xs text-sky-700/70 mb-4">
                                 <div className="flex justify-between">
                                   <span>Category:</span>
                                   <Badge
                                     variant="outline"
-                                    className="text-xs border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10"
+                                    className="text-xs border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10"
                                   >
                                     {product.category}
                                   </Badge>
@@ -769,7 +769,7 @@ const UserProducts = () => {
                                     size="sm"
                                     variant="outline"
                                     onClick={() => openEditDialog(product)}
-                                    className="w-full border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50"
+                                    className="w-full border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50"
                                   >
                                     <Edit className="h-3 w-3 mr-1" />
                                     Edit
@@ -818,7 +818,7 @@ const UserProducts = () => {
                         )
                       }
                       size="lg"
-                      className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30 px-8 py-6"
+                      className="bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30 px-8 py-6"
                     >
                       Load More Products
                       <ArrowRight className="h-5 w-5 ml-2" />
@@ -829,7 +829,7 @@ const UserProducts = () => {
 
               {/* Products Count Info for My Products */}
               {userProducts.length > 0 && (
-                <div className="text-center mt-4 text-blue-700/70">
+                <div className="text-center mt-4 text-sky-700/70">
                   <p className="text-sm">
                     Showing{" "}
                     {Math.min(myProductsVisibleCount, userProducts.length)} of{" "}
@@ -845,14 +845,14 @@ const UserProducts = () => {
         <TabsContent value="all-products" className="space-y-6">
           {allProductsLoading ? (
             <div className="flex items-center justify-center min-h-[400px]">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600"></div>
             </div>
           ) : (
             <>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {allProducts.length === 0 ? (
-                  <div className="col-span-full text-center py-12 text-blue-700/70">
-                    <Store className="mx-auto h-16 w-16 text-blue-300 mb-4" />
+                  <div className="col-span-full text-center py-12 text-sky-700/70">
+                    <Store className="mx-auto h-16 w-16 text-sky-300 mb-4" />
                     <p className="text-lg font-medium">No products available</p>
                     <p className="text-sm">Check back later for new products</p>
                   </div>
@@ -880,7 +880,7 @@ const UserProducts = () => {
                         transition={{ delay: index * 0.05 }}
                         whileHover={{ scale: 1.02, y: -5 }}
                       >
-                        <Card className="group relative border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ring-1 ring-amber-400/10 h-full flex flex-col">
+                        <Card className="group relative border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ring-1 ring-amber-400/10 h-full flex flex-col">
                           {/* Discount Badge */}
                           {discountPercent > 0 && (
                             <div className="absolute top-4 right-4 z-20">
@@ -894,7 +894,7 @@ const UserProducts = () => {
                           {/* Popular Badge for first 3 products */}
                           {index < 3 && (
                             <div className="absolute top-4 left-4 z-20">
-                              <Badge className="bg-gradient-to-r from-blue-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-blue-300/30">
+                              <Badge className="bg-gradient-to-r from-sky-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-sky-300/30">
                                 <Star className="h-3 w-3 mr-1 fill-current" />
                                 Popular
                               </Badge>
@@ -910,7 +910,7 @@ const UserProducts = () => {
                             </div>
                           )}
 
-                          <div className="relative h-56 bg-gradient-to-br from-blue-50/70 to-amber-50/50 overflow-hidden flex-shrink-0">
+                          <div className="relative h-56 bg-gradient-to-br from-sky-50/70 to-amber-50/50 overflow-hidden flex-shrink-0">
                             {product.images && product.images.length > 0 ? (
                               <motion.img
                                 src={product.images[0]}
@@ -920,7 +920,7 @@ const UserProducts = () => {
                               />
                             ) : (
                               <div className="flex items-center justify-center h-full">
-                                <ImageIcon className="h-12 w-12 text-blue-300" />
+                                <ImageIcon className="h-12 w-12 text-sky-300" />
                               </div>
                             )}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -928,17 +928,17 @@ const UserProducts = () => {
 
                           <CardHeader className="pb-2">
                             <div className="flex justify-between items-start">
-                              <CardTitle className="text-lg leading-tight text-blue-900 line-clamp-2 min-h-[3.5rem]">
+                              <CardTitle className="text-lg leading-tight text-sky-900 line-clamp-2 min-h-[3.5rem]">
                                 {product.name}
                               </CardTitle>
                             </div>
                             <div className="flex items-center gap-2 flex-wrap mt-2">
-                              <span className="text-2xl font-bold text-blue-700">
+                              <span className="text-2xl font-bold text-sky-700">
                                 ₹{finalPrice.toLocaleString()}
                               </span>
                               {product.discountPrice &&
                                 product.discountPrice < product.price && (
-                                  <span className="text-sm text-blue-600/70 line-through">
+                                  <span className="text-sm text-sky-600/70 line-through">
                                     ₹{product.price.toLocaleString()}
                                   </span>
                                 )}
@@ -952,16 +952,16 @@ const UserProducts = () => {
                           </CardHeader>
 
                           <CardContent className="pt-0 flex-1 flex flex-col">
-                            <p className="text-sm text-blue-700/70 mb-3 line-clamp-2 min-h-[2.5rem]">
+                            <p className="text-sm text-sky-700/70 mb-3 line-clamp-2 min-h-[2.5rem]">
                               {product.description}
                             </p>
 
-                            <div className="space-y-2 text-xs text-blue-700/70 mb-4">
+                            <div className="space-y-2 text-xs text-sky-700/70 mb-4">
                               <div className="flex justify-between">
                                 <span>Category:</span>
                                 <Badge
                                   variant="outline"
-                                  className="text-xs border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10"
+                                  className="text-xs border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10"
                                 >
                                   {product.category}
                                 </Badge>
@@ -985,7 +985,7 @@ const UserProducts = () => {
                                 <Button
                                   size="sm"
                                   variant="outline"
-                                  className="w-full border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50"
+                                  className="w-full border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50"
                                   onClick={() =>
                                     window.open(
                                       `/products/${product._id}`,
@@ -1004,7 +1004,7 @@ const UserProducts = () => {
                               >
                                 <Button
                                   size="sm"
-                                  className="w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+                                  className="w-full bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
                                   onClick={() => handleAddToCart(product)}
                                   disabled={!product.inStock}
                                 >
@@ -1038,7 +1038,7 @@ const UserProducts = () => {
                         setVisibleCount((prev) => prev + productsPerPage)
                       }
                       size="lg"
-                      className="bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30 px-8 py-6"
+                      className="bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30 px-8 py-6"
                     >
                       Load More Products
                       <ArrowRight className="h-5 w-5 ml-2" />
@@ -1049,7 +1049,7 @@ const UserProducts = () => {
 
               {/* Products Count Info */}
               {allProducts.length > 0 && (
-                <div className="text-center mt-4 text-blue-700/70">
+                <div className="text-center mt-4 text-sky-700/70">
                   <p className="text-sm">
                     Showing {Math.min(visibleCount, allProducts.length)} of{" "}
                     {allProducts.length} products
@@ -1265,7 +1265,7 @@ const UserProducts = () => {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="bg-blue-600 hover:bg-blue-700"
+                className="bg-sky-600 hover:bg-sky-700"
               >
                 {isSubmitting ? "Updating..." : "Update Product"}
               </Button>

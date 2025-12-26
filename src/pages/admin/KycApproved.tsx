@@ -88,16 +88,16 @@ const KycApproved: React.FC = () => {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-blue-800">
+          <h1 className="text-3xl font-bold text-sky-800">
             Approved KYC Requests
           </h1>
-          <p className="text-blue-600 mt-1">
+          <p className="text-sky-600 mt-1">
             View all approved KYC submissions
           </p>
         </div>
         <Badge
           variant="outline"
-          className="text-lg px-4 py-2 bg-blue-50 text-blue-700 border-blue-200"
+          className="text-lg px-4 py-2 bg-sky-50 text-sky-700 border-sky-200"
         >
           <CheckCircle className="h-4 w-4 mr-2" />
           {pagination.total} Approved
@@ -111,7 +111,7 @@ const KycApproved: React.FC = () => {
         <CardContent>
           {loading ? (
             <div className="flex justify-center items-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+              <Loader2 className="h-8 w-8 animate-spin text-sky-600" />
             </div>
           ) : kycList.length === 0 ? (
             <div className="text-center py-12 text-gray-500">

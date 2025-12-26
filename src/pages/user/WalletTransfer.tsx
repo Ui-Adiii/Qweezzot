@@ -164,20 +164,20 @@ const WalletTransfer = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <RefreshCw className="h-8 w-8 animate-spin text-blue-600" />
+        <RefreshCw className="h-8 w-8 animate-spin text-sky-600" />
       </div>
     );
   }
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <Card className="shadow-lg border-blue-200">
-        <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+      <Card className="shadow-lg border-sky-200">
+        <CardHeader className="bg-gradient-to-r from-sky-600 to-sky-700 text-white">
           <div className="flex items-center gap-3">
             <Wallet className="h-8 w-8" />
             <div>
               <CardTitle className="text-2xl">Wallet Transfer</CardTitle>
-              <CardDescription className="text-blue-100 mt-1">
+              <CardDescription className="text-sky-100 mt-1">
                 Transfer amount between your wallets
               </CardDescription>
             </div>
@@ -196,7 +196,7 @@ const WalletTransfer = () => {
                 return (
                   <div
                     key={wallet.value}
-                    className="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg border border-blue-200"
+                    className="bg-gradient-to-br from-sky-50 to-sky-100 p-4 rounded-lg border border-sky-200"
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <span className="text-2xl">{wallet.icon}</span>
@@ -204,7 +204,7 @@ const WalletTransfer = () => {
                         {wallet.label}
                       </span>
                     </div>
-                    <div className="text-2xl font-bold text-blue-700">
+                    <div className="text-2xl font-bold text-sky-700">
                       ₹
                       {balance.toLocaleString("en-IN", {
                         minimumFractionDigits: 2,
@@ -283,8 +283,8 @@ const WalletTransfer = () => {
 
                 {/* Arrow Icon */}
                 <div className="flex justify-center items-center">
-                  <div className="bg-blue-100 p-3 rounded-full">
-                    <ArrowRight className="h-6 w-6 text-blue-600" />
+                  <div className="bg-sky-100 p-3 rounded-full">
+                    <ArrowRight className="h-6 w-6 text-sky-600" />
                   </div>
                 </div>
 
@@ -405,7 +405,7 @@ const WalletTransfer = () => {
                 disabled={
                   transferring || !amount || fromWalletType === toWalletType
                 }
-                className="bg-blue-600 hover:bg-blue-700 text-white"
+                className="bg-sky-600 hover:bg-sky-700 text-white"
               >
                 {transferring ? (
                   <>
@@ -423,12 +423,12 @@ const WalletTransfer = () => {
           </form>
 
           {/* Info Alert */}
-          <div className="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4">
+          <div className="mt-6 bg-sky-50 border border-sky-200 rounded-lg p-4">
             <div className="flex items-start gap-3">
-              <AlertCircle className="h-5 w-5 text-blue-600 mt-0.5" />
-              <div className="text-sm text-blue-800">
+              <AlertCircle className="h-5 w-5 text-sky-600 mt-0.5" />
+              <div className="text-sm text-sky-800">
                 <p className="font-medium mb-1">Important Notes:</p>
-                <ul className="list-disc list-inside space-y-1 text-blue-700">
+                <ul className="list-disc list-inside space-y-1 text-sky-700">
                   <li>
                     You can only transfer from wallets that have sufficient
                     balance

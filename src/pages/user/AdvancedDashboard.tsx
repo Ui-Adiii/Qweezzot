@@ -148,18 +148,18 @@ const AdvancedDashboard: React.FC = () => {
             animate={{ rotate: 360 }}
             transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
           >
-            <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full mx-auto"></div>
-            <Sparkles className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-6 w-6 text-blue-600" />
+            <div className="w-16 h-16 border-4 border-sky-200 border-t-sky-600 rounded-full mx-auto"></div>
+            <Sparkles className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-6 w-6 text-sky-600" />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <p className="text-lg font-semibold text-blue-700">
+            <p className="text-lg font-semibold text-sky-700">
               Loading your dashboard...
             </p>
-            <p className="text-sm text-blue-600/70">
+            <p className="text-sm text-sky-600/70">
               Please wait while we fetch your data
             </p>
           </motion.div>
@@ -175,24 +175,24 @@ const AdvancedDashboard: React.FC = () => {
         animate={{ opacity: 1, scale: 1 }}
         className="flex items-center justify-center min-h-[600px]"
       >
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl max-w-md shadow-2xl ring-1 ring-amber-400/20">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl max-w-md shadow-2xl ring-1 ring-amber-400/20">
           <CardContent className="p-6 text-center space-y-4">
             <motion.div
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-16 h-16 bg-blue-100/50 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm"
+              className="w-16 h-16 bg-sky-100/50 rounded-full flex items-center justify-center mx-auto backdrop-blur-sm"
             >
               <span className="text-2xl">⚠️</span>
             </motion.div>
             <div>
-              <p className="text-blue-700 font-semibold text-lg">
+              <p className="text-sky-700 font-semibold text-lg">
                 Failed to load dashboard
               </p>
-              <p className="text-sm text-blue-600/70 mt-1">{error}</p>
+              <p className="text-sm text-sky-600/70 mt-1">{error}</p>
             </div>
             <Button
               onClick={fetchDashboardData}
-              className="mt-4 bg-blue-600 hover:bg-blue-700 text-white"
+              className="mt-4 bg-sky-600 hover:bg-sky-700 text-white"
               variant="default"
               disabled={loading}
             >
@@ -210,9 +210,9 @@ const AdvancedDashboard: React.FC = () => {
   if (!stats) {
     return (
       <div className="flex items-center justify-center min-h-[600px]">
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl max-w-md shadow-2xl ring-1 ring-amber-400/20">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl max-w-md shadow-2xl ring-1 ring-amber-400/20">
           <CardContent className="p-6 text-center">
-            <p className="text-blue-700 font-medium">
+            <p className="text-sky-700 font-medium">
               No dashboard data available.
             </p>
             <Button
@@ -242,7 +242,7 @@ const AdvancedDashboard: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
       >
-        <Card className="border-0 bg-gradient-to-br from-blue-600/70 via-blue-700/70 to-blue-800/70 backdrop-blur-xl shadow-2xl overflow-hidden relative ring-2 ring-amber-400/20">
+        <Card className="border-0 bg-gradient-to-br from-sky-600/70 via-sky-700/70 to-sky-800/70 backdrop-blur-xl shadow-2xl overflow-hidden relative ring-2 ring-amber-400/20">
           <div className="absolute inset-0 opacity-10">
             <div
               className="absolute inset-0"
@@ -326,8 +326,8 @@ const AdvancedDashboard: React.FC = () => {
         className="space-y-4"
       >
         <div className="flex items-center justify-between">
-          <h3 className="text-xl font-bold text-blue-800 flex items-center">
-            <Share2 className="h-5 w-5 mr-2 text-blue-600" />
+          <h3 className="text-xl font-bold text-sky-800 flex items-center">
+            <Share2 className="h-5 w-5 mr-2 text-sky-600" />
             Referral Links
           </h3>
         </div>
@@ -339,10 +339,10 @@ const AdvancedDashboard: React.FC = () => {
             whileHover={{ scale: 1.02, y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="border border-blue-200/50 bg-white/70 backdrop-blur-xl hover:shadow-2xl transition-all duration-300 group ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+            <Card className="border border-sky-200/50 bg-white/70 backdrop-blur-xl hover:shadow-2xl transition-all duration-300 group ring-1 ring-amber-400/10 hover:ring-amber-400/30">
               <CardContent className="p-5">
                 <div className="flex items-start justify-between mb-3">
-                  <Badge className="bg-gradient-to-r from-blue-600/90 via-blue-600/90 to-amber-500/90 text-white px-3 py-1 backdrop-blur-sm ring-1 ring-amber-300/30 shadow-lg">
+                  <Badge className="bg-gradient-to-r from-sky-600/90 via-sky-600/90 to-amber-500/90 text-white px-3 py-1 backdrop-blur-sm ring-1 ring-amber-300/30 shadow-lg">
                     LEFT POSITION
                   </Badge>
                   <motion.div
@@ -359,15 +359,15 @@ const AdvancedDashboard: React.FC = () => {
                         )
                       }
                       size="sm"
-                      className="bg-gradient-to-r from-blue-600/90 to-amber-500/90 hover:from-blue-700 hover:to-amber-600 text-white backdrop-blur-sm ring-1 ring-amber-300/30 shadow-md"
+                      className="bg-gradient-to-r from-sky-600/90 to-amber-500/90 hover:from-sky-700 hover:to-amber-600 text-white backdrop-blur-sm ring-1 ring-amber-300/30 shadow-md"
                     >
                       <Share2 className="h-4 w-4 mr-1" />
                       Share
                     </Button>
                   </motion.div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-3 border border-blue-200/50 ring-1 ring-amber-400/10">
-                  <code className="text-xs text-blue-800 break-all font-mono">
+                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-3 border border-sky-200/50 ring-1 ring-amber-400/10">
+                  <code className="text-xs text-sky-800 break-all font-mono">
                     {window.location.origin}/user/register?ref=
                     {stats?.user?.referralCode || "DEMO"}&pos=LEFT
                   </code>
@@ -383,7 +383,7 @@ const AdvancedDashboard: React.FC = () => {
                       "Left referral link"
                     )
                   }
-                  className="mt-3 w-full text-blue-700 hover:text-blue-800 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-amber-50/50 border border-amber-200/30"
+                  className="mt-3 w-full text-sky-700 hover:text-sky-800 hover:bg-gradient-to-r hover:from-sky-50/50 hover:to-amber-50/50 border border-amber-200/30"
                 >
                   <Copy className="h-3 w-3 mr-2" />
                   Copy Link
@@ -398,10 +398,10 @@ const AdvancedDashboard: React.FC = () => {
             whileHover={{ scale: 1.02, y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="border border-blue-200/50 bg-white/70 backdrop-blur-xl hover:shadow-2xl transition-all duration-300 group ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+            <Card className="border border-sky-200/50 bg-white/70 backdrop-blur-xl hover:shadow-2xl transition-all duration-300 group ring-1 ring-amber-400/10 hover:ring-amber-400/30">
               <CardContent className="p-5">
                 <div className="flex items-start justify-between mb-3">
-                  <Badge className="bg-gradient-to-r from-blue-600/90 via-blue-600/90 to-amber-500/90 text-white px-3 py-1 backdrop-blur-sm ring-1 ring-amber-300/30 shadow-lg">
+                  <Badge className="bg-gradient-to-r from-sky-600/90 via-sky-600/90 to-amber-500/90 text-white px-3 py-1 backdrop-blur-sm ring-1 ring-amber-300/30 shadow-lg">
                     RIGHT POSITION
                   </Badge>
                   <motion.div
@@ -418,15 +418,15 @@ const AdvancedDashboard: React.FC = () => {
                         )
                       }
                       size="sm"
-                      className="bg-gradient-to-r from-blue-600/90 to-amber-500/90 hover:from-blue-700 hover:to-amber-600 text-white backdrop-blur-sm ring-1 ring-amber-300/30 shadow-md"
+                      className="bg-gradient-to-r from-sky-600/90 to-amber-500/90 hover:from-sky-700 hover:to-amber-600 text-white backdrop-blur-sm ring-1 ring-amber-300/30 shadow-md"
                     >
                       <Share2 className="h-4 w-4 mr-1" />
                       Share
                     </Button>
                   </motion.div>
                 </div>
-                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-3 border border-blue-200/50 ring-1 ring-amber-400/10">
-                  <code className="text-xs text-blue-800 break-all font-mono">
+                <div className="bg-white/80 backdrop-blur-sm rounded-lg p-3 border border-sky-200/50 ring-1 ring-amber-400/10">
+                  <code className="text-xs text-sky-800 break-all font-mono">
                     {window.location.origin}/user/register?ref=
                     {stats?.user?.referralCode || "DEMO"}&pos=RIGHT
                   </code>
@@ -442,7 +442,7 @@ const AdvancedDashboard: React.FC = () => {
                       "Right referral link"
                     )
                   }
-                  className="mt-3 w-full text-blue-700 hover:text-blue-800 hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-amber-50/50 border border-amber-200/30"
+                  className="mt-3 w-full text-sky-700 hover:text-sky-800 hover:bg-gradient-to-r hover:from-sky-50/50 hover:to-amber-50/50 border border-amber-200/30"
                 >
                   <Copy className="h-3 w-3 mr-2" />
                   Copy Link
@@ -459,8 +459,8 @@ const AdvancedDashboard: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
       >
-        <h3 className="text-xl font-bold text-blue-800 mb-4 flex items-center">
-          <Wallet className="h-5 w-5 mr-2 text-blue-600" />
+        <h3 className="text-xl font-bold text-sky-800 mb-4 flex items-center">
+          <Wallet className="h-5 w-5 mr-2 text-sky-600" />
           Wallet Overview
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -469,7 +469,7 @@ const AdvancedDashboard: React.FC = () => {
             whileHover={{ scale: 1.02, y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="border-0 bg-gradient-to-br from-blue-500/90 via-blue-600/90 to-amber-500/80 backdrop-blur-xl text-white shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-amber-400/20">
+            <Card className="border-0 bg-gradient-to-br from-sky-500/90 via-sky-600/90 to-amber-500/80 backdrop-blur-xl text-white shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-amber-400/20">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <motion.div
@@ -501,7 +501,7 @@ const AdvancedDashboard: React.FC = () => {
             whileHover={{ scale: 1.02, y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="border-0 bg-gradient-to-br from-blue-600/90 via-blue-700/90 to-amber-600/80 backdrop-blur-xl text-white shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-amber-400/20">
+            <Card className="border-0 bg-gradient-to-br from-sky-600/90 via-sky-700/90 to-amber-600/80 backdrop-blur-xl text-white shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-amber-400/20">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <motion.div
@@ -533,7 +533,7 @@ const AdvancedDashboard: React.FC = () => {
             whileHover={{ scale: 1.02, y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="border-0 bg-gradient-to-br from-blue-700/90 via-blue-800/90 to-amber-700/80 backdrop-blur-xl text-white shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-amber-400/20">
+            <Card className="border-0 bg-gradient-to-br from-sky-700/90 via-sky-800/90 to-amber-700/80 backdrop-blur-xl text-white shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-amber-400/20">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <motion.div
@@ -565,7 +565,7 @@ const AdvancedDashboard: React.FC = () => {
             whileHover={{ scale: 1.02, y: -5 }}
             transition={{ duration: 0.3 }}
           >
-            <Card className="border-0 bg-gradient-to-br from-cyan-600/90 via-teal-700/90 to-blue-700/80 backdrop-blur-xl text-white shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-amber-400/20">
+            <Card className="border-0 bg-gradient-to-br from-cyan-600/90 via-teal-700/90 to-sky-700/80 backdrop-blur-xl text-white shadow-xl hover:shadow-2xl transition-all duration-300 ring-2 ring-amber-400/20">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <motion.div
@@ -633,26 +633,26 @@ const AdvancedDashboard: React.FC = () => {
         transition={{ duration: 0.5, delay: 0.4 }}
         className="space-y-6"
       >
-        {/* Row 1: blue Cards - My Directs, My Team, Left BV, Right BV */}
+        {/* Row 1: sky Cards - My Directs, My Team, Left BV, Right BV */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             {
               label: "My Directs",
               value: stats?.myDirects || stats?.team?.directs || 0,
               icon: Users,
-              color: "bg-blue-500",
+              color: "bg-sky-500",
             },
             {
               label: "My Team",
               value: formatNumber(stats?.myTeam || stats?.team?.totalTeam || 0),
               icon: Users,
-              color: "bg-blue-500",
+              color: "bg-sky-500",
             },
             {
               label: "Left BV",
               value: formatNumber(stats?.leftBV || stats?.team?.leftBV || 0, 2),
               icon: BarChart3,
-              color: "bg-blue-500",
+              color: "bg-sky-500",
             },
             {
               label: "Right BV",
@@ -661,7 +661,7 @@ const AdvancedDashboard: React.FC = () => {
                 2
               ),
               icon: BarChart3,
-              color: "bg-blue-500",
+              color: "bg-sky-500",
             },
           ].map((stat, index) => (
             <motion.div
@@ -672,23 +672,23 @@ const AdvancedDashboard: React.FC = () => {
               transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
             >
               <Card
-                className={`border border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30`}
+                className={`border border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30`}
               >
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <motion.div
-                      className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
+                      className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
-                      <stat.icon className="h-5 w-5 text-blue-600" />
+                      <stat.icon className="h-5 w-5 text-sky-600" />
                     </motion.div>
                     <TrendingUp className="h-4 w-4 text-amber-500" />
                   </div>
-                  <p className="text-blue-700/70 text-sm font-medium mb-1">
+                  <p className="text-sky-700/70 text-sm font-medium mb-1">
                     {stat.label}
                   </p>
                   <motion.p
-                    className="text-3xl font-bold text-blue-800"
+                    className="text-3xl font-bold text-sky-800"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8 + index * 0.1 }}
@@ -736,22 +736,22 @@ const AdvancedDashboard: React.FC = () => {
               whileHover={{ scale: 1.02, y: -5 }}
               transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
             >
-              <Card className="border border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+              <Card className="border border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <motion.div
-                      className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
+                      className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
-                      <stat.icon className="h-5 w-5 text-blue-600" />
+                      <stat.icon className="h-5 w-5 text-sky-600" />
                     </motion.div>
                     <TrendingUp className="h-4 w-4 text-amber-500" />
                   </div>
-                  <p className="text-blue-700/70 text-sm font-medium mb-1">
+                  <p className="text-sky-700/70 text-sm font-medium mb-1">
                     {stat.label}
                   </p>
                   <motion.p
-                    className="text-3xl font-bold text-blue-800"
+                    className="text-3xl font-bold text-sky-800"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.9 + index * 0.1 }}
@@ -764,20 +764,20 @@ const AdvancedDashboard: React.FC = () => {
           ))}
         </div>
 
-        {/* Row 3: blue and Purple Cards - Left RP, Right RP, Matching Bonus, Additional Bonus */}
+        {/* Row 3: sky and Purple Cards - Left RP, Right RP, Matching Bonus, Additional Bonus */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             {
               label: "Left RP",
               value: formatNumber(stats?.leftRP || 0, 2),
               icon: BarChart3,
-              borderColor: "border-blue-200/50",
+              borderColor: "border-sky-200/50",
             },
             {
               label: "Right RP",
               value: formatNumber(stats?.rightRP || 0, 2),
               icon: BarChart3,
-              borderColor: "border-blue-200/50",
+              borderColor: "border-sky-200/50",
             },
             {
               label: "Matching Bonus",
@@ -805,18 +805,18 @@ const AdvancedDashboard: React.FC = () => {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <motion.div
-                      className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
+                      className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
-                      <stat.icon className="h-5 w-5 text-blue-600" />
+                      <stat.icon className="h-5 w-5 text-sky-600" />
                     </motion.div>
                     <TrendingUp className="h-4 w-4 text-amber-500" />
                   </div>
-                  <p className="text-blue-700/70 text-sm font-medium mb-1">
+                  <p className="text-sky-700/70 text-sm font-medium mb-1">
                     {stat.label}
                   </p>
                   <motion.p
-                    className="text-3xl font-bold text-blue-800"
+                    className="text-3xl font-bold text-sky-800"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.0 + index * 0.1 }}
@@ -870,18 +870,18 @@ const AdvancedDashboard: React.FC = () => {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <motion.div
-                      className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
+                      className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
-                      <stat.icon className="h-5 w-5 text-blue-600" />
+                      <stat.icon className="h-5 w-5 text-sky-600" />
                     </motion.div>
                     <TrendingUp className="h-4 w-4 text-amber-500" />
                   </div>
-                  <p className="text-blue-700/70 text-sm font-medium mb-1">
+                  <p className="text-sky-700/70 text-sm font-medium mb-1">
                     {stat.label}
                   </p>
                   <motion.p
-                    className="text-3xl font-bold text-blue-800"
+                    className="text-3xl font-bold text-sky-800"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.1 + index * 0.1 }}
@@ -917,18 +917,18 @@ const AdvancedDashboard: React.FC = () => {
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-3">
                     <motion.div
-                      className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
+                      className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
                       whileHover={{ scale: 1.1, rotate: 5 }}
                     >
-                      <stat.icon className="h-5 w-5 text-blue-600" />
+                      <stat.icon className="h-5 w-5 text-sky-600" />
                     </motion.div>
                     <TrendingUp className="h-4 w-4 text-amber-500" />
                   </div>
-                  <p className="text-blue-700/70 text-sm font-medium mb-1">
+                  <p className="text-sky-700/70 text-sm font-medium mb-1">
                     {stat.label}
                   </p>
                   <motion.p
-                    className="text-3xl font-bold text-blue-800"
+                    className="text-3xl font-bold text-sky-800"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.2 + index * 0.1 }}
@@ -949,22 +949,22 @@ const AdvancedDashboard: React.FC = () => {
             whileHover={{ scale: 1.02, y: -5 }}
             transition={{ duration: 0.3, delay: 1.0 }}
           >
-            <Card className="border border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+            <Card className="border border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between mb-3">
                   <motion.div
-                    className="p-2 bg-gradient-to-br from-blue-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
+                    className="p-2 bg-gradient-to-br from-sky-100/50 to-amber-100/40 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                   >
-                    <Wallet className="h-5 w-5 text-blue-600" />
+                    <Wallet className="h-5 w-5 text-sky-600" />
                   </motion.div>
                   <TrendingUp className="h-4 w-4 text-amber-500" />
                 </div>
-                <p className="text-blue-700/70 text-sm font-medium mb-1">
+                <p className="text-sky-700/70 text-sm font-medium mb-1">
                   Repurchase Wallet
                 </p>
                 <motion.p
-                  className="text-3xl font-bold text-blue-800"
+                  className="text-3xl font-bold text-sky-800"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.3 }}
@@ -983,9 +983,9 @@ const AdvancedDashboard: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
       >
-        <Card className="border border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-xl flex items-center text-blue-800">
+            <CardTitle className="text-xl flex items-center text-sky-800">
               <Target className="h-6 w-6 mr-2 text-amber-600" />
               Monthly Performance
             </CardTitle>
@@ -996,17 +996,17 @@ const AdvancedDashboard: React.FC = () => {
                 {
                   label: "Monthly Income",
                   value: formatCurrency(stats?.monthly?.income || 0),
-                  color: "text-blue-700",
+                  color: "text-sky-700",
                 },
                 {
                   label: "Target",
                   value: formatCurrency(stats?.monthly?.target || 0),
-                  color: "text-blue-800",
+                  color: "text-sky-800",
                 },
                 {
                   label: "Achievement",
                   value: `${stats?.monthly?.achieved || 0}%`,
-                  color: "text-blue-600",
+                  color: "text-sky-600",
                   isAchievement: true,
                 },
               ].map((item, index) => (
@@ -1015,18 +1015,18 @@ const AdvancedDashboard: React.FC = () => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1 + index * 0.1 }}
-                  className="text-center p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm border border-blue-200/50 ring-1 ring-amber-400/10"
+                  className="text-center p-4 bg-white/80 backdrop-blur-sm rounded-xl shadow-sm border border-sky-200/50 ring-1 ring-amber-400/10"
                 >
-                  <p className="text-blue-700/70 text-sm font-medium mb-2">
+                  <p className="text-sky-700/70 text-sm font-medium mb-2">
                     {item.label}
                   </p>
                   <p className={`text-3xl font-bold ${item.color}`}>
                     {item.value}
                   </p>
                   {item.isAchievement && (
-                    <div className="mt-3 w-full bg-blue-100/50 rounded-full h-2.5 backdrop-blur-sm ring-1 ring-amber-300/20 overflow-hidden">
+                    <div className="mt-3 w-full bg-sky-100/50 rounded-full h-2.5 backdrop-blur-sm ring-1 ring-amber-300/20 overflow-hidden">
                       <motion.div
-                        className="bg-gradient-to-r from-blue-500 via-blue-600 to-amber-500 h-2.5 rounded-full"
+                        className="bg-gradient-to-r from-sky-500 via-sky-600 to-amber-500 h-2.5 rounded-full"
                         initial={{ width: 0 }}
                         animate={{
                           width: `${Math.min(
@@ -1075,29 +1075,29 @@ const AdvancedDashboard: React.FC = () => {
           whileHover={{ scale: 1.02, y: -5 }}
           transition={{ duration: 0.3 }}
         >
-          <Card className="border border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-lg transition-all duration-200 ring-1 ring-amber-400/10">
+          <Card className="border border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-lg transition-all duration-200 ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="text-lg flex items-center text-blue-800">
-                <Award className="h-5 w-5 mr-2 text-blue-600" />
+              <CardTitle className="text-lg flex items-center text-sky-800">
+                <Award className="h-5 w-5 mr-2 text-sky-600" />
                 Account Information
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="flex justify-between items-center py-2 border-b border-blue-200/50">
-                <span className="text-blue-700/70 text-sm">Registration:</span>
-                <span className="font-semibold text-blue-800">
+              <div className="flex justify-between items-center py-2 border-b border-sky-200/50">
+                <span className="text-sky-700/70 text-sm">Registration:</span>
+                <span className="font-semibold text-sky-800">
                   {stats?.user?.registrationDate || "N/A"}
                 </span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-blue-200/50">
-                <span className="text-blue-700/70 text-sm">Rank:</span>
+              <div className="flex justify-between items-center py-2 border-b border-sky-200/50">
+                <span className="text-sky-700/70 text-sm">Rank:</span>
                 <Badge className="bg-gradient-to-r from-amber-500/90 via-amber-500/90 to-yellow-500/90 text-white backdrop-blur-sm ring-1 ring-amber-300/30 shadow-md">
                   {stats?.user?.rank || "Bronze"}
                 </Badge>
               </div>
               <div className="flex justify-between items-center py-2">
-                <span className="text-blue-700/70 text-sm">Status:</span>
-                <Badge className="bg-gradient-to-r from-blue-600 to-blue-700 text-white ring-1 ring-amber-400/20">
+                <span className="text-sky-700/70 text-sm">Status:</span>
+                <Badge className="bg-gradient-to-r from-sky-600 to-sky-700 text-white ring-1 ring-amber-400/20">
                   {stats?.user?.status || "Active"}
                 </Badge>
               </div>
@@ -1110,31 +1110,31 @@ const AdvancedDashboard: React.FC = () => {
           whileHover={{ scale: 1.02, y: -5 }}
           transition={{ duration: 0.3 }}
         >
-          <Card className="border border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-lg transition-all duration-200 ring-1 ring-amber-400/10">
+          <Card className="border border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-md hover:shadow-lg transition-all duration-200 ring-1 ring-amber-400/10">
             <CardHeader>
-              <CardTitle className="text-lg flex items-center text-blue-800">
-                <Users className="h-5 w-5 mr-2 text-blue-600" />
+              <CardTitle className="text-lg flex items-center text-sky-800">
+                <Users className="h-5 w-5 mr-2 text-sky-600" />
                 Contact Details
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
-              <div className="flex justify-between items-center py-2 border-b border-blue-200/50">
-                <span className="text-blue-700/70 text-sm">Email:</span>
-                <span className="font-semibold text-blue-800 text-sm">
+              <div className="flex justify-between items-center py-2 border-b border-sky-200/50">
+                <span className="text-sky-700/70 text-sm">Email:</span>
+                <span className="font-semibold text-sky-800 text-sm">
                   {stats?.user?.email || "N/A"}
                 </span>
               </div>
-              <div className="flex justify-between items-center py-2 border-b border-blue-200/50">
-                <span className="text-blue-700/70 text-sm">Mobile:</span>
-                <span className="font-semibold text-blue-800">
+              <div className="flex justify-between items-center py-2 border-b border-sky-200/50">
+                <span className="text-sky-700/70 text-sm">Mobile:</span>
+                <span className="font-semibold text-sky-800">
                   {stats?.user?.mobileNo || "N/A"}
                 </span>
               </div>
               <div className="flex justify-between items-center py-2">
-                <span className="text-blue-700/70 text-sm">Referral Code:</span>
+                <span className="text-sky-700/70 text-sm">Referral Code:</span>
                 <Badge
                   variant="outline"
-                  className="font-mono font-bold border-amber-300 text-blue-700 ring-1 ring-amber-400/20"
+                  className="font-mono font-bold border-amber-300 text-sky-700 ring-1 ring-amber-400/20"
                 >
                   {stats?.user?.referralCode || "DEMO"}
                 </Badge>

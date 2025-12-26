@@ -109,13 +109,13 @@ const FirstPurchase: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       {/* Wallet Balance Banner with Glass Effect */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <Card className="border-blue-200/50 bg-gradient-to-br from-blue-600/90 to-blue-700/90 backdrop-blur-xl shadow-xl ring-2 ring-amber-400/20 overflow-hidden relative">
+        <Card className="border-sky-200/50 bg-gradient-to-br from-sky-600/90 to-sky-700/90 backdrop-blur-xl shadow-xl ring-2 ring-amber-400/20 overflow-hidden relative">
           <motion.div
             className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-amber-400/20 to-yellow-500/20 rounded-full blur-3xl"
             animate={{
@@ -170,10 +170,10 @@ const FirstPurchase: React.FC = () => {
         animate={{ opacity: 1, x: 0 }}
         className="flex items-center space-x-3"
       >
-        <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-          <ShoppingCart className="h-8 w-8 text-blue-600" />
+        <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+          <ShoppingCart className="h-8 w-8 text-sky-600" />
         </div>
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
           First Purchase
         </h1>
       </motion.div>
@@ -183,15 +183,15 @@ const FirstPurchase: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-xl text-blue-800 flex items-center gap-2">
+            <CardTitle className="text-xl text-sky-800 flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-amber-600" />
               Make Your First Purchase
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
-            <p className="text-blue-700/70">
+            <p className="text-sky-700/70">
               Welcome to Osfigo! Complete your first purchase to activate your
               account and start earning.
             </p>
@@ -201,20 +201,20 @@ const FirstPurchase: React.FC = () => {
                 {[...Array(3)].map((_, i) => (
                   <Card
                     key={i}
-                    className="border-blue-200/50 bg-white/60 backdrop-blur-sm animate-pulse"
+                    className="border-sky-200/50 bg-white/60 backdrop-blur-sm animate-pulse"
                   >
                     <CardContent className="p-6">
-                      <div className="h-12 w-12 bg-blue-200/50 rounded-lg mx-auto mb-4"></div>
-                      <div className="h-6 bg-blue-200/50 rounded w-3/4 mx-auto mb-2"></div>
-                      <div className="h-8 bg-blue-200/50 rounded w-1/2 mx-auto mb-4"></div>
-                      <div className="h-10 bg-blue-200/50 rounded w-full"></div>
+                      <div className="h-12 w-12 bg-sky-200/50 rounded-lg mx-auto mb-4"></div>
+                      <div className="h-6 bg-sky-200/50 rounded w-3/4 mx-auto mb-2"></div>
+                      <div className="h-8 bg-sky-200/50 rounded w-1/2 mx-auto mb-4"></div>
+                      <div className="h-10 bg-sky-200/50 rounded w-full"></div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
             ) : products.length === 0 ? (
-              <div className="text-center py-12 text-blue-700/70">
-                <Package className="h-16 w-16 text-blue-300 mx-auto mb-4" />
+              <div className="text-center py-12 text-sky-700/70">
+                <Package className="h-16 w-16 text-sky-300 mx-auto mb-4" />
                 <p className="text-lg font-medium">No products available</p>
                 <p className="text-sm">
                   Products will appear here once they are added
@@ -245,7 +245,7 @@ const FirstPurchase: React.FC = () => {
                         transition={{ delay: 0.3 + index * 0.1 }}
                         whileHover={{ scale: 1.02, y: -5 }}
                       >
-                        <Card className="group relative border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ring-1 ring-amber-400/10 h-full flex flex-col">
+                        <Card className="group relative border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden ring-1 ring-amber-400/10 h-full flex flex-col">
                           {/* Discount Badge */}
                           {discountPercent > 0 && (
                             <div className="absolute top-4 right-4 z-20">
@@ -259,7 +259,7 @@ const FirstPurchase: React.FC = () => {
                           {/* Popular Badge for first 3 products */}
                           {index < 3 && (
                             <div className="absolute top-4 left-4 z-20">
-                              <Badge className="bg-gradient-to-r from-blue-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-blue-300/30">
+                              <Badge className="bg-gradient-to-r from-sky-500 to-teal-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg ring-1 ring-sky-300/30">
                                 <Star className="h-3 w-3 mr-1 fill-current" />
                                 Popular
                               </Badge>
@@ -277,7 +277,7 @@ const FirstPurchase: React.FC = () => {
 
                           <CardContent className="p-0">
                             {/* Product Image */}
-                            <div className="relative h-56 bg-gradient-to-br from-blue-50/70 to-amber-50/50 overflow-hidden flex-shrink-0">
+                            <div className="relative h-56 bg-gradient-to-br from-sky-50/70 to-amber-50/50 overflow-hidden flex-shrink-0">
                               {product.images && product.images.length > 0 ? (
                                 <motion.img
                                   src={product.images[0]}

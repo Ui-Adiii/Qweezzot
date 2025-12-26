@@ -124,7 +124,7 @@ const KycTotal: React.FC = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "approved":
-        return <Badge className="bg-blue-600">Approved</Badge>;
+        return <Badge className="bg-sky-600">Approved</Badge>;
       case "rejected":
         return <Badge variant="destructive">Rejected</Badge>;
       case "pending":
@@ -145,8 +145,8 @@ const KycTotal: React.FC = () => {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-blue-800">All KYC Requests</h1>
-          <p className="text-blue-600 mt-1">
+          <h1 className="text-3xl font-bold text-sky-800">All KYC Requests</h1>
+          <p className="text-sky-600 mt-1">
             View and manage all KYC submissions
           </p>
         </div>
@@ -199,11 +199,11 @@ const KycTotal: React.FC = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-gray-600">Approved</p>
-                <p className="text-2xl font-bold text-blue-600">
+                <p className="text-2xl font-bold text-sky-600">
                   {stats.approved}
                 </p>
               </div>
-              <CheckCircle className="h-8 w-8 text-blue-600" />
+              <CheckCircle className="h-8 w-8 text-sky-600" />
             </div>
           </CardContent>
         </Card>
@@ -229,7 +229,7 @@ const KycTotal: React.FC = () => {
         <CardContent>
           {loading ? (
             <div className="flex justify-center items-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+              <Loader2 className="h-8 w-8 animate-spin text-sky-600" />
             </div>
           ) : kycList.length === 0 ? (
             <div className="text-center py-12 text-gray-500">

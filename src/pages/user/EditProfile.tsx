@@ -207,36 +207,36 @@ const EditProfile: React.FC = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sky-600"></div>
       </div>
     );
   }
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center space-x-3"
       >
-        <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-          <User className="h-8 w-8 text-blue-600" />
+        <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+          <User className="h-8 w-8 text-sky-600" />
         </div>
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
           Member Profile
         </h1>
       </motion.div>
 
-      <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+      <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
         <CardHeader>
-          <CardTitle className="text-xl text-blue-800">
+          <CardTitle className="text-xl text-sky-800">
             PERSONAL DETAILS
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="name" className="text-blue-800">
+              <Label htmlFor="name" className="text-sky-800">
                 Name <span className="text-red-500">*</span>
               </Label>
               <Input
@@ -245,12 +245,12 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, name: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="mobileNo" className="text-blue-800">
+              <Label htmlFor="mobileNo" className="text-sky-800">
                 Mobile No <span className="text-red-500">*</span>
               </Label>
               <Input
@@ -259,12 +259,12 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, mobileNo: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="dateOfBirth" className="text-blue-800">
+              <Label htmlFor="dateOfBirth" className="text-sky-800">
                 Date of Birth <span className="text-red-500">*</span>
               </Label>
               <Input
@@ -277,12 +277,12 @@ const EditProfile: React.FC = () => {
                     dateOfBirth: e.target.value,
                   }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="dateOfJoining" className="text-blue-800">
+              <Label htmlFor="dateOfJoining" className="text-sky-800">
                 Date of Joining
               </Label>
               <Input
@@ -290,12 +290,12 @@ const EditProfile: React.FC = () => {
                 type="date"
                 value={formData.dateOfJoining}
                 disabled
-                className="border-blue-200/50 bg-gray-100/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-gray-100/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="email" className="text-blue-800">
+              <Label htmlFor="email" className="text-sky-800">
                 Email Id
               </Label>
               <Input
@@ -305,12 +305,12 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, email: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="gender" className="text-blue-800">
+              <Label htmlFor="gender" className="text-sky-800">
                 Gender
               </Label>
               <select
@@ -319,7 +319,7 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, gender: e.target.value }))
                 }
-                className="w-full p-2 border border-blue-200/50 bg-white/80 backdrop-blur-sm rounded-md ring-1 ring-amber-400/10"
+                className="w-full p-2 border border-sky-200/50 bg-white/80 backdrop-blur-sm rounded-md ring-1 ring-amber-400/10"
               >
                 <option value="">Select Gender</option>
                 <option value="male">Male</option>
@@ -331,16 +331,16 @@ const EditProfile: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+      <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
         <CardHeader>
-          <CardTitle className="text-xl text-blue-800">
+          <CardTitle className="text-xl text-sky-800">
             COMMUNICATION DETAILS
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="country" className="text-blue-800">
+              <Label htmlFor="country" className="text-sky-800">
                 Country
               </Label>
               <select
@@ -349,7 +349,7 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, country: e.target.value }))
                 }
-                className="w-full p-2 border border-blue-200/50 bg-white/80 backdrop-blur-sm rounded-md ring-1 ring-amber-400/10"
+                className="w-full p-2 border border-sky-200/50 bg-white/80 backdrop-blur-sm rounded-md ring-1 ring-amber-400/10"
               >
                 <option value="India">India</option>
                 <option value="USA">USA</option>
@@ -358,7 +358,7 @@ const EditProfile: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="state" className="text-blue-800">
+              <Label htmlFor="state" className="text-sky-800">
                 State
               </Label>
               <Input
@@ -367,12 +367,12 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, state: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="district" className="text-blue-800">
+              <Label htmlFor="district" className="text-sky-800">
                 District
               </Label>
               <Input
@@ -381,12 +381,12 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, district: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="city" className="text-blue-800">
+              <Label htmlFor="city" className="text-sky-800">
                 City
               </Label>
               <Input
@@ -395,12 +395,12 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, city: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2 md:col-span-2">
-              <Label htmlFor="address" className="text-blue-800">
+              <Label htmlFor="address" className="text-sky-800">
                 Address
               </Label>
               <Textarea
@@ -409,13 +409,13 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, address: e.target.value }))
                 }
-                className="w-full p-3 border border-blue-200/50 bg-white/80 backdrop-blur-sm rounded-md h-20 ring-1 ring-amber-400/10"
+                className="w-full p-3 border border-sky-200/50 bg-white/80 backdrop-blur-sm rounded-md h-20 ring-1 ring-amber-400/10"
                 placeholder="Enter your address"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="pincode" className="text-blue-800">
+              <Label htmlFor="pincode" className="text-sky-800">
                 Pincode
               </Label>
               <Input
@@ -424,23 +424,23 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, pincode: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
           </div>
         </CardContent>
       </Card>
 
-      <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+      <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
         <CardHeader>
-          <CardTitle className="text-xl text-blue-800">
+          <CardTitle className="text-xl text-sky-800">
             BANK & PAN DETAILS
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="accountNo" className="text-blue-800">
+              <Label htmlFor="accountNo" className="text-sky-800">
                 Account No
               </Label>
               <Input
@@ -452,12 +452,12 @@ const EditProfile: React.FC = () => {
                     accountNo: e.target.value,
                   }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="bankName" className="text-blue-800">
+              <Label htmlFor="bankName" className="text-sky-800">
                 Bank Name
               </Label>
               <Input
@@ -466,12 +466,12 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, bankName: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="branchName" className="text-blue-800">
+              <Label htmlFor="branchName" className="text-sky-800">
                 Branch Name
               </Label>
               <Input
@@ -483,12 +483,12 @@ const EditProfile: React.FC = () => {
                     branchName: e.target.value,
                   }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="ifscCode" className="text-blue-800">
+              <Label htmlFor="ifscCode" className="text-sky-800">
                 IFSC Code
               </Label>
               <Input
@@ -497,12 +497,12 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, ifscCode: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="pancard" className="text-blue-800">
+              <Label htmlFor="pancard" className="text-sky-800">
                 Pancard
               </Label>
               <Input
@@ -511,23 +511,23 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, pancard: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
           </div>
         </CardContent>
       </Card>
 
-      <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+      <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
         <CardHeader>
-          <CardTitle className="text-xl text-blue-800">
+          <CardTitle className="text-xl text-sky-800">
             NOMINEE DETAILS
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="nomineeName" className="text-blue-800">
+              <Label htmlFor="nomineeName" className="text-sky-800">
                 Nominee Name
               </Label>
               <Input
@@ -539,12 +539,12 @@ const EditProfile: React.FC = () => {
                     nomineeName: e.target.value,
                   }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="relation" className="text-blue-800">
+              <Label htmlFor="relation" className="text-sky-800">
                 Relation
               </Label>
               <Input
@@ -553,12 +553,12 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, relation: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="age" className="text-blue-800">
+              <Label htmlFor="age" className="text-sky-800">
                 Age
               </Label>
               <Input
@@ -568,16 +568,16 @@ const EditProfile: React.FC = () => {
                 onChange={(e) =>
                   setFormData((prev) => ({ ...prev, age: e.target.value }))
                 }
-                className="border-blue-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
+                className="border-sky-200/50 bg-white/80 backdrop-blur-sm ring-1 ring-amber-400/10"
               />
             </div>
           </div>
         </CardContent>
       </Card>
 
-      <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+      <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
         <CardHeader>
-          <CardTitle className="text-xl text-blue-800">
+          <CardTitle className="text-xl text-sky-800">
             PROFILE PICTURE
           </CardTitle>
         </CardHeader>
@@ -588,11 +588,11 @@ const EditProfile: React.FC = () => {
                 <img
                   src={profileImagePreview}
                   alt="Profile"
-                  className="w-32 h-32 rounded-full object-cover border-4 border-blue-200/50 ring-2 ring-amber-400/20"
+                  className="w-32 h-32 rounded-full object-cover border-4 border-sky-200/50 ring-2 ring-amber-400/20"
                 />
               ) : (
-                <div className="w-32 h-32 bg-gradient-to-br from-blue-100/70 to-amber-100/50 rounded-full flex items-center justify-center backdrop-blur-sm ring-2 ring-amber-400/20">
-                  <User className="h-16 w-16 text-blue-600" />
+                <div className="w-32 h-32 bg-gradient-to-br from-sky-100/70 to-amber-100/50 rounded-full flex items-center justify-center backdrop-blur-sm ring-2 ring-amber-400/20">
+                  <User className="h-16 w-16 text-sky-600" />
                 </div>
               )}
             </div>
@@ -608,13 +608,13 @@ const EditProfile: React.FC = () => {
                 type="button"
                 onClick={() => fileInputRef.current?.click()}
                 variant="outline"
-                className="border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50"
+                className="border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50"
               >
                 <Upload className="h-4 w-4 mr-2" />
                 {profileImageFile ? "Change Photo" : "Upload Photo"}
               </Button>
               {profileImageFile && (
-                <p className="text-sm text-blue-700 mt-2">
+                <p className="text-sm text-sky-700 mt-2">
                   {profileImageFile.name}
                 </p>
               )}
@@ -627,7 +627,7 @@ const EditProfile: React.FC = () => {
         <Button
           onClick={handleSave}
           disabled={saving}
-          className="w-full bg-gradient-to-r from-blue-600 to-amber-500 hover:from-blue-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
+          className="w-full bg-gradient-to-r from-sky-600 to-amber-500 hover:from-sky-700 hover:to-amber-600 text-white shadow-lg ring-1 ring-amber-300/30"
         >
           <Save className="h-4 w-4 mr-2" />
           {saving ? "Saving..." : "Save Changes"}

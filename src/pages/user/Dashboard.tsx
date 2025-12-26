@@ -169,7 +169,7 @@ const UserDashboard = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-96">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-sky-600"></div>
       </div>
     );
   }
@@ -190,14 +190,14 @@ const UserDashboard = () => {
       title: "Shopping Wallet",
       value: `₹${(stats?.wallets?.purchaseWallet ?? 0).toLocaleString()}`,
       icon: Wallet,
-      color: "bg-gradient-to-r from-blue-400 to-blue-600",
+      color: "bg-gradient-to-r from-sky-400 to-sky-600",
       subtitle: "Available for purchases",
     },
     {
       title: "Earned Wallet",
       value: `₹${(stats?.wallets?.earnedWallet ?? 0).toLocaleString()}`,
       icon: DollarSign,
-      color: "bg-gradient-to-r from-blue-400 to-blue-600",
+      color: "bg-gradient-to-r from-sky-400 to-sky-600",
       subtitle: `BV Commission (${getBVCommissionPercentage()})`,
     },
     {
@@ -229,7 +229,7 @@ const UserDashboard = () => {
   return (
     <div className="space-y-6 p-6">
       {/* Welcome Header */}
-      <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-blue-500">
+      <div className="bg-white rounded-lg shadow-lg p-6 border-l-4 border-sky-500">
         <h1 className="text-2xl font-bold text-gray-900 mb-2">
           Welcome, {stats?.user?.name || "User"}!
         </h1>
@@ -237,7 +237,7 @@ const UserDashboard = () => {
           Username:{" "}
           <span className="font-semibold">{stats?.user?.username}</span> |
           Referral Code:{" "}
-          <span className="font-semibold text-blue-600">
+          <span className="font-semibold text-sky-600">
             {stats?.user?.referralCode}
           </span>
         </p>
@@ -245,14 +245,14 @@ const UserDashboard = () => {
           <span
             className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
               stats?.user?.isActive
-                ? "bg-blue-100 text-blue-800"
+                ? "bg-sky-100 text-sky-800"
                 : "bg-red-100 text-red-800"
             }`}
           >
             {stats?.user?.isActive ? "Active" : "Inactive"}
           </span>
           {stats?.user?.isPackagePurchased && (
-            <span className="ml-2 inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+            <span className="ml-2 inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-sky-100 text-sky-800">
               Package Purchased: ₹{stats.user.packageAmount}
             </span>
           )}
@@ -261,50 +261,50 @@ const UserDashboard = () => {
 
       {/* Welcome Bonus Card */}
       {welcomeBonusStats && welcomeBonusStats.totalBonuses > 0 && (
-        <Card className="border-2 border-blue-400 bg-gradient-to-r from-blue-50 to-blue-50 shadow-lg">
+        <Card className="border-2 border-sky-400 bg-gradient-to-r from-sky-50 to-sky-50 shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-r from-blue-400 to-blue-500 rounded-lg">
+              <div className="p-3 bg-gradient-to-r from-sky-400 to-sky-500 rounded-lg">
                 <Gift className="h-6 w-6 text-white" />
               </div>
               <div>
-                <CardTitle className="text-xl font-bold text-blue-900">
+                <CardTitle className="text-xl font-bold text-sky-900">
                   Welcome Bonus Earnings
                 </CardTitle>
-                <p className="text-sm text-blue-700 mt-1">
+                <p className="text-sm text-sky-700 mt-1">
                   Earned from direct referrals' first purchases
                 </p>
               </div>
             </div>
-            <Badge className="bg-blue-500 text-white px-3 py-1">Active</Badge>
+            <Badge className="bg-sky-500 text-white px-3 py-1">Active</Badge>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               <div>
-                <p className="text-xs text-blue-600 font-medium">
+                <p className="text-xs text-sky-600 font-medium">
                   Total Bonuses
                 </p>
-                <p className="text-lg font-bold text-blue-900">
+                <p className="text-lg font-bold text-sky-900">
                   {welcomeBonusStats.totalBonuses || 0}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-blue-600 font-medium">Credited</p>
-                <p className="text-lg font-bold text-blue-900">
+                <p className="text-xs text-sky-600 font-medium">Credited</p>
+                <p className="text-lg font-bold text-sky-900">
                   {welcomeBonusStats.creditedBonuses || 0}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-blue-600 font-medium">
+                <p className="text-xs text-sky-600 font-medium">
                   Total Earned
                 </p>
-                <p className="text-lg font-bold text-blue-900">
+                <p className="text-lg font-bold text-sky-900">
                   ₹{welcomeBonusStats.totalEarned?.toLocaleString() || "0.00"}
                 </p>
               </div>
             </div>
             <div className="mt-4 p-3 bg-white/60 rounded-lg">
-              <p className="text-sm text-blue-800">
+              <p className="text-sm text-sky-800">
                 <Gift className="h-4 w-4 inline mr-2" />
                 You earn 25% of BV as Welcome Bonus when your direct referrals
                 make their first purchase (min 1000 BV)
@@ -316,57 +316,57 @@ const UserDashboard = () => {
 
       {/* Matching Bonus Card */}
       {matchingBonusStats && (
-        <Card className="border-2 border-blue-400 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-lg">
+        <Card className="border-2 border-sky-400 bg-gradient-to-r from-sky-50 to-indigo-50 shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-lg">
+              <div className="p-3 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-lg">
                 <Percent className="h-6 w-6 text-white" />
               </div>
               <div>
-                <CardTitle className="text-xl font-bold text-blue-900">
+                <CardTitle className="text-xl font-bold text-sky-900">
                   Matching Bonus (10% of BV)
                 </CardTitle>
-                <p className="text-sm text-blue-700 mt-1">
+                <p className="text-sm text-sky-700 mt-1">
                   Weekly matching bonus from left and right leg BV
                 </p>
               </div>
             </div>
-            <Badge className="bg-blue-500 text-white px-3 py-1">Active</Badge>
+            <Badge className="bg-sky-500 text-white px-3 py-1">Active</Badge>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
               <div>
-                <p className="text-xs text-blue-600 font-medium">Left Leg BV</p>
-                <p className="text-lg font-bold text-blue-900">
+                <p className="text-xs text-sky-600 font-medium">Left Leg BV</p>
+                <p className="text-lg font-bold text-sky-900">
                   {matchingBonusStats.leftLegBV?.toLocaleString() || 0}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-blue-600 font-medium">
+                <p className="text-xs text-sky-600 font-medium">
                   Right Leg BV
                 </p>
-                <p className="text-lg font-bold text-blue-900">
+                <p className="text-lg font-bold text-sky-900">
                   {matchingBonusStats.rightLegBV?.toLocaleString() || 0}
                 </p>
               </div>
               <div>
-                <p className="text-xs text-blue-600 font-medium">Matched BV</p>
-                <p className="text-lg font-bold text-blue-900">
+                <p className="text-xs text-sky-600 font-medium">Matched BV</p>
+                <p className="text-lg font-bold text-sky-900">
                   {matchingBonusStats.matchedBV?.toLocaleString() || 0}
                 </p>
               </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4 p-3 bg-blue-100/50 rounded-lg">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4 p-3 bg-sky-100/50 rounded-lg">
               <div>
-                <p className="text-xs text-blue-600 font-medium">
+                <p className="text-xs text-sky-600 font-medium">
                   Matching Bonus
                 </p>
-                <p className="text-lg font-bold text-blue-900">
+                <p className="text-lg font-bold text-sky-900">
                   ₹
                   {matchingBonusStats.totalMatchingBonus?.toLocaleString() ||
                     "0.00"}
                 </p>
-                <p className="text-xs text-blue-500">10% of Matched BV</p>
+                <p className="text-xs text-sky-500">10% of Matched BV</p>
               </div>
               <div>
                 <p className="text-xs text-purple-600 font-medium">
@@ -394,11 +394,11 @@ const UserDashboard = () => {
             {matchingBonusStats.currentWeek && (
               <div className="mt-4 p-3 bg-white/60 rounded-lg">
                 <div className="flex justify-between items-center mb-2">
-                  <p className="text-sm font-medium text-blue-800">
+                  <p className="text-sm font-medium text-sky-800">
                     Current Week Bonus
                   </p>
                   <div className="flex gap-2">
-                    <Badge className="bg-blue-100 text-blue-800">
+                    <Badge className="bg-sky-100 text-sky-800">
                       Matching: ₹
                       {matchingBonusStats.currentWeek.bonusAmount?.toFixed(2) ||
                         "0.00"}
@@ -412,7 +412,7 @@ const UserDashboard = () => {
                   </div>
                 </div>
                 <div className="mt-2 flex justify-between items-center">
-                  <p className="text-xs text-blue-600">
+                  <p className="text-xs text-sky-600">
                     Week:{" "}
                     {matchingBonusStats.currentWeek.weekStartDate
                       ? new Date(
@@ -426,7 +426,7 @@ const UserDashboard = () => {
                         ).toLocaleDateString()
                       : "N/A"}
                   </p>
-                  <p className="text-xs text-blue-600">
+                  <p className="text-xs text-sky-600">
                     Status:{" "}
                     <span className="font-medium capitalize">
                       {matchingBonusStats.currentWeek.status || "pending"}
@@ -445,7 +445,7 @@ const UserDashboard = () => {
               </div>
             )}
             <div className="mt-4 p-3 bg-white/60 rounded-lg">
-              <p className="text-sm text-blue-800 mb-2">
+              <p className="text-sm text-sky-800 mb-2">
                 <Percent className="h-4 w-4 inline mr-2" />
                 <strong>Matching Bonus:</strong> You earn 10% of matched BV.
                 First pair: 2:1 or 1:2, Next pairs: 1:1 unlimited depth
@@ -482,15 +482,15 @@ const UserDashboard = () => {
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
               <div>
-                <p className="text-xs text-blue-600 font-medium">
+                <p className="text-xs text-sky-600 font-medium">
                   1st Level (25%)
                 </p>
-                <p className="text-lg font-bold text-blue-900">
+                <p className="text-lg font-bold text-sky-900">
                   ₹
                   {mentorshipBonusStats.levelStats?.level1?.total?.toLocaleString() ||
                     "0.00"}
                 </p>
-                <p className="text-xs text-blue-500">
+                <p className="text-xs text-sky-500">
                   {mentorshipBonusStats.levelStats?.level1?.count || 0} bonuses
                 </p>
               </div>
@@ -508,15 +508,15 @@ const UserDashboard = () => {
                 </p>
               </div>
               <div>
-                <p className="text-xs text-blue-600 font-medium">
+                <p className="text-xs text-sky-600 font-medium">
                   3rd Level (10%)
                 </p>
-                <p className="text-lg font-bold text-blue-900">
+                <p className="text-lg font-bold text-sky-900">
                   ₹
                   {mentorshipBonusStats.levelStats?.level3?.total?.toLocaleString() ||
                     "0.00"}
                 </p>
-                <p className="text-xs text-blue-500">
+                <p className="text-xs text-sky-500">
                   {mentorshipBonusStats.levelStats?.level3?.count || 0} bonuses
                 </p>
               </div>
@@ -687,36 +687,36 @@ const UserDashboard = () => {
 
       {/* Rank & Royalty Bonus Card */}
       {rankRoyaltyStats && (
-        <Card className="border-2 border-blue-400 bg-gradient-to-r from-blue-50 to-indigo-50 shadow-lg">
+        <Card className="border-2 border-sky-400 bg-gradient-to-r from-sky-50 to-indigo-50 shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="p-3 bg-gradient-to-r from-blue-400 to-indigo-500 rounded-lg">
+              <div className="p-3 bg-gradient-to-r from-sky-400 to-indigo-500 rounded-lg">
                 <Trophy className="h-6 w-6 text-white" />
               </div>
               <div>
-                <CardTitle className="text-xl font-bold text-blue-900">
+                <CardTitle className="text-xl font-bold text-sky-900">
                   Rank & Royalty Bonus
                 </CardTitle>
-                <p className="text-sm text-blue-700 mt-1">
+                <p className="text-sm text-sky-700 mt-1">
                   Current Rank: <strong>{userRank}</strong> | Royalty based on
                   Company Monthly Sales
                 </p>
               </div>
             </div>
-            <Badge className="bg-blue-500 text-white px-3 py-1">
+            <Badge className="bg-sky-500 text-white px-3 py-1">
               {userRank}
             </Badge>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
               <div>
-                <p className="text-xs text-blue-600 font-medium">
+                <p className="text-xs text-sky-600 font-medium">
                   Total Royalty Earned
                 </p>
-                <p className="text-xl font-bold text-blue-900">
+                <p className="text-xl font-bold text-sky-900">
                   ₹{rankRoyaltyStats.totalEarned?.toLocaleString() || "0.00"}
                 </p>
-                <p className="text-xs text-blue-500">All Time</p>
+                <p className="text-xs text-sky-500">All Time</p>
               </div>
               {rankRoyaltyStats.currentMonthBonus && (
                 <>
@@ -754,12 +754,12 @@ const UserDashboard = () => {
               )}
             </div>
             <div className="mt-4 p-3 bg-white/60 rounded-lg">
-              <p className="text-sm text-blue-800 mb-2">
+              <p className="text-sm text-sky-800 mb-2">
                 <Trophy className="h-4 w-4 inline mr-2" />
                 <strong>Royalty Bonus:</strong> Earn percentage of company
                 monthly sales based on your rank
               </p>
-              <ul className="text-xs text-blue-700 space-y-1 ml-6">
+              <ul className="text-xs text-sky-700 space-y-1 ml-6">
                 <li>
                   • Royalty Bonus = Company Monthly Sales × CTO % (per your
                   rank)
@@ -846,7 +846,7 @@ const UserDashboard = () => {
                 <Badge
                   className={
                     weeklyTargetStatus.qualification?.isQualified
-                      ? "bg-blue-500"
+                      ? "bg-sky-500"
                       : "bg-orange-500"
                   }
                 >
@@ -859,7 +859,7 @@ const UserDashboard = () => {
                 <div
                   className={`h-3 rounded-full ${
                     weeklyTargetStatus.qualification?.isQualified
-                      ? "bg-blue-500"
+                      ? "bg-sky-500"
                       : "bg-orange-500"
                   }`}
                   style={{
@@ -886,7 +886,7 @@ const UserDashboard = () => {
                           key={idx}
                           className={`text-xs p-2 rounded ${
                             ref.qualified
-                              ? "bg-blue-100 text-blue-800"
+                              ? "bg-sky-100 text-sky-800"
                               : "bg-red-100 text-red-800"
                           }`}
                         >
@@ -943,7 +943,7 @@ const UserDashboard = () => {
                 </p>
               </div>
             </div>
-            <Badge className="bg-blue-500 text-white px-3 py-1">Active</Badge>
+            <Badge className="bg-sky-500 text-white px-3 py-1">Active</Badge>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -1036,7 +1036,7 @@ const UserDashboard = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
-              <Package className="mr-2 h-5 w-5 text-blue-600" />
+              <Package className="mr-2 h-5 w-5 text-sky-600" />
               System Statistics
             </CardTitle>
           </CardHeader>
@@ -1047,7 +1047,7 @@ const UserDashboard = () => {
             </div>
             <div className="flex justify-between">
               <span className="text-gray-600">Active Users:</span>
-              <span className="font-semibold text-blue-600">
+              <span className="font-semibold text-sky-600">
                 {stats?.activeUsers ?? 0}
               </span>
             </div>
@@ -1061,16 +1061,16 @@ const UserDashboard = () => {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center">
-              <TrendingUp className="mr-2 h-5 w-5 text-blue-600" />
+              <TrendingUp className="mr-2 h-5 w-5 text-sky-600" />
               Quick Actions
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-2">
-              <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button className="w-full px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors">
                 View Profile
               </button>
-              <button className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+              <button className="w-full px-4 py-2 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition-colors">
                 Wallet History
               </button>
               <button className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">

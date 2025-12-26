@@ -205,7 +205,7 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({
   return (
     <aside className="fixed top-0 left-0 z-40 w-72 h-screen">
       {/* Glass Background */}
-      <div className="h-full bg-gradient-to-b from-blue-900/95 via-blue-800/95 to-blue-900/95 backdrop-blur-xl border-r border-blue-700/30 shadow-2xl">
+      <div className="h-full bg-gradient-to-b from-sky-900/95 via-sky-800/95 to-sky-900/95 backdrop-blur-xl border-r border-sky-700/30 shadow-2xl">
         <div className="h-full px-4 py-6 overflow-y-auto">
           {/* Logo/Brand Section with Glass Effect */}
           <div className="mb-8 px-3 pt-4">
@@ -241,14 +241,14 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({
                         "w-full flex items-center justify-between px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 group",
                         isActive
                           ? "bg-white/20 backdrop-blur-md text-white shadow-lg border border-white/20"
-                          : "text-blue-100/80 hover:bg-white/10 hover:text-white backdrop-blur-sm border border-transparent"
+                          : "text-sky-100/80 hover:bg-white/10 hover:text-white backdrop-blur-sm border border-transparent"
                       )}
                     >
                       <div className="flex items-center space-x-3">
                         <item.icon
                           className={cn(
                             "h-5 w-5 transition-transform group-hover:scale-110",
-                            isActive ? "text-white" : "text-blue-200/70"
+                            isActive ? "text-white" : "text-sky-200/70"
                           )}
                         />
                         <span>{item.name}</span>
@@ -257,7 +257,7 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({
                         className={cn(
                           "h-4 w-4 transition-transform duration-300",
                           isSubmenuOpen ? "transform rotate-180" : "",
-                          isActive ? "text-white" : "text-blue-200/70"
+                          isActive ? "text-white" : "text-sky-200/70"
                         )}
                       />
                     </button>
@@ -269,7 +269,7 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({
                         "flex items-center px-4 py-3 text-sm font-medium rounded-xl transition-all duration-300 group relative",
                         isActive
                           ? "bg-white/20 backdrop-blur-md text-white shadow-lg border border-amber-400/30 ring-1 ring-amber-400/20"
-                          : "text-blue-100/80 hover:bg-white/10 hover:text-white backdrop-blur-sm border border-transparent",
+                          : "text-sky-100/80 hover:bg-white/10 hover:text-white backdrop-blur-sm border border-transparent",
                         item.highlight &&
                           "ring-2 ring-amber-400/60 bg-amber-500/15 border-amber-400/30"
                       )}
@@ -277,7 +277,7 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({
                       <item.icon
                         className={cn(
                           "h-5 w-5 mr-3 transition-transform group-hover:scale-110",
-                          isActive ? "text-white" : "text-blue-200/70"
+                          isActive ? "text-white" : "text-sky-200/70"
                         )}
                       />
                       <span className="flex-1">{item.name}</span>
@@ -294,7 +294,7 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({
 
                   {/* Submenu with Glass Effect */}
                   {hasSubmenu && isSubmenuOpen && (
-                    <div className="ml-6 mt-2 space-y-1 border-l-2 border-blue-500/30 pl-4">
+                    <div className="ml-6 mt-2 space-y-1 border-l-2 border-sky-500/30 pl-4">
                       {item.children?.map((child) => {
                         const isChildActive = location.pathname === child.href;
                         const ChildIcon = (child as any).icon;
@@ -307,7 +307,7 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({
                               "block px-4 py-2.5 text-sm font-medium rounded-lg transition-all duration-300 backdrop-blur-sm",
                               isChildActive
                                 ? "bg-white/15 text-white border border-white/20 font-semibold shadow-md"
-                                : "text-blue-100/70 hover:bg-white/5 hover:text-white border border-transparent"
+                                : "text-sky-100/70 hover:bg-white/5 hover:text-white border border-transparent"
                             )}
                           >
                             <span className="flex items-center">
@@ -317,11 +317,11 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({
                                     "h-4 w-4 mr-3",
                                     isChildActive
                                       ? "text-white"
-                                      : "text-blue-200/70"
+                                      : "text-sky-200/70"
                                   )}
                                 />
                               ) : (
-                                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 mr-3 shadow-sm"></span>
+                                <span className="w-1.5 h-1.5 rounded-full bg-sky-400 mr-3 shadow-sm"></span>
                               )}
                               {child.name}
                             </span>
@@ -336,7 +336,7 @@ export const AdvancedSidebar: React.FC<AdvancedSidebarProps> = ({
           </nav>
 
           {/* Logout Button with Glass Effect */}
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-blue-900/50 backdrop-blur-xl border-t border-amber-400/20">
+          <div className="absolute bottom-0 left-0 right-0 p-4 bg-sky-900/50 backdrop-blur-xl border-t border-amber-400/20">
             <button
               onClick={onLogout}
               className="w-full flex items-center justify-center px-4 py-3 text-sm font-semibold text-white bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-xl transition-all duration-300 shadow-lg border border-amber-400/30 hover:border-amber-400/50 ring-1 ring-amber-400/20 hover:ring-amber-400/40 transform hover:scale-[1.02]"

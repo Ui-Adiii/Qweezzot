@@ -113,9 +113,9 @@ const OnlineOrders: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
       case "delivered":
-        return "bg-blue-500";
+        return "bg-sky-500";
       case "shipped":
-        return "bg-blue-500";
+        return "bg-sky-500";
       case "processing":
         return "bg-yellow-500";
       case "confirmed":
@@ -141,16 +141,16 @@ const OnlineOrders: React.FC = () => {
   };
 
   return (
-    <div className="p-6 space-y-6 bg-gradient-to-br from-blue-50/30 via-white to-blue-50/20 min-h-screen">
+    <div className="p-6 space-y-6 bg-gradient-to-br from-sky-50/30 via-white to-sky-50/20 min-h-screen">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex items-center space-x-3"
       >
-        <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
-          <Globe className="h-8 w-8 text-blue-600" />
+        <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/20">
+          <Globe className="h-8 w-8 text-sky-600" />
         </div>
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-700 bg-clip-text text-transparent">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-sky-700 bg-clip-text text-transparent">
           My Online Orders
         </h1>
       </motion.div>
@@ -162,19 +162,19 @@ const OnlineOrders: React.FC = () => {
           transition={{ delay: 0.1 }}
           whileHover={{ scale: 1.02, y: -5 }}
         >
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
             <CardContent className="p-4 text-center">
               <motion.div
-                className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
+                className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                <Package className="h-6 w-6 text-blue-600" />
+                <Package className="h-6 w-6 text-sky-600" />
               </motion.div>
-              <p className="text-2xl font-bold text-blue-700">
+              <p className="text-2xl font-bold text-sky-700">
                 ₹{stats.totalAmount.toLocaleString()}
               </p>
-              <p className="text-sm text-blue-800 font-medium">
+              <p className="text-sm text-sky-800 font-medium">
                 Total Orders Value
               </p>
             </CardContent>
@@ -187,19 +187,19 @@ const OnlineOrders: React.FC = () => {
           transition={{ delay: 0.2 }}
           whileHover={{ scale: 1.02, y: -5 }}
         >
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
             <CardContent className="p-4 text-center">
               <motion.div
-                className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
+                className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                <ShoppingCart className="h-6 w-6 text-blue-600" />
+                <ShoppingCart className="h-6 w-6 text-sky-600" />
               </motion.div>
-              <p className="text-2xl font-bold text-blue-700">
+              <p className="text-2xl font-bold text-sky-700">
                 {stats.totalOrders}
               </p>
-              <p className="text-sm text-blue-800 font-medium">Total Orders</p>
+              <p className="text-sm text-sky-800 font-medium">Total Orders</p>
             </CardContent>
           </Card>
         </motion.div>
@@ -210,19 +210,19 @@ const OnlineOrders: React.FC = () => {
           transition={{ delay: 0.3 }}
           whileHover={{ scale: 1.02, y: -5 }}
         >
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
             <CardContent className="p-4 text-center">
               <motion.div
-                className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
+                className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                <Package className="h-6 w-6 text-blue-600" />
+                <Package className="h-6 w-6 text-sky-600" />
               </motion.div>
-              <p className="text-2xl font-bold text-blue-700">
+              <p className="text-2xl font-bold text-sky-700">
                 {stats.deliveredOrders}
               </p>
-              <p className="text-sm text-blue-800 font-medium">Delivered</p>
+              <p className="text-sm text-sky-800 font-medium">Delivered</p>
             </CardContent>
           </Card>
         </motion.div>
@@ -233,19 +233,19 @@ const OnlineOrders: React.FC = () => {
           transition={{ delay: 0.4 }}
           whileHover={{ scale: 1.02, y: -5 }}
         >
-          <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
+          <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg hover:shadow-2xl transition-all duration-300 ring-1 ring-amber-400/10 hover:ring-amber-400/30">
             <CardContent className="p-4 text-center">
               <motion.div
-                className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
+                className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30 w-fit mx-auto mb-3"
                 whileHover={{ rotate: 360 }}
                 transition={{ duration: 0.6 }}
               >
-                <Clock className="h-6 w-6 text-blue-600" />
+                <Clock className="h-6 w-6 text-sky-600" />
               </motion.div>
-              <p className="text-2xl font-bold text-blue-700">
+              <p className="text-2xl font-bold text-sky-700">
                 {stats.processingOrders}
               </p>
-              <p className="text-sm text-blue-800 font-medium">Processing</p>
+              <p className="text-sm text-sky-800 font-medium">Processing</p>
             </CardContent>
           </Card>
         </motion.div>
@@ -256,9 +256,9 @@ const OnlineOrders: React.FC = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5 }}
       >
-        <Card className="border-blue-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
+        <Card className="border-sky-200/50 bg-white/70 backdrop-blur-xl shadow-lg ring-1 ring-amber-400/10">
           <CardHeader>
-            <CardTitle className="text-xl text-blue-900">
+            <CardTitle className="text-xl text-sky-900">
               Order History
             </CardTitle>
           </CardHeader>
@@ -300,16 +300,16 @@ const OnlineOrders: React.FC = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.6 + index * 0.1 }}
                   >
-                    <Card className="border-blue-200/50 bg-white/60 backdrop-blur-md shadow-md ring-1 ring-amber-400/10 hover:shadow-lg transition-all duration-300">
+                    <Card className="border-sky-200/50 bg-white/60 backdrop-blur-md shadow-md ring-1 ring-amber-400/10 hover:shadow-lg transition-all duration-300">
                       <CardContent className="p-4">
                         <div className="flex items-start justify-between">
                           <div className="flex items-start space-x-4">
-                            <div className="p-2 bg-gradient-to-br from-blue-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30">
+                            <div className="p-2 bg-gradient-to-br from-sky-500/20 to-amber-500/20 rounded-lg backdrop-blur-sm ring-1 ring-amber-300/30">
                               {getStatusIcon(order.status)}
                             </div>
                             <div className="flex-1">
                               <div className="flex items-center space-x-2 mb-2">
-                                <h3 className="font-bold text-blue-900">
+                                <h3 className="font-bold text-sky-900">
                                   Order #{order.orderNumber}
                                 </h3>
                                 <Badge
@@ -323,7 +323,7 @@ const OnlineOrders: React.FC = () => {
                               </div>
 
                               <div className="space-y-1">
-                                <p className="text-sm text-blue-800">
+                                <p className="text-sm text-sky-800">
                                   Items:{" "}
                                   {order.items
                                     .map(
@@ -332,7 +332,7 @@ const OnlineOrders: React.FC = () => {
                                     )
                                     .join(", ")}
                                 </p>
-                                <div className="flex items-center space-x-4 text-sm text-blue-700">
+                                <div className="flex items-center space-x-4 text-sm text-sky-700">
                                   <div className="flex items-center space-x-1">
                                     <Clock className="h-4 w-4" />
                                     <span>
@@ -352,7 +352,7 @@ const OnlineOrders: React.FC = () => {
                                   <Badge
                                     className={
                                       order.paymentStatus === "paid"
-                                        ? "bg-gradient-to-r from-blue-600 to-amber-500 text-white ring-1 ring-amber-300/30 backdrop-blur-sm"
+                                        ? "bg-gradient-to-r from-sky-600 to-amber-500 text-white ring-1 ring-amber-300/30 backdrop-blur-sm"
                                         : "bg-gradient-to-r from-amber-500 to-yellow-500 text-white ring-1 ring-amber-300/30 backdrop-blur-sm"
                                     }
                                   >
@@ -365,7 +365,7 @@ const OnlineOrders: React.FC = () => {
 
                           <div className="flex items-center space-x-4">
                             <div className="text-right">
-                              <p className="font-bold text-lg text-blue-700">
+                              <p className="font-bold text-lg text-sky-700">
                                 ₹{order.totalAmount.toLocaleString()}
                               </p>
                             </div>
@@ -373,7 +373,7 @@ const OnlineOrders: React.FC = () => {
                               <Button
                                 size="sm"
                                 variant="outline"
-                                className="border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50 text-blue-800"
+                                className="border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50 text-sky-800"
                                 onClick={() => {
                                   setSelectedOrder(order);
                                   setIsDetailsOpen(true);
@@ -385,7 +385,7 @@ const OnlineOrders: React.FC = () => {
                                 <Button
                                   size="sm"
                                   variant="outline"
-                                  className="border-blue-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-blue-50/50 text-blue-800"
+                                  className="border-sky-200/50 bg-white/60 backdrop-blur-sm ring-1 ring-amber-400/10 hover:bg-sky-50/50 text-sky-800"
                                 >
                                   <Truck className="h-4 w-4 mr-1" />
                                   Track
@@ -408,7 +408,7 @@ const OnlineOrders: React.FC = () => {
       <Dialog open={isDetailsOpen} onOpenChange={setIsDetailsOpen}>
         <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-2xl font-bold text-blue-900">
+            <DialogTitle className="text-2xl font-bold text-sky-900">
               Order Details
             </DialogTitle>
             <DialogDescription>
@@ -419,12 +419,12 @@ const OnlineOrders: React.FC = () => {
           {selectedOrder && (
             <div className="space-y-6 mt-4">
               {/* Order Header */}
-              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-blue-50 to-amber-50 rounded-lg border border-blue-200">
+              <div className="flex items-center justify-between p-4 bg-gradient-to-r from-sky-50 to-amber-50 rounded-lg border border-sky-200">
                 <div>
-                  <p className="text-sm text-blue-700 font-medium">
+                  <p className="text-sm text-sky-700 font-medium">
                     Order Number
                   </p>
-                  <p className="text-lg font-bold text-blue-900">
+                  <p className="text-lg font-bold text-sky-900">
                     {selectedOrder.orderNumber}
                   </p>
                 </div>
@@ -440,24 +440,24 @@ const OnlineOrders: React.FC = () => {
 
               {/* Order Items */}
               <div className="space-y-3">
-                <h3 className="font-semibold text-blue-900 text-lg">
+                <h3 className="font-semibold text-sky-900 text-lg">
                   Order Items
                 </h3>
                 <div className="space-y-2">
                   {selectedOrder.items.map((item, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between p-3 bg-white border border-blue-100 rounded-lg"
+                      className="flex items-center justify-between p-3 bg-white border border-sky-100 rounded-lg"
                     >
                       <div className="flex-1">
-                        <p className="font-medium text-blue-900">
+                        <p className="font-medium text-sky-900">
                           {item.productName}
                         </p>
-                        <p className="text-sm text-blue-700">
+                        <p className="text-sm text-sky-700">
                           Quantity: {item.quantity}
                         </p>
                       </div>
-                      <p className="font-semibold text-blue-900">
+                      <p className="font-semibold text-sky-900">
                         ₹{(item.price * item.quantity).toLocaleString()}
                       </p>
                     </div>
@@ -467,11 +467,11 @@ const OnlineOrders: React.FC = () => {
 
               {/* Order Information */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="p-4 bg-white border border-blue-100 rounded-lg">
-                  <p className="text-sm text-blue-700 font-medium mb-1">
+                <div className="p-4 bg-white border border-sky-100 rounded-lg">
+                  <p className="text-sm text-sky-700 font-medium mb-1">
                     Order Date
                   </p>
-                  <p className="text-blue-900 font-semibold">
+                  <p className="text-sky-900 font-semibold">
                     {new Date(selectedOrder.createdAt).toLocaleDateString(
                       "en-IN",
                       {
@@ -482,11 +482,11 @@ const OnlineOrders: React.FC = () => {
                     )}
                   </p>
                 </div>
-                <div className="p-4 bg-white border border-blue-100 rounded-lg">
-                  <p className="text-sm text-blue-700 font-medium mb-1">
+                <div className="p-4 bg-white border border-sky-100 rounded-lg">
+                  <p className="text-sm text-sky-700 font-medium mb-1">
                     Last Updated
                   </p>
-                  <p className="text-blue-900 font-semibold">
+                  <p className="text-sky-900 font-semibold">
                     {new Date(selectedOrder.updatedAt).toLocaleDateString(
                       "en-IN",
                       {
@@ -500,14 +500,14 @@ const OnlineOrders: React.FC = () => {
               </div>
 
               {/* Payment Status */}
-              <div className="p-4 bg-white border border-blue-100 rounded-lg">
-                <p className="text-sm text-blue-700 font-medium mb-2">
+              <div className="p-4 bg-white border border-sky-100 rounded-lg">
+                <p className="text-sm text-sky-700 font-medium mb-2">
                   Payment Status
                 </p>
                 <Badge
                   className={
                     selectedOrder.paymentStatus === "paid"
-                      ? "bg-gradient-to-r from-blue-600 to-amber-500 text-white ring-1 ring-amber-300/30 backdrop-blur-sm"
+                      ? "bg-gradient-to-r from-sky-600 to-amber-500 text-white ring-1 ring-amber-300/30 backdrop-blur-sm"
                       : "bg-gradient-to-r from-amber-500 to-yellow-500 text-white ring-1 ring-amber-300/30 backdrop-blur-sm"
                   }
                 >
@@ -518,13 +518,13 @@ const OnlineOrders: React.FC = () => {
 
               {/* Tracking Information */}
               {selectedOrder.trackingNumber && (
-                <div className="p-4 bg-white border border-blue-100 rounded-lg">
-                  <p className="text-sm text-blue-700 font-medium mb-2">
+                <div className="p-4 bg-white border border-sky-100 rounded-lg">
+                  <p className="text-sm text-sky-700 font-medium mb-2">
                     Tracking Information
                   </p>
                   <div className="flex items-center space-x-2">
-                    <Truck className="h-4 w-4 text-blue-600" />
-                    <p className="text-blue-900 font-semibold">
+                    <Truck className="h-4 w-4 text-sky-600" />
+                    <p className="text-sky-900 font-semibold">
                       {selectedOrder.trackingNumber}
                     </p>
                   </div>
@@ -532,7 +532,7 @@ const OnlineOrders: React.FC = () => {
               )}
 
               {/* Total Amount */}
-              <div className="p-4 bg-gradient-to-r from-blue-600 to-amber-500 rounded-lg">
+              <div className="p-4 bg-gradient-to-r from-sky-600 to-amber-500 rounded-lg">
                 <div className="flex items-center justify-between">
                   <p className="text-white font-semibold text-lg">
                     Total Amount

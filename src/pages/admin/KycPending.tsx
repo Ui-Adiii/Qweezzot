@@ -142,10 +142,10 @@ const KycPending: React.FC = () => {
     <div className="p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-blue-800">
+          <h1 className="text-3xl font-bold text-sky-800">
             Pending KYC Requests
           </h1>
-          <p className="text-blue-600 mt-1">
+          <p className="text-sky-600 mt-1">
             Review and approve/reject KYC submissions
           </p>
         </div>
@@ -162,7 +162,7 @@ const KycPending: React.FC = () => {
         <CardContent>
           {loading ? (
             <div className="flex justify-center items-center py-12">
-              <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
+              <Loader2 className="h-8 w-8 animate-spin text-sky-600" />
             </div>
           ) : kycList.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
@@ -224,7 +224,7 @@ const KycPending: React.FC = () => {
                             <Button
                               size="sm"
                               variant="default"
-                              className="bg-blue-600 hover:bg-blue-700"
+                              className="bg-sky-600 hover:bg-sky-700"
                               onClick={() => handleApprove(kyc)}
                             >
                               <CheckCircle className="h-4 w-4 mr-1" />
@@ -437,7 +437,7 @@ const KycPending: React.FC = () => {
                   (action === "reject" && !rejectionReason.trim())
                 }
                 className={
-                  action === "approve" ? "bg-blue-600 hover:bg-blue-700" : ""
+                  action === "approve" ? "bg-sky-600 hover:bg-sky-700" : ""
                 }
               >
                 {isProcessing ? (
